@@ -1,10 +1,15 @@
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class WordsGenerator {
-    public static void generateTextWithRandomNames() throws IOException {
+
+    static String nameInput;
+    public static FileWriter generateTextWithRandomNames() throws IOException {
         String pathOfCreatingNewFileRandomNames = "/home/dasha/IdeaProjects/task1/src/random_names.txt";
         File fileWithRandNames = new File(pathOfCreatingNewFileRandomNames);
         boolean resultOfCreating;
@@ -19,7 +24,11 @@ public class WordsGenerator {
             e.printStackTrace();
         }
 
-        String inputStr = "/home/dasha/IdeaProjects/task1/src/names.txt";
+        String inputStr = "/home/dasha/IdeaProjects/task1/src/input_list_names.txt";
+        Path inputPath = Paths.get(inputStr);
+        Path nameFile = inputPath.getFileName();
+        nameInput = nameFile.toString();
+
         String [] namesListFromInput = WordsGenerator.convertInputNamesToListNames(inputStr);
 
         int amountNamesInFile = 1000;
@@ -31,24 +40,17 @@ public class WordsGenerator {
                 fileWriter.write(randomName);
                 fileWriter.write(" ");
 
-                if(i % 20 == 0) {
+                if(i != 0 && i % 20 == 0) {
                     fileWriter.write("\n");
                 }
             }
-            fileWriter.close();
+            return fileWriter;
         }
         catch (IOException e) {
             e.printStackTrace();
         }
 
-//        try {
-//            FileWriter fileWriter = new FileWriter(fileWithRandNames);
-//            fileWriter.write(randomName);
-//            fileWriter.close();
-//        }
-//        catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        return null;
     }
 
     public static String[] convertInputNamesToListNames(String filename) throws IOException {
@@ -60,9 +62,6 @@ public class WordsGenerator {
             listOfNames.add(currentLine);
         }
         bufferedReader.close();
-//        for (String listOfName : listOfNames) {
-//            System.out.println(listOfName);
-//        }
         return listOfNames.toArray(new String[0]);
     }
 }
