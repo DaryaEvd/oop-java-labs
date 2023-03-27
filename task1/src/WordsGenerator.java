@@ -4,10 +4,9 @@ import java.util.List;
 import java.util.Random;
 
 public class WordsGenerator {
-
     public static void generateTextWithRandomNames() throws IOException {
-        String pathOfFileRandomNames = "/home/dasha/IdeaProjects/task1/src/random_names.txt";
-        File fileWithRandNames = new File(pathOfFileRandomNames);
+        String pathOfCreatingNewFileRandomNames = "/home/dasha/IdeaProjects/task1/src/random_names.txt";
+        File fileWithRandNames = new File(pathOfCreatingNewFileRandomNames);
         boolean resultOfCreating;
         try {
             resultOfCreating = fileWithRandNames.createNewFile();
@@ -23,18 +22,33 @@ public class WordsGenerator {
         String inputStr = "/home/dasha/IdeaProjects/task1/src/names.txt";
         String [] namesListFromInput = WordsGenerator.convertInputNamesToListNames(inputStr);
 
-        int index = new Random().nextInt(namesListFromInput.length);
+        int amountNamesInFile = 1000;
 
-        String randomName = namesListFromInput[index];
+        try (FileWriter fileWriter = new FileWriter(fileWithRandNames)) {
+            for (int i = 0; i < amountNamesInFile; i++) {
+                int index = new Random().nextInt(namesListFromInput.length);
+                String randomName = namesListFromInput[index];
+                fileWriter.write(randomName);
+                fileWriter.write(" ");
 
-        try {
-            FileWriter fileWriter = new FileWriter(fileWithRandNames);
-            fileWriter.write(randomName);
+                if(i % 20 == 0) {
+                    fileWriter.write("\n");
+                }
+            }
             fileWriter.close();
         }
         catch (IOException e) {
             e.printStackTrace();
         }
+
+//        try {
+//            FileWriter fileWriter = new FileWriter(fileWithRandNames);
+//            fileWriter.write(randomName);
+//            fileWriter.close();
+//        }
+//        catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     public static String[] convertInputNamesToListNames(String filename) throws IOException {
