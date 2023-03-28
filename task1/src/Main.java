@@ -11,6 +11,8 @@ public class Main {
 
         HashMap<String, Integer> storeNamesAndAmount = new HashMap<>();
 
+        int globalAmountOfNames = 0;
+
         Reader reader = new FileReader("/home/dasha/IdeaProjects/task1/src/random_names.txt");
         try {
             BufferedReader bufferedReader = new BufferedReader(reader);
@@ -19,12 +21,13 @@ public class Main {
 
             while ((currString = bufferedReader.readLine()) != null) {
                 arrayString = currString.split(" ");
-                System.out.println(Arrays.toString(arrayString));
+//                System.out.println(Arrays.toString(arrayString));
 
                 for (String s : arrayString) {
 
                     int countFreq = storeNamesAndAmount.getOrDefault(s, 0);
                     storeNamesAndAmount.put(s, countFreq + 1);
+                    globalAmountOfNames++;
                 }
             }
             bufferedReader.close();
@@ -47,13 +50,6 @@ public class Main {
                 .collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2,
                                 LinkedHashMap::new));
 
-
-//        System.out.println("AFTER SOOOOOOOOOOOORTING");
-//        for (String name: sortNamesByFrequency.keySet()) {
-//            String value = sortNamesByFrequency.get(name).toString();
-//            System.out.println(name + ": " + value);
-//        }
-
         String pathOfResultFile = "/home/dasha/IdeaProjects/task1/src/result.csv";
         File resFile = new File(pathOfResultFile);
         boolean resultOfCreating;
@@ -69,15 +65,17 @@ public class Main {
         }
 
         try (FileWriter fileWriter = new FileWriter(resFile)) {
-            fileWriter.write("Word");
-            fileWriter.write(", ");
-            fileWriter.write("Frequency\n");
+            fileWriter.write("Word, ");
+            fileWriter.write("Frequency, ");
+            fileWriter.write("ProcFrequency\n");
 
             for (String name: sortNamesByFrequency.keySet()) {
-                String value = sortNamesByFrequency.get(name).toString();
-                fileWriter.write(name + ", " + value + "\n");
-            }
-        }
+                double proc = (double)sortNamesByFrequency.get(name) / globalAmountOfNames;
 
+                String value = sortNamesByFrequency.get(name).toString();
+                fileWriter.write(name + ", " + value + ", " + proc + "\n");
+            }
+
+        }
     }
 }
