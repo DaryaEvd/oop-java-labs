@@ -31,7 +31,7 @@ public class WordsGenerator {
 
         String [] namesListFromInput = WordsGenerator.convertInputNamesToListNames(inputStr);
 
-        int amountNamesInFile = 300;
+        int amountNamesInFile = 30;
 
         try (FileWriter fileWriter = new FileWriter(fileWithRandNames)) {
             for (int i = 0; i < amountNamesInFile; i++) {
