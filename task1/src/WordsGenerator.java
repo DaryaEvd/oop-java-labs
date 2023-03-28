@@ -1,5 +1,4 @@
 import java.io.*;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -9,6 +8,7 @@ import java.util.Random;
 public class WordsGenerator {
 
     static String nameInput;
+
     public static FileWriter generateTextWithRandomNames() throws IOException {
         String pathOfCreatingNewFileRandomNames = "/home/dasha/IdeaProjects/task1/src/random_names.txt";
         File fileWithRandNames = new File(pathOfCreatingNewFileRandomNames);
@@ -16,7 +16,7 @@ public class WordsGenerator {
         try {
             resultOfCreating = fileWithRandNames.createNewFile();
             if(!resultOfCreating) {
-                System.out.println("File already exist at location: " + fileWithRandNames.getCanonicalPath());
+//                System.out.println("File already exists at location: " + fileWithRandNames.getCanonicalPath());
                 //TODO: System.err.print, exit ?
             }
         }
@@ -31,7 +31,7 @@ public class WordsGenerator {
 
         String [] namesListFromInput = WordsGenerator.convertInputNamesToListNames(inputStr);
 
-        int amountNamesInFile = 1000;
+        int amountNamesInFile = 300;
 
         try (FileWriter fileWriter = new FileWriter(fileWithRandNames)) {
             for (int i = 0; i < amountNamesInFile; i++) {
@@ -49,15 +49,14 @@ public class WordsGenerator {
         catch (IOException e) {
             e.printStackTrace();
         }
-
         return null;
     }
 
     public static String[] convertInputNamesToListNames(String filename) throws IOException {
         FileReader fileReader = new FileReader(filename);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
-        List<String> listOfNames = new ArrayList<String>();
-        String currentLine = null;
+        List<String> listOfNames = new ArrayList<>();
+        String currentLine;
         while ((currentLine = bufferedReader.readLine()) != null) {
             listOfNames.add(currentLine);
         }
