@@ -1,6 +1,5 @@
 import java.io.*;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +11,7 @@ public class WordsGenerator {
 
     // TODO: загкадка дыры: если объявить inputStr как final static, то все пойдет нафиг... (в вычисления)
 //    final static String inputStr = "/home/dasha/IdeaProjects/task1/src/random_names.txt";
-    public static FileWriter generateTextWithRandomNames() throws IOException {
+    public static void generateTextWithRandomNames() throws IOException {
 
         /* //TODO: ask how to create file in curr dir (idk why "user.dir" doesn't work correctly
              // and check whether file  exists
@@ -31,7 +30,7 @@ public class WordsGenerator {
         File fileWithRandNames =  new File(pathOfCreatingNewFileRandomNames);
         if(!Files.exists(Paths.get(pathOfCreatingNewFileRandomNames))) {
             boolean isCreated = fileWithRandNames.createNewFile(); //TODO: ask how to create without boolean
-            System.out.println("i create a file");
+//            System.out.println("i create a file");
         }
 
         String inputStr = "/home/dasha/IdeaProjects/task1/src/list_of_names.txt";
@@ -49,12 +48,10 @@ public class WordsGenerator {
                     fileWriter.write("\n");
                 }
             }
-            return fileWriter;
         }
         catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
     }
 
     public static String[] convertInputNamesToListNames(String filename) throws IOException {
