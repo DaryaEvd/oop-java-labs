@@ -1,5 +1,6 @@
 import java.io.*;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,12 +8,11 @@ import java.util.Random;
 
 public class WordsGenerator {
     static final int amountNamesInFile = 100;
-    static final int amountOfWordsPerLine = 20;
+    static final int wordsPerLine = 20;
 
-    // TODO: how to protect if from deleting?
-
-    final static String inputStr = "/home/dasha/IdeaProjects/task1/src/random_names.txt";
-    public static void generateTextWithRandomNames() throws IOException {
+    // TODO: загкадка дыры: если объявить inputStr как final static, то все пойдет нафиг... (в вычисления)
+//    final static String inputStr = "/home/dasha/IdeaProjects/task1/src/random_names.txt";
+    public static FileWriter generateTextWithRandomNames() throws IOException {
 
         /* //TODO: ask how to create file in curr dir (idk why "user.dir" doesn't work correctly
              // and check whether file  exists
@@ -34,26 +34,30 @@ public class WordsGenerator {
             System.out.println("i create a file");
         }
 
-        String [] namesListFromInput = WordsGenerator.createListOfNames(inputStr);
+        String inputStr = "/home/dasha/IdeaProjects/task1/src/list_of_names.txt";
+
+        String [] namesListFromInput = WordsGenerator.convertInputNamesToListNames(inputStr);
 
         try (FileWriter fileWriter = new FileWriter(fileWithRandNames)) {
             for (int i = 0; i < amountNamesInFile; i++) {
-                int randomIndex = new Random().nextInt(namesListFromInput.length);
-                String randomName = namesListFromInput[randomIndex];
+                int index = new Random().nextInt(namesListFromInput.length);
+                String randomName = namesListFromInput[index];
                 fileWriter.write(randomName);
                 fileWriter.write(" ");
 
-                if(i != 0 && i % amountOfWordsPerLine == 0) {
+                if(i != 0 && i % wordsPerLine == 0) {
                     fileWriter.write("\n");
                 }
             }
-         }
+            return fileWriter;
+        }
         catch (IOException e) {
             e.printStackTrace();
         }
-     }
+        return null;
+    }
 
-    public static String[] createListOfNames(String filename) throws IOException {
+    public static String[] convertInputNamesToListNames(String filename) throws IOException {
         FileReader fileReader = new FileReader(filename);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         List<String> listOfNames = new ArrayList<>();
