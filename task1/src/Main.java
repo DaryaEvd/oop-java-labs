@@ -1,19 +1,17 @@
 import java.io.*;
 import java.util.*;
-
 import static java.util.stream.Collectors.toMap;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        FileWriter inputFileWithNames =  WordsGenerator.generateTextWithRandomNames();
-        assert inputFileWithNames != null;
-        inputFileWithNames.close();
+        WordsGenerator.generateTextWithRandomNames();
 
-        HashMap<String, Integer> storeNamesAndAmount = new HashMap<>();
+        HashMap<String, Integer> storeNamesAndTheirAmount = new HashMap<>();
 
         int globalAmountOfNames = 0;
 
-        Reader reader = new FileReader("/home/dasha/IdeaProjects/task1/src/random_names.txt");
+        CSVFile csvFile = new CSVFile();
+        Reader reader = csvFile.reader;
         try {
             BufferedReader bufferedReader = new BufferedReader(reader);
             String currString;
@@ -25,8 +23,8 @@ public class Main {
 
                 for (String s : arrayString) {
 
-                    int countFreq = storeNamesAndAmount.getOrDefault(s, 0);
-                    storeNamesAndAmount.put(s, countFreq + 1);
+                    int countFreq = storeNamesAndTheirAmount.getOrDefault(s, 0);
+                    storeNamesAndTheirAmount.put(s, countFreq + 1);
                     globalAmountOfNames++;
                 }
             }
@@ -37,34 +35,33 @@ public class Main {
         }
 
 //        System.out.println("HASH MAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP");
-//        for (String name: storeNamesAndAmount.keySet()) {
-//            String value = storeNamesAndAmount.get(name).toString();
+//        for (String name: storeNamesAndTheirAmount.keySet()) {
+//            String value = storeNamesAndTheirAmount.get(name).toString();
 //            System.out.println(name + ": " + value);
 //        }
 
-        HashMap<String, Integer> sortNamesByFrequency = new HashMap<>();
-        sortNamesByFrequency = storeNamesAndAmount
+        HashMap<String, Integer> sortNamesByFrequency = storeNamesAndTheirAmount
                 .entrySet()
                 .stream()
                 .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
                 .collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2,
                                 LinkedHashMap::new));
 
-        String pathOfResultFile = "/home/dasha/IdeaProjects/task1/src/result.csv";
-        File resFile = new File(pathOfResultFile);
-        boolean resultOfCreating;
-        try {
-            resultOfCreating = resFile.createNewFile();
-            if(!resultOfCreating) {
-//                System.out.println("File already exists at location: " + fileWithRandNames.getCanonicalPath());
-                //TODO: System.err.print, exit ?
-            }
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
+//        String pathOfResultFile = "/home/dasha/IdeaProjects/task1/src/result.csv";
+//        File resFile = new File(pathOfResultFile);
+//        boolean resultOfCreating;
+//        try {
+//            resultOfCreating = resFile.createNewFile();
+//            if(!resultOfCreating) {
+////                System.out.println("File already exists at location: " + fileWithRandNames.getCanonicalPath());
+//                //TODO: System.err.print, exit ?
+//            }
+//        }
+//        catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
-        try (FileWriter fileWriter = new FileWriter(resFile)) {
+        try (FileWriter fileWriter = new FileWriter(csvFile.output)) {
             fileWriter.write("Word, ");
             fileWriter.write("Frequency, ");
             fileWriter.write("ProcFrequency\n");
