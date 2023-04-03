@@ -7,10 +7,8 @@ import java.util.Random;
 
 public class WordsGenerator {
     static final int amountNamesInFile = 100;
-    static final int wordsPerLine = 20;
+    static final int wordsPerLine = 20; //just for convenience
 
-    // TODO: загкадка дыры: если объявить inputStr как final static, то все пойдет нафиг... (в вычисления)
-//    final static String inputStr = "/home/dasha/IdeaProjects/task1/src/random_names.txt";
     public static void generateTextWithRandomNames() throws IOException {
 
         /* //TODO: ask how to create file in curr dir (idk why "user.dir" doesn't work correctly
@@ -33,6 +31,7 @@ public class WordsGenerator {
 //            System.out.println("i create a file");
         }
 
+        // TODO: how to protect file from deletiing??
         String inputStr = "/home/dasha/IdeaProjects/task1/src/list_of_names.txt";
 
         String [] namesListFromInput = WordsGenerator.convertInputNamesToListNames(inputStr);

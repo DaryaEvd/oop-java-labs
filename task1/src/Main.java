@@ -6,8 +6,7 @@ public class Main {
 
         CSVFile csvFile = new CSVFile();
         CSVFile.keepData(csvFile);
-        csvFile.sortNamesByFrequency = CSVFile.sortFreq(csvFile);
-        csvFile.printResultToFile(csvFile);
-        csvFile.output.close();
+        CSVFile.printResultToFile(csvFile);
+        csvFile.output.close(); //TODO: ask is it ok to close in main where no open??????
     }
 }

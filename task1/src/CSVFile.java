@@ -7,9 +7,8 @@ import java.util.Map;
 import static java.util.stream.Collectors.toMap;
 
 public class CSVFile {
-    Reader input;
+    private final Reader input;
     FileWriter output;
-
     HashMap<String, Integer> storeNamesAndAmount;
     HashMap<String, Integer> sortNamesByFrequency;
 
@@ -31,7 +30,7 @@ public class CSVFile {
         }
     }
 
-    static void keepData(CSVFile csvFile) {
+    public static void keepData(CSVFile csvFile) {
         try {
             BufferedReader bufferedReader = new BufferedReader(csvFile.input);
             String currString;
@@ -52,7 +51,7 @@ public class CSVFile {
         }
     }
 
-    static HashMap<String, Integer> sortFreq(CSVFile csvFile) {
+    private static HashMap<String, Integer> sortFreq(CSVFile csvFile) {
         return
              csvFile.storeNamesAndAmount
             .entrySet()
@@ -62,13 +61,17 @@ public class CSVFile {
                     LinkedHashMap::new));
     }
 
-    void printResultToFile(CSVFile csvFile) throws IOException {
+     public static void printResultToFile(CSVFile csvFile) throws IOException {
+
+         csvFile.sortNamesByFrequency = CSVFile.sortFreq(csvFile);
+
         csvFile.output.write("Word, ");
         csvFile.output.write("Frequency, ");
         csvFile.output.write("ProcFrequency\n");
 
         for (String name: csvFile.sortNamesByFrequency.keySet()) {
-            double proc = (double)csvFile.sortNamesByFrequency.get(name) / globalAmountOfNames;
+            double proc = (double)csvFile.sortNamesByFrequency.get(name) / WordsGenerator.amountNamesInFile;
+//            double proc = (double)csvFile.sortNamesByFrequency.get(name) / globalAmountOfNames; //TODO: ask
 
             String value = csvFile.sortNamesByFrequency.get(name).toString();
             csvFile.output.write(name + ", " + value + ", " + proc + "\n");
