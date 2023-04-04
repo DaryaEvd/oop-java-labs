@@ -9,7 +9,6 @@ public class WordsGenerator {
     private static final String INPUT_STR = "/home/dasha/IdeaProjects/task1/src/list_of_names.txt";
     private static final String PATH_OF_CREATING_NEW_FILE_RANDOM_NAMES =
             "/home/dasha/IdeaProjects/task1/src/random_names.txt";
-
     static final int AMOUNT_NAMES_IN_FILE = 1000;
     static final int WORDS_PER_LINE = 20;
 
@@ -41,7 +40,7 @@ public class WordsGenerator {
 
     public static String[] convertInputNamesToListNames(String filename) throws IOException {
         try (FileReader fileReader = new FileReader(filename);
-             BufferedReader bufferedReader = new BufferedReader(fileReader);) {
+             BufferedReader bufferedReader = new BufferedReader(fileReader)) {
             List<String> listOfNames = new ArrayList<>();
             String currentLine;
             while ((currentLine = bufferedReader.readLine()) != null) {

@@ -7,7 +7,5 @@ public class Main {
         CSVFile csvFile = new CSVFile();
         csvFile.keepData();
         csvFile.printResultToFile();
-//        csvFile.output.close();
-
     }
 }

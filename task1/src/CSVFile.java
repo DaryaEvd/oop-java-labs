@@ -6,31 +6,13 @@ import java.util.Map;
 
 import static java.util.stream.Collectors.toMap;
 
-public class CSVFile
-//        implements Closeable
-{
-    final  String NAME_OUTPUT_FILE = "/home/dasha/IdeaProjects/task1/src/result.csv";
-//    Reader input;
-
-//    FileWriter output;
+public class CSVFile {
     HashMap<String, Integer> storeNamesAndAmount;
     HashMap<String, Integer> sortNamesByFrequency;
     static int AmountOfNames = 0;
     CSVFile() {
-//        try {
-//            this.input = new FileReader(NAME_INPUT_FILE);
-//        } catch (FileNotFoundException e) {
-//            throw new RuntimeException(e);
-//        }
-
         this.storeNamesAndAmount = new HashMap<>();
         this.sortNamesByFrequency = new HashMap<>();
-
-//        try {
-//            this.output = new FileWriter(NAME_OUTPUT_FILE);
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
     }
 
     public void keepData() throws IOException {
@@ -64,6 +46,8 @@ public class CSVFile
     public void printResultToFile() throws IOException {
         this.sortNamesByFrequency = sortFreq();
 
+        final String NAME_OUTPUT_FILE = "/home/dasha/IdeaProjects/task1/src/result.csv";
+
         try(FileWriter output = new FileWriter(NAME_OUTPUT_FILE)) {
             output.write("Word, ");
             output.write("Frequency, ");
@@ -75,13 +59,5 @@ public class CSVFile
                 output.write(name + ", " + value + ", " + percentage + "\n");
             }
         }
-
-
     }
-
-//    @Override
-//    public void close() throws IOException {
-//        this.input.close();
-//        this.output.close();
-//    }
 }
