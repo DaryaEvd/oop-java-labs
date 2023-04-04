@@ -10,30 +10,27 @@ public class WordsGenerator {
     private static final String PATH_OF_CREATING_NEW_FILE_RANDOM_NAMES =
             "/home/dasha/IdeaProjects/task1/src/random_names.txt";
 
-    static final int amountNamesInFile = 100;
-    static final int wordsPerLine = 20; //just for convenience
+    static final int AMOUNT_NAMES_IN_FILE = 1000;
+    static final int WORDS_PER_LINE = 20;
 
     public static void generateTextWithRandomNames() throws IOException {
 
         File fileWithRandNames = new File(PATH_OF_CREATING_NEW_FILE_RANDOM_NAMES);
 
         if (!Files.exists(Paths.get(PATH_OF_CREATING_NEW_FILE_RANDOM_NAMES))) {
-            fileWithRandNames.createNewFile(); //TODO: ask how to create without boolean
-//            System.out.println("i created a file");
+            fileWithRandNames.createNewFile();
         }
-
-        // TODO: how to protect file from deleting??
 
         String[] namesListFromInput = WordsGenerator.convertInputNamesToListNames(INPUT_STR);
 
         try (FileWriter fileWriter = new FileWriter(fileWithRandNames)) {
-            for (int i = 0; i < amountNamesInFile; i++) {
+            for (int i = 0; i < AMOUNT_NAMES_IN_FILE; i++) {
                 int index = new Random().nextInt(namesListFromInput.length);
                 String randomName = namesListFromInput[index];
                 fileWriter.write(randomName);
                 fileWriter.write(" ");
 
-                if (i != 0 && i % wordsPerLine == 0) {
+                if (i != 0 && i % WORDS_PER_LINE == 0) {
                     fileWriter.write("\n");
                 }
             }
