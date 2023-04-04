@@ -5,7 +5,7 @@ public class Main {
         WordsGenerator.generateTextWithRandomNames();
 
         CSVFile csvFile = new CSVFile();
-        CSVFile.keepData(csvFile);
+        csvFile.keepData(csvFile);
         CSVFile.printResultToFile(csvFile);
         csvFile.output.close(); //TODO: ask is it ok to close in main where no open??????
     }

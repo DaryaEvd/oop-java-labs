@@ -6,35 +6,25 @@ import java.util.List;
 import java.util.Random;
 
 public class WordsGenerator {
+    private static final String INPUT_STR = "/home/dasha/IdeaProjects/task1/src/list_of_names.txt";
+    private static final String PATH_OF_CREATING_NEW_FILE_RANDOM_NAMES =
+            "/home/dasha/IdeaProjects/task1/src/random_names.txt";
+
     static final int amountNamesInFile = 100;
     static final int wordsPerLine = 20; //just for convenience
 
     public static void generateTextWithRandomNames() throws IOException {
 
-        /* //TODO: ask how to create file in curr dir (idk why "user.dir" doesn't work correctly
-             // and check whether file  exists
+        File fileWithRandNames = new File(PATH_OF_CREATING_NEW_FILE_RANDOM_NAMES);
 
-        String currDir = System.getProperty("user.dir");
-        System.out.println(currDir);
-        String nameOfFileRandNames = currDir + "/randomizer_names.txt";
-        System.out.println(nameOfFileRandNames);
-        File fileRandom = new File(nameOfFileRandNames);
-        if(fileRandom.exists()) {
-            System.out.println("file exists");
-        }
-        */
-
-        final String pathOfCreatingNewFileRandomNames = "/home/dasha/IdeaProjects/task1/src/random_names.txt";
-        File fileWithRandNames =  new File(pathOfCreatingNewFileRandomNames);
-        if(!Files.exists(Paths.get(pathOfCreatingNewFileRandomNames))) {
-            boolean isCreated = fileWithRandNames.createNewFile(); //TODO: ask how to create without boolean
-//            System.out.println("i create a file");
+        if (!Files.exists(Paths.get(PATH_OF_CREATING_NEW_FILE_RANDOM_NAMES))) {
+            fileWithRandNames.createNewFile(); //TODO: ask how to create without boolean
+//            System.out.println("i created a file");
         }
 
-        // TODO: how to protect file from deletiing??
-        String inputStr = "/home/dasha/IdeaProjects/task1/src/list_of_names.txt";
+        // TODO: how to protect file from deleting??
 
-        String [] namesListFromInput = WordsGenerator.convertInputNamesToListNames(inputStr);
+        String[] namesListFromInput = WordsGenerator.convertInputNamesToListNames(INPUT_STR);
 
         try (FileWriter fileWriter = new FileWriter(fileWithRandNames)) {
             for (int i = 0; i < amountNamesInFile; i++) {
@@ -43,25 +33,24 @@ public class WordsGenerator {
                 fileWriter.write(randomName);
                 fileWriter.write(" ");
 
-                if(i != 0 && i % wordsPerLine == 0) {
+                if (i != 0 && i % wordsPerLine == 0) {
                     fileWriter.write("\n");
                 }
             }
-        }
-        catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
     public static String[] convertInputNamesToListNames(String filename) throws IOException {
-        FileReader fileReader = new FileReader(filename);
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
-        List<String> listOfNames = new ArrayList<>();
-        String currentLine;
-        while ((currentLine = bufferedReader.readLine()) != null) {
-            listOfNames.add(currentLine);
+        try (FileReader fileReader = new FileReader(filename);
+             BufferedReader bufferedReader = new BufferedReader(fileReader);) {
+            List<String> listOfNames = new ArrayList<>();
+            String currentLine;
+            while ((currentLine = bufferedReader.readLine()) != null) {
+                listOfNames.add(currentLine);
+            }
+            return listOfNames.toArray(new String[0]);
         }
-        bufferedReader.close();
-        return listOfNames.toArray(new String[0]);
     }
 }

@@ -8,9 +8,9 @@ import static java.util.stream.Collectors.toMap;
 
 public class CSVFile {
     private final Reader input;
-    FileWriter output;
-    HashMap<String, Integer> storeNamesAndAmount;
-    HashMap<String, Integer> sortNamesByFrequency;
+    private FileWriter output;
+    private HashMap<String, Integer> storeNamesAndAmount;
+    private HashMap<String, Integer> sortNamesByFrequency;
 
     static int globalAmountOfNames = 0;
     CSVFile() {
@@ -30,17 +30,17 @@ public class CSVFile {
         }
     }
 
-    public static void keepData(CSVFile csvFile) {
+    public void keepData() {
         try {
-            BufferedReader bufferedReader = new BufferedReader(csvFile.input);
+            BufferedReader bufferedReader = new BufferedReader(input);
             String currString;
             String[] arrayOfAllStrings;
 
             while ((currString = bufferedReader.readLine()) != null) {
                 arrayOfAllStrings = currString.split(" ");
                 for (String currLine : arrayOfAllStrings) {
-                    int countFreq = csvFile.storeNamesAndAmount.getOrDefault(currLine, 0);
-                    csvFile.storeNamesAndAmount.put(currLine, countFreq + 1);
+                    int countFreq = storeNamesAndAmount.getOrDefault(currLine, 0);
+                    storeNamesAndAmount.put(currLine, countFreq + 1);
                     globalAmountOfNames++;
                 }
             }
