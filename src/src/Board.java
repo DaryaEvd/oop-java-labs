@@ -27,18 +27,27 @@ public class Board extends JPanel implements KeyListener {
    private long beginTime;
 
    private int delayX = 0;
-
+   private boolean collision = false;
    public Board() {
       looper = new Timer(delay, new ActionListener() {
          @Override
          public void actionPerformed(ActionEvent e) {
+            if(collision) {
+               return;
+            }
+
             if(!(x + delayX + shape[0].length > 10) && ! (x + delayX < 0)) {
                x += delayX;
             }
             delayX = 0;
 
             if(System.currentTimeMillis() - beginTime > delatTimeForMovement) {
-               y++;
+               if(!(y + 1 + shape.length > BOARD_HEIGHT)) {
+                  y++;
+               }
+               else {
+                  collision = true;
+               }
                beginTime = System.currentTimeMillis();
             }
             repaint();
