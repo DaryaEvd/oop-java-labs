@@ -15,62 +15,33 @@ public class Board extends JPanel implements KeyListener {
    private Timer looper;
    private Color[][] board = new Color[BOARD_WIDTH][BOARD_HEIGHT];
 
-   private Color[][] shape = {
-           {Color.RED, Color.RED, Color.RED},
-           {null, Color.RED, null}
+   private int[][] shape1 = {
+           {1, 1, 1},
+           {0, 1, 0}
    };
 
-   private int x = 4, y = 0;
-   private int normal = 600;
-   private int fast = 50;
-   private int delatTimeForMovement = normal;
-   private long beginTime;
-
-   private int delayX = 0;
-   private boolean collision = false;
+   private Shape shape = new Shape(shape1);
    public Board() {
       looper = new Timer(delay, new ActionListener() {
          @Override
          public void actionPerformed(ActionEvent e) {
-            if(collision) {
-               return;
-            }
-
-            if(!(x + delayX + shape[0].length > 10) && ! (x + delayX < 0)) {
-               x += delayX;
-            }
-            delayX = 0;
-
-            if(System.currentTimeMillis() - beginTime > delatTimeForMovement) {
-               if(!(y + 1 + shape.length > BOARD_HEIGHT)) {
-                  y++;
-               }
-               else {
-                  collision = true;
-               }
-               beginTime = System.currentTimeMillis();
-            }
+            update();
             repaint();
          }
       });
       looper.start();
    }
 
+   private void update() {
+      shape.update();
+   }
+
    @Override
    protected void paintComponent(Graphics g) {
-//      super.printComponent(g);
       g.setColor(Color.BLACK);
       g.fillRect(0, 0, getWidth(), getHeight());
-//      g.drawRect(10, 10, getWidth(), getHeight());
 
-      for(int row = 0; row < shape.length; row++) {
-         for(int col = 0; col < shape[0].length; col++) {
-            if (shape[row][col] != null) {
-               g.setColor(shape[row][col]);
-               g.fillRect(col * BLOCK_SIZE + x * BLOCK_SIZE, row * BLOCK_SIZE + y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
-            }
-         }
-      }
+      shape.render(g);
 
       g.setColor(Color.white);
       for(int row = 0; row < BOARD_HEIGHT; row++) {
@@ -91,20 +62,20 @@ public class Board extends JPanel implements KeyListener {
    @Override
    public void keyPressed(KeyEvent e) {
       if(e.getKeyCode() == KeyEvent.VK_DOWN) {
-         delatTimeForMovement = fast;
+         shape.speedUp();
       }
       else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-         delayX = 1;
+         shape.moveRight();
       }
       else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-         delayX = -1;
+         shape.moveLeft();
       }
    }
 
    @Override
    public void keyReleased(KeyEvent e) {
       if(e.getKeyCode() == KeyEvent.VK_DOWN) {
-         delatTimeForMovement = normal;
+         shape.speedDown();
       }
    }
 }
