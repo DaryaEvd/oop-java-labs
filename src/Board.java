@@ -2,8 +2,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
-public class Board extends JPanel {
+public class Board extends JPanel implements KeyListener {
+   private static final int FPS = 60;
+   private static int delay = 1000 / FPS;
    public static final int BOARD_WIDTH = 10;
    public static final int BOARD_HEIGHT = 20;
 
@@ -15,12 +19,21 @@ public class Board extends JPanel {
            {Color.RED, Color.RED, Color.RED},
            {null, Color.RED, null}
    };
+
+   private int x = 4, y = 0;
+   private int normal = 600;
+   private int fast = 50;
+   private int delatTimeForMovement = normal;
+   private long beginTime;
    public Board() {
-      looper = new Timer(500, new ActionListener() {
-         int n = 0;
+      looper = new Timer(delay, new ActionListener() {
          @Override
          public void actionPerformed(ActionEvent e) {
-            System.out.println(n++);
+            if(System.currentTimeMillis() - beginTime > delatTimeForMovement) {
+               y++;
+               beginTime = System.currentTimeMillis();
+            }
+            repaint();
          }
       });
       looper.start();
@@ -31,13 +44,13 @@ public class Board extends JPanel {
 //      super.printComponent(g);
       g.setColor(Color.BLACK);
       g.fillRect(0, 0, getWidth(), getHeight());
-      g.drawRect(10, 10, getWidth(), getHeight());
+//      g.drawRect(10, 10, getWidth(), getHeight());
 
       for(int row = 0; row < shape.length; row++) {
          for(int col = 0; col < shape[0].length; col++) {
-            if(shape[row][col] != null) {
+            if (shape[row][col] != null) {
                g.setColor(shape[row][col]);
-               g.fillRect(row * BLOCK_SIZE, col * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+               g.fillRect(col * BLOCK_SIZE + x * BLOCK_SIZE, row * BLOCK_SIZE + y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
             }
          }
       }
@@ -51,5 +64,24 @@ public class Board extends JPanel {
         g.drawLine(col * BLOCK_SIZE, 0, BLOCK_SIZE * col, BLOCK_SIZE * BOARD_HEIGHT);
      }
 
+   }
+
+   @Override
+   public void keyTyped(KeyEvent e) {
+
+   }
+
+   @Override
+   public void keyPressed(KeyEvent e) {
+      if(e.getKeyCode() == KeyEvent.VK_DOWN) {
+         delatTimeForMovement = fast;
+      }
+   }
+
+   @Override
+   public void keyReleased(KeyEvent e) {
+      if(e.getKeyCode() == KeyEvent.VK_DOWN) {
+         delatTimeForMovement = normal;
+      }
    }
 }
