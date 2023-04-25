@@ -11,7 +11,8 @@ public class Shape {
     private boolean collision = false;
 
     private int [][] coords;
-    public Shape(int[][] coords) {
+
+    public Shape(int[][] coords, Board board, Color color) {
         this.coords = coords;
     }
     public void update() {

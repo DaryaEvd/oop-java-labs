@@ -15,13 +15,48 @@ public class Board extends JPanel implements KeyListener {
    private Timer looper;
    private Color[][] board = new Color[BOARD_WIDTH][BOARD_HEIGHT];
 
-   private int[][] shape1 = {
-           {1, 1, 1},
-           {0, 1, 0}
-   };
-
-   private Shape shape = new Shape(shape1);
+   private Color[] colors = {Color.decode("#ed1c24"), Color.decode("#ff7f27"), Color.decode("#fff200"),
+           Color.decode("#22b14c"), Color.decode("#00a2e8"), Color.decode("#a349a4"), Color.decode("#3f48cc")};
+   private Shape[] shapes = new Shape[7];
+   private Shape currShape;
    public Board() {
+
+      shapes[0] = new Shape(new int[][] {
+              {1, 1, 1, 1}
+      }, this, colors[0]);
+
+      shapes[1] = new Shape(new int[][]{
+              {1, 1, 1},
+              {0, 1, 0}, // T shape;
+      }, this, colors[1]);
+
+      shapes[2] = new Shape(new int[][]{
+              {1, 1, 1},
+              {1, 0, 0}, // L shape;
+      }, this, colors[2]);
+
+      shapes[3] = new Shape(new int[][]{
+              {1, 1, 1},
+              {0, 0, 1}, // J shape;
+      }, this, colors[3]);
+
+      shapes[4] = new Shape(new int[][]{
+              {0, 1, 1},
+              {1, 1, 0}, // S shape;
+      }, this, colors[4]);
+
+      shapes[5] = new Shape(new int[][]{
+              {1, 1, 0},
+              {0, 1, 1}, // Z shape;
+      }, this, colors[5]);
+
+      shapes[6] = new Shape(new int[][]{
+              {1, 1},
+              {1, 1}, // O shape;
+      }, this, colors[6]);
+
+      currShape = shapes[0];
+
       looper = new Timer(delay, new ActionListener() {
          @Override
          public void actionPerformed(ActionEvent e) {
@@ -33,7 +68,7 @@ public class Board extends JPanel implements KeyListener {
    }
 
    private void update() {
-      shape.update();
+      currShape.update();
    }
 
    @Override
@@ -41,7 +76,7 @@ public class Board extends JPanel implements KeyListener {
       g.setColor(Color.BLACK);
       g.fillRect(0, 0, getWidth(), getHeight());
 
-      shape.render(g);
+      currShape.render(g);
 
       g.setColor(Color.white);
       for(int row = 0; row < BOARD_HEIGHT; row++) {
@@ -62,20 +97,20 @@ public class Board extends JPanel implements KeyListener {
    @Override
    public void keyPressed(KeyEvent e) {
       if(e.getKeyCode() == KeyEvent.VK_DOWN) {
-         shape.speedUp();
+         currShape.speedUp();
       }
       else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-         shape.moveRight();
+         currShape.moveRight();
       }
       else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-         shape.moveLeft();
+         currShape.moveLeft();
       }
    }
 
    @Override
    public void keyReleased(KeyEvent e) {
       if(e.getKeyCode() == KeyEvent.VK_DOWN) {
-         shape.speedDown();
+         currShape.speedDown();
       }
    }
 }
