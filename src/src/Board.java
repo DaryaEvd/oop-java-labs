@@ -32,9 +32,12 @@ public class Board extends JPanel implements KeyListener {
       looper = new Timer(delay, new ActionListener() {
          @Override
          public void actionPerformed(ActionEvent e) {
-            if(System.currentTimeMillis() - beginTime > delatTimeForMovement) {
+            if(!(x + delayX + shape[0].length > 10) && ! (x + delayX < 0)) {
                x += delayX;
-               delayX = 0;
+            }
+            delayX = 0;
+
+            if(System.currentTimeMillis() - beginTime > delatTimeForMovement) {
                y++;
                beginTime = System.currentTimeMillis();
             }
