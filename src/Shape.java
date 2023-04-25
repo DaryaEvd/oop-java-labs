@@ -20,7 +20,21 @@ public class Shape {
         this.color = color;
     }
 
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public void reset() {
+        this.x = 4;
+        this.y = 0;
+        collision = false;
+    }
     public void update() {
+
         if(collision) {
             for(int row = 0; row < coords.length; row++) {
                for(int col = 0; col < coords[0].length; col++) {
@@ -29,17 +43,44 @@ public class Shape {
                    }
                }
             }
+
+            board.setCurrShape();
             return;
         }
 
+        // check horizonal moving
+        boolean moveX = true;
         if(!(x + deltaX + coords[0].length > 10) && ! (x + deltaX < 0)) {
-            x += deltaX;
+           for(int row = 0; row < coords.length; row++) {
+               for(int col = 0; col < coords[row].length; col++) {
+                   if(coords[row][col] != 0) {
+                        if(board.getBoard()[y + row][x + deltaX + col] != null) {
+                            moveX = false;
+                        }
+                   }
+               }
+           }
+           if(moveX) {
+               x += deltaX;
+           }
         }
         deltaX = 0;
 
         if(System.currentTimeMillis() - beginTime > delatTimeForMovement) {
+            // vertical movement
             if(!(y + 1 + coords.length > Board.BOARD_HEIGHT)) {
-                y++;
+               for(int row = 0; row < coords.length; row++) {
+                   for(int col = 0; col < coords[row].length; col++) {
+                       if(coords[row][col] != 0) {
+                           if(board.getBoard()[y + 1 + row][x + deltaX + col] != null) {
+                               collision = true;
+                           }
+                       }
+                   }
+               }
+               if(!collision) {
+                   y++;
+               }
             }
             else {
                 collision = true;

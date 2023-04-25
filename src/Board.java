@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
+import java.util.Random;
 public class Board extends JPanel implements KeyListener {
    private static final int FPS = 60;
    private static int delay = 1000 / FPS;
@@ -19,7 +19,10 @@ public class Board extends JPanel implements KeyListener {
            Color.decode("#22b14c"), Color.decode("#00a2e8"), Color.decode("#a349a4"), Color.decode("#3f48cc")};
    private Shape[] shapes = new Shape[7];
    private Shape currShape;
+   private Random random;
+
    public Board() {
+      random = new Random();
 
       shapes[0] = new Shape(new int[][] {
               {1, 1, 1, 1}
@@ -71,6 +74,11 @@ public class Board extends JPanel implements KeyListener {
       currShape.update();
    }
 
+   public void setCurrShape() {
+      currShape = shapes[random.nextInt(shapes.length)];
+      currShape.reset();
+   }
+
    @Override
    protected void paintComponent(Graphics g) {
       g.setColor(Color.BLACK);
@@ -78,13 +86,31 @@ public class Board extends JPanel implements KeyListener {
 
       currShape.render(g);
 
+      for(int row = 0; row < board.length; row++) {
+         for(int col = 0; col < board[row].length; col++) {
+            if(board[row][col] != null) {
+               g.setColor(board[row][col]);
+               g.fillRect(col * BLOCK_SIZE,
+                       row * BLOCK_SIZE,
+                       BLOCK_SIZE,
+                       BLOCK_SIZE);
+            }
+         }
+      }
+
       g.setColor(Color.white);
       for(int row = 0; row < BOARD_HEIGHT; row++) {
-         g.drawLine(0, row * BLOCK_SIZE, BLOCK_SIZE * BOARD_WIDTH, BLOCK_SIZE * row);
+         g.drawLine(0,
+                 row * BLOCK_SIZE,
+                 BLOCK_SIZE * BOARD_WIDTH,
+                 BLOCK_SIZE * row);
       }
 
      for(int col = 0; col < BOARD_WIDTH + 1; col++) {
-        g.drawLine(col * BLOCK_SIZE, 0, BLOCK_SIZE * col, BLOCK_SIZE * BOARD_HEIGHT);
+        g.drawLine(col * BLOCK_SIZE,
+                0,
+                BLOCK_SIZE * col,
+                BLOCK_SIZE * BOARD_HEIGHT);
      }
 
    }
