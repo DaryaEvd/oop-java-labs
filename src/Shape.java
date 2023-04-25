@@ -7,23 +7,35 @@ public class Shape {
     private int delatTimeForMovement = normal;
     private long beginTime;
 
-    private int delayX = 0;
+    private int deltaX = 0;
     private boolean collision = false;
 
     private int [][] coords;
+    private Board board;
+    private Color color;
 
     public Shape(int[][] coords, Board board, Color color) {
         this.coords = coords;
+        this.board = board;
+        this.color = color;
     }
+
     public void update() {
         if(collision) {
+            for(int row = 0; row < coords.length; row++) {
+               for(int col = 0; col < coords[0].length; col++) {
+                   if(coords[row][col] != 0) {
+                        board.getBoard()[y + row][x + col] = color;
+                   }
+               }
+            }
             return;
         }
 
-        if(!(x + delayX + coords[0].length > 10) && ! (x + delayX < 0)) {
-            x += delayX;
+        if(!(x + deltaX + coords[0].length > 10) && ! (x + deltaX < 0)) {
+            x += deltaX;
         }
-        delayX = 0;
+        deltaX = 0;
 
         if(System.currentTimeMillis() - beginTime > delatTimeForMovement) {
             if(!(y + 1 + coords.length > Board.BOARD_HEIGHT)) {
@@ -60,11 +72,11 @@ public class Shape {
     }
 
     public void moveRight() {
-        delayX = 1;
+        deltaX = 1;
     }
 
     public void moveLeft() {
-        delayX = -1;
+        deltaX = -1;
     }
 }
 

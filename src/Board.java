@@ -89,6 +89,10 @@ public class Board extends JPanel implements KeyListener {
 
    }
 
+   public Color[][] getBoard() {
+      return board;
+   }
+
    @Override
    public void keyTyped(KeyEvent e) {
 
