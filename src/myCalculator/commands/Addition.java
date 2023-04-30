@@ -1,11 +1,22 @@
 package myCalculator.commands;
 
-public class Addition implements Command {
+import myCalculator.Context;
+
+import java.util.List;
+
+public class Addition extends Command {
+    public Addition(Context context, String [] arguments) {
+        super(context, arguments);
+    }
 
     @Override
     public void apply() {
-        System.out.println("it's addition");
+        var number1 = context.getMyStack().pop();
+        System.out.println("numer1: " + number1);
 
+        var number2 = context.getMyStack().pop();
+        System.out.println("number2: " + number2);
 
+        context.getMyStack().push(number1 + number2);
     }
 }

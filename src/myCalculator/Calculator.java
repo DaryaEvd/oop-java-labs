@@ -67,7 +67,7 @@ public class Calculator {
             System.out.println("command (2nd arg) is: " + line[1]);
         }
         Command cmd = factory.registerCommand(line[0]);
-////        cmd.apply();
-//        System.out.println("i am interpret");
+        cmd.apply();
+        System.out.println("i am interpret");
     }
 }
