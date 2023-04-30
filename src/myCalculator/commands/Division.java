@@ -1,4 +1,6 @@
-package commands;
+package myCalculator.commands;
+
+import myCalculator.commands.Command;
 
 public class Division implements Command {
     @Override

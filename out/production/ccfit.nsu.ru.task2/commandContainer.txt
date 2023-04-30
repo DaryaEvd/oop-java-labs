@@ -1,3 +1,0 @@
-+ Addition
-* Multiplication
-DEFINE Definition

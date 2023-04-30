@@ -1,0 +1,9 @@
++ Addition
+* Multiplication
+- Subtraction
+/ Division
+SQRT Sqrt
+Pop Pop
+Push Push
+DEFINE Definition
+# Comment

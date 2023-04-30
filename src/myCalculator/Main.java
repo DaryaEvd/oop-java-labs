@@ -1,13 +1,14 @@
+package myCalculator;
 
 public class Main {
     public static void main(String[] args)  {
-        Calculator calculator;
+        Factory.Calculator calculator;
 
         if (args.length != 0) {
             String inputPathExpression = args[0];
-            calculator = new Calculator(inputPathExpression);
+            calculator = new Factory.Calculator(inputPathExpression);
         } else {
-            calculator = new Calculator();
+            calculator = new Factory.Calculator();
         }
 
         calculator.calculate();
