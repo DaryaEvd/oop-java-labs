@@ -12,6 +12,7 @@ import java.util.*;
 
 public class Factory {
     private final Map<String, String> creatorsCmd;
+    Command cmd;
 
     public Factory() {
         creatorsCmd = new HashMap<>();
@@ -42,16 +43,15 @@ public class Factory {
 
 
     }
-//    public Command registerCommand(String cmdName) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
-//        Class<?> currCmdClass = Class.forName(creatorsCmd.get(cmdName));
-//
-////        if(currCmdClass.getDeclaredConstructor().newInstance() instanceof Command) {
-////           cmd = (Command) currCmdClass.getDeclaredConstructor().newInstance();
-////        }
-////
-////        return cmd;
-//
-//
-//    }
+    public Command registerCommand(String cmdName) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        Class<?> currCmdClass = Class.forName(creatorsCmd.get(cmdName));
+
+        if(currCmdClass.getDeclaredConstructor().newInstance() instanceof Command) {
+           cmd = (Command) currCmdClass.getDeclaredConstructor().newInstance();
+        }
+
+        return cmd;
+
+    }
 
 }

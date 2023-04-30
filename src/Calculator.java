@@ -37,29 +37,29 @@ public class Calculator {
         try {
             while ((readingStr = inputRader.readLine()) != null ) {
                 String [] line = readingStr.split("\\s+");
-                interpret(line);
+//                interpret(line);
                 System.out.println("heheheh");
             }
         }
         catch (IOException e) {
             throw new RuntimeException(e);
         }
-        catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-        catch (InvocationTargetException e) {
-            throw new RuntimeException(e);
-        } catch (NoSuchMethodException e) {
-            throw new RuntimeException(e);
-        } catch (InstantiationException e) {
-            throw new RuntimeException(e);
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
-        }
+//        catch (ClassNotFoundException e) {
+//            throw new RuntimeException(e);
+//        }
+//        catch (InvocationTargetException e) {
+//            throw new RuntimeException(e);
+//        } catch (NoSuchMethodException e) {
+//            throw new RuntimeException(e);
+//        } catch (InstantiationException e) {
+//            throw new RuntimeException(e);
+//        } catch (IllegalAccessException e) {
+//            throw new RuntimeException(e);
+//        }
     }
 
     public void interpret(String [] line) throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-//        Command cmd = factory.registerCommand(line[0]);
+        Command cmd = factory.registerCommand(line[0]);
 //        cmd.apply();
         System.out.println("i am interpret");
     }
