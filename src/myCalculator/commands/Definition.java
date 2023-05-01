@@ -10,9 +10,8 @@ public class Definition extends Command {
     @Override
     public void apply() {
         System.out.println("It's definition");
-        Double numberToDefine = (double) 0;
 
-        numberToDefine = Double.parseDouble(arguments[2]);
+        Double numberToDefine = Double.parseDouble(arguments[2]);
 
         context.getVariable().put(arguments[1], numberToDefine);
 

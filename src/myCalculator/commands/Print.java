@@ -16,6 +16,5 @@ public class Print extends Command {
 
         System.out.println(resToPrint);
 
-
     }
 }
