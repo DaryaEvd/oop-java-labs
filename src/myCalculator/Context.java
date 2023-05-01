@@ -17,11 +17,7 @@ public class Context {
         return myStack;
     }
 
-    public Double getVariable(String currVar) {
-        if(!variables.containsKey(currVar)) {
-            System.out.println("No var in map");
-            //TODO: add exception
-        }
-        return variables.get(currVar);
+    public Map<String, Double>  getVariable() {
+        return variables;
     }
 }

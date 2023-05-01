@@ -2,8 +2,6 @@ package myCalculator.commands;
 
 import myCalculator.Context;
 
-import java.util.List;
-
 public class Addition extends Command {
     public Addition(Context context, String [] arguments) {
         super(context, arguments);

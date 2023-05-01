@@ -1,9 +1,6 @@
 package myCalculator.commands;
 
 import myCalculator.Context;
-import myCalculator.commands.Command;
-
-import java.util.List;
 
 public class Push extends Command {
     public Push(Context context, String [] arguments) {
@@ -14,6 +11,9 @@ public class Push extends Command {
     public void apply() {
         System.out.println("it's push");
 
-        context.getMyStack().push()
+        Double number = context.getVariable().get(arguments[1]);
+
+        context.getMyStack().push(number);
+
     }
 }

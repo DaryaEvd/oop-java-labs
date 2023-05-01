@@ -11,7 +11,7 @@ import java.util.List;
 public class Calculator {
     private File output;
     private String currLine;
-    private final BufferedReader inputRader;
+    private final BufferedReader inputReader;
 
     private final Context context;
     private final Factory factory;
@@ -19,14 +19,14 @@ public class Calculator {
     public Calculator() {
         context = new Context();
         factory = new Factory();
-        inputRader = new BufferedReader(new InputStreamReader(System.in));
+        inputReader = new BufferedReader(new InputStreamReader(System.in));
     }
 
     public Calculator(String pathToFile) {
         context = new Context();
         factory = new Factory();
         try {
-            inputRader = new BufferedReader(new InputStreamReader(Files.newInputStream(Path.of(pathToFile))));
+            inputReader = new BufferedReader(new InputStreamReader(Files.newInputStream(Path.of(pathToFile))));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -37,7 +37,7 @@ public class Calculator {
         String readingStr;
         List<String> input;
         try {
-            while ((readingStr = inputRader.readLine()) != null ) {
+            while ((readingStr = inputReader.readLine()) != null ) {
                 String [] line = readingStr.split("\\s+");
                 System.out.println("line to interpret: " + Arrays.toString(line));
                 interpret(line);
