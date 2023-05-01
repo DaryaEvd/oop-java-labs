@@ -9,6 +9,9 @@ import java.nio.file.Path;
 import java.util.*;
 
 public class Factory {
+    private final Context context = new Context();
+    private final String [] args = new String[0];
+
     private final Map<String, String> creatorsCmd;
     Command cmd;
 
@@ -39,13 +42,15 @@ public class Factory {
         }
         System.out.println("я фабрика");
     }
-    public Command registerCommand(String cmdName) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
-        Class<?> currCmdClass = Class.forName("myCalculator.commands." + creatorsCmd.get(cmdName));
+    public Command registerCommand(String [] cmdName) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        System.out.println("cmdName: " + cmdName[0]);
 
-//        System.out.println("curr cmd to register is: " + "commands." + creatorsCmd.get(cmdName));
+        Class<?> currCmdClass = Class.forName( creatorsCmd.get(cmdName[0]));
 
-        if(currCmdClass.getDeclaredConstructor().newInstance() instanceof Command) {
-           cmd = (Command) currCmdClass.getDeclaredConstructor().newInstance();
+        System.out.println("curr cmd to register is: " +  currCmdClass);
+
+        if(currCmdClass.getDeclaredConstructor(Context.class, cmdName.getClass()).newInstance(context, cmdName) instanceof Command) {
+           cmd = (Command) currCmdClass.getDeclaredConstructor(Context.class, cmdName.getClass()).newInstance(context, cmdName);
             System.out.println("declared cmd: " + cmd);
         }
 

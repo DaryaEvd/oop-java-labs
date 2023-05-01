@@ -5,6 +5,7 @@ import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.sql.SQLOutput;
 import java.util.Arrays;
 import java.util.List;
 
@@ -35,13 +36,15 @@ public class Calculator {
     public void calculate()  {
         System.out.println("я кулькулатка");
         String readingStr;
-        List<String> input;
         try {
             while ((readingStr = inputReader.readLine()) != null ) {
-                String [] line = readingStr.split("\\s+");
-                System.out.println("line to interpret: " + Arrays.toString(line));
-                interpret(line);
+//                String [] line = readingStr.split("\\s+");
+//                System.out.println("line to interpret: " + Arrays.toString(line));
+//                interpret(line);
+
+                interpret(readingStr);
                 System.out.println("heheheh");
+
             }
         }
         catch (IOException e) {
@@ -61,13 +64,15 @@ public class Calculator {
         }
     }
 
-    public void interpret(String [] line) throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+    public void interpret(String args) throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+        String [] line = args.split(" ");
         System.out.println("command (1st arg) is: " + line[0]);
         if(line.length > 1) {
             System.out.println("command (2nd arg) is: " + line[1]);
         }
-        Command cmd = factory.registerCommand(line[0]);
-        cmd.apply();
+        Command cmd = factory.registerCommand(line);
+//        System.out.println("cmd is: " + cmd);
+//        cmd.apply();
         System.out.println("i am interpret");
     }
 }
