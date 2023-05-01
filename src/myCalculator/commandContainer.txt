@@ -7,5 +7,5 @@ POP myCalculator.commands.Pop
 PUSH myCalculator.commands.Push
 DEFINE myCalculator.commands.Definition
 PRINT myCalculator.commands.Print
-STOP maCalculator.commands.Stop
 # myCalculator.commands.Comment
+END myCalculator.commands.End

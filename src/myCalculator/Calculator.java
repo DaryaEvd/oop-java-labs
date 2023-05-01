@@ -6,6 +6,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import static java.lang.System.exit;
+
 public class Calculator {
     private final BufferedReader inputReader;
 
@@ -38,9 +40,9 @@ public class Calculator {
 //                String [] line = readingStr.split("\\s+");
 //                System.out.println("line to interpret: " + Arrays.toString(line));
 //                interpret(line);
-//                if(readingStr.equals("EXITCALC")) {
-//                    return;
-//                }
+                if(readingStr.equals("EXITCALC")) {
+                    return;
+                }
 
                 try {
                     interpret(readingStr);
@@ -64,6 +66,10 @@ public class Calculator {
         AbstractCommand cmd = factory.registerCommand(line);
 //      System.out.println("cmd is: " + cmd);
         cmd.apply();
+
+        if(cmd.toString().equals("END")){ //до сюда не доходит
+            System.out.println("I AN IN END");
+        }
 
 //        System.out.println("i am interpret");
     }
