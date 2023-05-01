@@ -72,7 +72,7 @@ public class Calculator {
         }
         Command cmd = factory.registerCommand(line);
 //        System.out.println("cmd is: " + cmd);
-//        cmd.apply();
+        cmd.apply();
         System.out.println("i am interpret");
     }
 }

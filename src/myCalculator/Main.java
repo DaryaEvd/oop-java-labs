@@ -5,6 +5,7 @@ public class Main {
         Calculator calculator;
 
         if (args.length != 0) {
+            System.out.println("I have a file");
             String inputPathExpression = args[0];
             calculator = new Calculator(inputPathExpression);
         } else {

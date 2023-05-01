@@ -3,8 +3,8 @@
 - myCalculator.commands.Subtraction
 / myCalculator.commands.Division
 SQRT myCalculator.commands.Sqrt
-Pop myCalculator.commands.Pop
-Push myCalculator.commands.Push
+POP myCalculator.commands.Pop
+PUSH myCalculator.commands.Push
 DEFINE myCalculator.commands.Definition
-Print myCalculator.commands.Print
+PRINT myCalculator.commands.Print
 # myCalculator.commands.Comment
