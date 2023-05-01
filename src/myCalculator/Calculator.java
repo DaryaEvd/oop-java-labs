@@ -65,12 +65,12 @@ public class Calculator {
 
     public void interpret(String args) throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         String [] line = args.split(" ");
-//        System.out.println("command (1st arg) is: " + line[0]);
-//        if(line.length > 1) {
-//            System.out.println("command (2nd arg) is: " + line[1]);
-//        }
+        System.out.println("command (1st arg) is: " + line[0]);
+        if(line.length > 1) {
+            System.out.println("command (2nd arg) is: " + line[1]);
+        }
         Command cmd = factory.registerCommand(line);
-//        System.out.println("cmd is: " + cmd);
+        System.out.println("cmd is: " + cmd);
         cmd.apply();
 //        System.out.println("i am interpret");
     }

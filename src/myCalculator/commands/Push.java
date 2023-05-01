@@ -13,17 +13,17 @@ public class Push extends Command {
 
         System.out.println("args is: " + arguments[1]);
 
+        if(context.containsArg(arguments[1])) {
+            Double number = context.getVariable().get(arguments[1]);
+            System.out.println("number is: " + number);
 
-//        Double number = context.getVariable().get(arguments[1]);
-//        System.out.println("number is: " + number);
-//
-//        context.getMyStack().push(number);
+            context.getMyStack().push(number);
+        }
+        else {
+            Double number = Double.parseDouble(arguments[1]);
+            System.out.println("number: " + number);
 
-
-        Double number = Double.parseDouble(arguments[1]);
-        System.out.println("number: " + number);
-
-        context.getMyStack().push(number);
-
+            context.getMyStack().push(number);
+        }
     }
 }

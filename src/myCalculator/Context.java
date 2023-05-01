@@ -20,4 +20,8 @@ public class Context {
     public Map<String, Double>  getVariable() {
         return variables;
     }
+
+    public boolean containsArg(String name) {
+        return variables.containsKey(name);
+    }
 }
