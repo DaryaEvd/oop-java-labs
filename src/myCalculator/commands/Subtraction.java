@@ -2,7 +2,7 @@ package myCalculator.commands;
 
 import myCalculator.Context;
 
-public class Subtraction extends Command {
+public class Subtraction extends AbstractCommand {
     public Subtraction(Context context, String[] arguments) {
         super(context, arguments);
     }

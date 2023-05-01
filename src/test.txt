@@ -1,2 +1,9 @@
-PUSH 1
+PUSH 123
 #
+PUSH 90
+PUSH 89
+#
++
+#
+-
+PRINT

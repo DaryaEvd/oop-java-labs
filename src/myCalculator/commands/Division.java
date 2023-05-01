@@ -2,7 +2,7 @@ package myCalculator.commands;
 
 import myCalculator.Context;
 
-public class Division extends Command {
+public class Division extends AbstractCommand {
     public Division(Context context, String[] arguments) {
         super(context, arguments);
     }

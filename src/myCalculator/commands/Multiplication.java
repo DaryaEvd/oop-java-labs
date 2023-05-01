@@ -2,7 +2,7 @@ package myCalculator.commands;
 
 import myCalculator.Context;
 
-public class Multiplication extends Command {
+public class Multiplication extends AbstractCommand {
 
     public Multiplication(Context context, String[] arguments) {
         super(context, arguments);

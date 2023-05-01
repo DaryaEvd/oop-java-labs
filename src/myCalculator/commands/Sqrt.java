@@ -2,7 +2,7 @@ package myCalculator.commands;
 
 import myCalculator.Context;
 
-public class Sqrt extends Command {
+public class Sqrt extends AbstractCommand {
     public Sqrt(Context context, String[] arguments) {
         super(context, arguments);
     }

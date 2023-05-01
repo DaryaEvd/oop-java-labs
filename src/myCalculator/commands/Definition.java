@@ -2,7 +2,7 @@ package myCalculator.commands;
 
 import myCalculator.Context;
 
-public class Definition extends Command {
+public class Definition extends AbstractCommand {
     public Definition(Context context, String[] arguments) {
         super(context, arguments);
     }
@@ -14,7 +14,6 @@ public class Definition extends Command {
         Double numberToDefine = Double.parseDouble(arguments[2]);
 
         context.getVariable().put(arguments[1], numberToDefine);
-
 
     }
 }

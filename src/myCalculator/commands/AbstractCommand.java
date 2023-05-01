@@ -2,11 +2,11 @@ package myCalculator.commands;
 
 import myCalculator.Context;
 
-public abstract class Command {
+public abstract class AbstractCommand {
     protected Context context;
     protected String [] arguments;
 
-    public Command(Context context, String [] arguments) {
+    public AbstractCommand(Context context, String [] arguments) {
        this.context = context;
        this.arguments = arguments;
     }

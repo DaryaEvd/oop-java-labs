@@ -2,7 +2,7 @@ package myCalculator.commands;
 
 import myCalculator.Context;
 
-public class Push extends Command {
+public class Push extends AbstractCommand {
     public Push(Context context, String [] arguments) {
         super(context, arguments);
     }

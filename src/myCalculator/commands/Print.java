@@ -2,7 +2,7 @@ package myCalculator.commands;
 
 import myCalculator.Context;
 
-public class Print extends Command {
+public class Print extends AbstractCommand {
 
     public Print(Context context, String[] arguments) {
         super(context, arguments);

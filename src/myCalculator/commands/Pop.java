@@ -2,7 +2,7 @@ package myCalculator.commands;
 
 import myCalculator.Context;
 
-public class Pop extends Command {
+public class Pop extends AbstractCommand {
     public Pop(Context context, String[] arguments) {
         super(context, arguments);
     }

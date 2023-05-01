@@ -4,7 +4,7 @@ import myCalculator.Context;
 
 import java.util.Arrays;
 
-public class Comment extends Command {
+public class Comment extends AbstractCommand {
     public Comment(Context context, String[] arguments) {
         super(context, arguments);
     }
