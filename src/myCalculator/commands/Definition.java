@@ -9,8 +9,6 @@ public class Definition extends AbstractCommand {
 
     @Override
     public void apply() {
-        System.out.println("It's definition");
-
         Double numberToDefine = Double.parseDouble(arguments[2]);
 
         context.getVariable().put(arguments[1], numberToDefine);

@@ -21,7 +21,7 @@ public class Context {
         return variables;
     }
 
-    public boolean containsArg(String name) {
+    public boolean containsVar(String name) {
         return variables.containsKey(name);
     }
 }

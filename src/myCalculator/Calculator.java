@@ -25,17 +25,22 @@ public class Calculator {
         }
     }
 
-    public void calculate() throws IOException {
+    public void calculate()  {
 //        System.out.println("я кулькулатка");
         String readingStr;
 //        try {
-            while ((readingStr = inputReader.readLine()) != null ) {
+            while (true) {
+                try {
+                    if ((readingStr = inputReader.readLine()) == null) break;
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
 //                String [] line = readingStr.split("\\s+");
 //                System.out.println("line to interpret: " + Arrays.toString(line));
 //                interpret(line);
-                if(readingStr.equals("EXITCALC")) {
-                    return;
-                }
+//                if(readingStr.equals("EXITCALC")) {
+//                    return;
+//                }
 
                 try {
                     interpret(readingStr);
@@ -48,18 +53,17 @@ public class Calculator {
 
             }
 //        }
-
     }
 
     public void interpret(String args) throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         String [] line = args.split(" ");
-        System.out.println("command (1st arg) is: " + line[0]);
-        if(line.length > 1) {
-            System.out.println("command (2nd arg) is: " + line[1]);
-        }
+//        System.out.println("command (1st arg) is: " + line[0]);
+//        if(line.length > 1) {
+//            System.out.println("command (2nd arg) is: " + line[1]);
+//        }
         AbstractCommand cmd = factory.registerCommand(line);
-        System.out.println("cmd is: " + cmd);
-            cmd.apply();
+//      System.out.println("cmd is: " + cmd);
+        cmd.apply();
 
 //        System.out.println("i am interpret");
     }

@@ -2,21 +2,14 @@ package myCalculator.commands;
 
 import myCalculator.Context;
 
-public class Subtraction extends AbstractCommand {
+public class Subtraction extends AbstractBinOperation {
     public Subtraction(Context context, String[] arguments) {
         super(context, arguments);
     }
 
     @Override
-    public void apply() {
-        System.out.println("It's Subtraction");
+    public void makeBinOperation(Double num1, Double num2) {
 
-        Double number1 = context.getMyStack().pop();
-
-        Double number2 = context.getMyStack().pop();
-
-        Double res = number1 - number2;
-
-        context.getMyStack().push(res);
+        context.getMyStack().push(num1 - num2);
     }
 }

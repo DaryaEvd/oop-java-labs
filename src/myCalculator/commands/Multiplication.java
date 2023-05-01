@@ -2,22 +2,14 @@ package myCalculator.commands;
 
 import myCalculator.Context;
 
-public class Multiplication extends AbstractCommand {
+public class Multiplication extends AbstractBinOperation {
 
     public Multiplication(Context context, String[] arguments) {
         super(context, arguments);
     }
 
     @Override
-    public void apply() {
-        System.out.println("it's multiplication");
-
-        Double number1 = context.getMyStack().pop();
-        Double number2 = context.getMyStack().pop();
-
-        Double res = number1 * number2;
-
-        context.getMyStack().push(res);
-
+    public void makeBinOperation(Double num1, Double num2) {
+        context.getMyStack().push(num1 * num2);
     }
 }

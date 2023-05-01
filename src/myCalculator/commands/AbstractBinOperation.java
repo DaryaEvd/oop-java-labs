@@ -2,8 +2,8 @@ package myCalculator.commands;
 
 import myCalculator.Context;
 
-public abstract class BinOperation extends AbstractCommand{
-    public BinOperation(Context context, String[] arguments) {
+public abstract class AbstractBinOperation extends AbstractCommand{
+    public AbstractBinOperation(Context context, String[] arguments) {
         super(context, arguments);
     }
 

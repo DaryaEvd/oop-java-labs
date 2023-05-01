@@ -9,8 +9,6 @@ public class Pop extends AbstractCommand {
 
     @Override
     public void apply() {
-        System.out.println("it's pop");
-
         context.getMyStack().pop();
     }
 }

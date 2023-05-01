@@ -40,11 +40,11 @@ public class Factory {
 //        System.out.println("я фабрика");
     }
     public AbstractCommand registerCommand(String [] cmdName) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
-        System.out.println("cmdName: " + cmdName[0]);
+//        System.out.println("cmdName: " + cmdName[0]);
 
         Class<?> currCmdClass = Class.forName(creatorsCmd.get(cmdName[0]));
 
-        System.out.println("curr cmd to register is: " +  currCmdClass);
+//        System.out.println("curr cmd to register is: " +  currCmdClass);
 
         if(currCmdClass.getDeclaredConstructor(Context.class, cmdName.getClass()).newInstance(context, cmdName) instanceof AbstractCommand) {
            cmd = (AbstractCommand) currCmdClass.getDeclaredConstructor(Context.class, cmdName.getClass()).newInstance(context, cmdName);

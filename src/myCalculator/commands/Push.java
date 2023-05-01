@@ -9,13 +9,13 @@ public class Push extends AbstractCommand {
 
     @Override
     public void apply() {
-        System.out.println("it's push");
+//        System.out.println("it's push");
 
-        System.out.println("args is: " + arguments[1]);
+//        System.out.println("args is: " + arguments[1]);
 
-        if(context.containsArg(arguments[1])) {
+        if(context.containsVar(arguments[1])) {
             Double number = context.getVariable().get(arguments[1]);
-            System.out.println("number is: " + number);
+//            System.out.println("number is: " + number);
 
             context.getMyStack().push(number);
         }

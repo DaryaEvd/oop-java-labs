@@ -10,8 +10,6 @@ public class Print extends AbstractCommand {
 
     @Override
     public void apply() {
-        System.out.println("it's print");
-
         Double resToPrint = context.getMyStack().peek();
 
         System.out.println(resToPrint);
