@@ -2,6 +2,8 @@ package myCalculator.commands;
 
 import myCalculator.Context;
 
+import java.util.Arrays;
+
 public class Comment extends Command {
     public Comment(Context context, String[] arguments) {
         super(context, arguments);
@@ -9,6 +11,9 @@ public class Comment extends Command {
 
     @Override
     public void apply() {
-        System.out.println("it's comment");
+        System.out.print("it's my stack: ");
+
+        System.out.println(Arrays.toString(context.getMyStack().toArray()));
+
     }
 }

@@ -4,13 +4,10 @@ import myCalculator.commands.Command;
 
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.*;
 
 public class Factory {
     private final Context context = new Context();
-    private final String [] args = new String[0];
 
     private final Map<String, String> creatorsCmd;
     Command cmd;
@@ -23,7 +20,7 @@ public class Factory {
         String pathToInputExprFile = "commandContainer.txt";
         InputStream test = Factory.class.getResourceAsStream(pathToInputExprFile);
         assert test != null;
-        System.out.println("path:" + test);
+//        System.out.println("path:" + test);
 
         try (InputStream configFile = Factory.class.getResourceAsStream(pathToInputExprFile)) {
             assert configFile != null;
@@ -40,18 +37,18 @@ public class Factory {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        System.out.println("я фабрика");
+//        System.out.println("я фабрика");
     }
     public Command registerCommand(String [] cmdName) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
-        System.out.println("cmdName: " + cmdName[0]);
+//        System.out.println("cmdName: " + cmdName[0]);
 
         Class<?> currCmdClass = Class.forName( creatorsCmd.get(cmdName[0]));
 
-        System.out.println("curr cmd to register is: " +  currCmdClass);
+//        System.out.println("curr cmd to register is: " +  currCmdClass);
 
         if(currCmdClass.getDeclaredConstructor(Context.class, cmdName.getClass()).newInstance(context, cmdName) instanceof Command) {
            cmd = (Command) currCmdClass.getDeclaredConstructor(Context.class, cmdName.getClass()).newInstance(context, cmdName);
-            System.out.println("declared cmd: " + cmd);
+//            System.out.println("declared cmd: " + cmd);
         }
 
         return cmd;

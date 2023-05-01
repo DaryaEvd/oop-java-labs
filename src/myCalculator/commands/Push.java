@@ -11,7 +11,17 @@ public class Push extends Command {
     public void apply() {
         System.out.println("it's push");
 
-        Double number = context.getVariable().get(arguments[1]);
+        System.out.println("args is: " + arguments[1]);
+
+
+//        Double number = context.getVariable().get(arguments[1]);
+//        System.out.println("number is: " + number);
+//
+//        context.getMyStack().push(number);
+
+
+        Double number = Double.parseDouble(arguments[1]);
+        System.out.println("number: " + number);
 
         context.getMyStack().push(number);
 

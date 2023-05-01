@@ -34,7 +34,7 @@ public class Calculator {
     }
 
     public void calculate()  {
-        System.out.println("я кулькулатка");
+//        System.out.println("я кулькулатка");
         String readingStr;
         try {
             while ((readingStr = inputReader.readLine()) != null ) {
@@ -43,8 +43,7 @@ public class Calculator {
 //                interpret(line);
 
                 interpret(readingStr);
-                System.out.println("heheheh");
-
+//                System.out.println("heheheh");
             }
         }
         catch (IOException e) {
@@ -66,13 +65,13 @@ public class Calculator {
 
     public void interpret(String args) throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         String [] line = args.split(" ");
-        System.out.println("command (1st arg) is: " + line[0]);
-        if(line.length > 1) {
-            System.out.println("command (2nd arg) is: " + line[1]);
-        }
+//        System.out.println("command (1st arg) is: " + line[0]);
+//        if(line.length > 1) {
+//            System.out.println("command (2nd arg) is: " + line[1]);
+//        }
         Command cmd = factory.registerCommand(line);
 //        System.out.println("cmd is: " + cmd);
         cmd.apply();
-        System.out.println("i am interpret");
+//        System.out.println("i am interpret");
     }
 }

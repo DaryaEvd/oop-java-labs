@@ -15,6 +15,7 @@ public class Addition extends Command {
         var number2 = context.getMyStack().pop();
         System.out.println("number2: " + number2);
 
+
         context.getMyStack().push(number1 + number2);
     }
 }
