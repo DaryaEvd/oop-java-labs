@@ -39,7 +39,7 @@ public class Factory {
                    }
             }
         } catch (IOException e) {
-            logger.log(Level.SEVERE, "Can't find file with cmds");
+            logger.log(Level.SEVERE, "Can't find file with commands");
             throw new RuntimeException(e);
         }
 
