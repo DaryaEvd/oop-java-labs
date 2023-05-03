@@ -51,7 +51,7 @@ public class Calculator {
             }
             interpret(readingStr);
 
-            logger.log(Level.INFO, "Stop readinf input");
+            logger.log(Level.INFO, "Stop reading input");
         }
     }
 
