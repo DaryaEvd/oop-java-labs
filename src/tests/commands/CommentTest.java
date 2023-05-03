@@ -24,7 +24,7 @@ class CommentTest {
 
     @Test
     void checkComment() {
-        Calculator calculator = new Calculator("/home/dasha/IdeaProjects/task2/src/tests/commands/filesForTests/testComment.txt");
+        Calculator calculator = new Calculator("./src/tests/commands/filesForTests/testComment.txt");
         calculator.calculate();
         assertEquals("It's my stack: " + "[123.0, 789.0, 31.75]\n", outContent.toString());
     }

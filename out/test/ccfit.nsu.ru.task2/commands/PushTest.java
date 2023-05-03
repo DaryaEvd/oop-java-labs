@@ -26,7 +26,7 @@ class PushTest {
 
     @Test
     void checkPop() {
-        Calculator calculator = new Calculator("/home/dasha/IdeaProjects/task2/src/tests/commands/filesForTests/testPush.txt");
+        Calculator calculator = new Calculator("./src/tests/commands/filesForTests/testPush.txt");
         calculator.calculate();
         assertEquals("Command error: Incorrect amount of arguments in 'PUSH' cmd\n" +
                 "Command error: You're trying to push undefined var 'A'\n", outContent.toString());

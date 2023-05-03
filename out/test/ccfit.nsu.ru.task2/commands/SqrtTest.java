@@ -24,7 +24,7 @@ class SqrtTest {
 
     @Test
     void checkPrint() {
-        Calculator calculator = new Calculator("/home/dasha/IdeaProjects/task2/src/tests/commands/filesForTests/testSqrt.txt");
+        Calculator calculator = new Calculator("./src/tests/commands/filesForTests/testSqrt.txt");
         calculator.calculate();
         assertEquals("10.0\n" + "Command error: Stack is empty\n", outContent.toString());
 

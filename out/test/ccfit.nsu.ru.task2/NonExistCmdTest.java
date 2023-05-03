@@ -23,7 +23,6 @@ class NonExistCmdTest {
 
     @Test
     void checkNonExistingCmd() {
-//        Calculator calculator = new Calculator("/home/dasha/IdeaProjects/task2/src/tests/fileFolderTest/testNonExistCmd.txt");
         Calculator calculator = new Calculator("./src/tests/fileFolderTest/testNonExistCmd.txt");
         calculator.calculate();
 

@@ -26,7 +26,7 @@ class PopTest {
 
     @Test
     void checkPop() {
-        Calculator calculator = new Calculator("/home/dasha/IdeaProjects/task2/src/tests/commands/filesForTests/testPop.txt");
+        Calculator calculator = new Calculator("./src/tests/commands/filesForTests/testPop.txt");
         calculator.calculate();
         assertEquals("Command error: Stack is empty\n" + "89.0\n" + "Command error: Stack is empty\n", outContent.toString());
     }

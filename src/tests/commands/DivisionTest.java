@@ -28,7 +28,7 @@ class DivisionTest {
 
     @Test
     void checkDivision() {
-        Calculator calculator = new Calculator("/home/dasha/IdeaProjects/task2/src/tests/commands/filesForTests/testDivision.txt");
+        Calculator calculator = new Calculator("./src/tests/commands/filesForTests/testDivision.txt");
         calculator.calculate();
 
         assertEquals("1.5\n" +

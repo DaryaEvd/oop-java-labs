@@ -26,7 +26,7 @@ class MultiplicationTest {
 
     @Test
     void checkDivision() {
-        Calculator calculator = new Calculator("/home/dasha/IdeaProjects/task2/src/tests/commands/filesForTests/testMultiplication.txt");
+        Calculator calculator = new Calculator("./src/tests/commands/filesForTests/testMultiplication.txt");
         calculator.calculate();
 
         assertEquals("15000.0\n" +

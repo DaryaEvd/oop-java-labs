@@ -24,7 +24,7 @@ class DefinitionTest {
 
     @Test
     void checkDefinition() {
-        Calculator calculator = new Calculator("/home/dasha/IdeaProjects/task2/src/tests/commands/filesForTests/testDefinition.txt");
+        Calculator calculator = new Calculator("./src/tests/commands/filesForTests/testDefinition.txt");
         calculator.calculate();
         assertEquals("" + "Command error: You are not define a variable to number\n" +
                         "Command error: You are not define a variable to number\n" +

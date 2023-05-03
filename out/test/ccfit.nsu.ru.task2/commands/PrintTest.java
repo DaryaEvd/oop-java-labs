@@ -24,7 +24,7 @@ class PrintTest {
 
     @Test
     void checkPrint() {
-        Calculator calculator = new Calculator("/home/dasha/IdeaProjects/task2/src/tests/commands/filesForTests/testPrint.txt");
+        Calculator calculator = new Calculator("./src/tests/commands/filesForTests/testPrint.txt");
         calculator.calculate();
         assertEquals("Command error: Stack is empty\n" + "99.0\n" + "1.0\n", outContent.toString());
 
