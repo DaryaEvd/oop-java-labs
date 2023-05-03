@@ -1,6 +1,7 @@
 package myCalculator.commands;
 
 import myCalculator.Context;
+import myCalculator.commands.exceptions.EmptyStack;
 import myCalculator.commands.exceptions.ExceptionCommands;
 import myCalculator.commands.exceptions.InsufficientArgsAmountOnStack;
 
@@ -12,7 +13,7 @@ public class Sqrt extends AbstractCommand {
     @Override
     public void apply() throws ExceptionCommands {
         if(context.getMyStack().size() == 0) {
-            throw new InsufficientArgsAmountOnStack();
+            throw new EmptyStack();
         }
 
         Double numToSqrt = context.getMyStack().pop();
