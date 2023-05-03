@@ -10,6 +10,6 @@ public class Subtraction extends AbstractBinOperation {
     @Override
     public void makeBinOperation(Double num1, Double num2) {
 
-        context.getMyStack().push(num1 - num2);
+        context.getMyStack().push(num2 - num1);
     }
 }

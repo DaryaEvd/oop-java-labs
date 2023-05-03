@@ -7,12 +7,12 @@ public abstract class AbstractBinOperation extends AbstractCommand{
         super(context, arguments);
     }
 
-    public void makeBinOperation(Double num1, Double num2) {
+    public void makeBinOperation(Double num1, Double num2)  {
 
     }
 
     @Override
-    public void apply() {
+    public void apply()  {
        Double num1 = context.getMyStack().pop();
        Double num2 = context.getMyStack().pop();
 
