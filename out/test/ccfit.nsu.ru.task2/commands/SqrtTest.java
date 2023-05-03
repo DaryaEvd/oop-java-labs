@@ -26,7 +26,8 @@ class SqrtTest {
     void checkPrint() {
         Calculator calculator = new Calculator("./src/tests/commands/filesForTests/testSqrt.txt");
         calculator.calculate();
-        assertEquals("10.0\n" + "Command error: Stack is empty\n", outContent.toString());
+        assertEquals("10.0\n" + "Command error: Stack is empty\n" +
+                "Command error: You're extracting square from negative number\n", outContent.toString());
 
     }
 }
