@@ -11,6 +11,6 @@ public abstract class AbstractCommand {
        this.arguments = arguments;
     }
 
-    public abstract void apply();
+    public abstract void apply() throws ExceptionCommands;
 
 }

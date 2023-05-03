@@ -1,5 +1,6 @@
 package myCalculator;
 import myCalculator.commands.AbstractCommand;
+import myCalculator.commands.ExceptionCommands;
 
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
@@ -47,6 +48,8 @@ public class Calculator {
             AbstractCommand cmd = factory.registerCommand(line);
             assert cmd != null;
             cmd.apply();
+        } catch (ExceptionCommands e) {
+            System.out.println(e.getMessage());
         } catch (ClassNotFoundException e) {
             System.out.println("Class '" + args + "' not found in this calculator");
         } catch (NullPointerException e) {
