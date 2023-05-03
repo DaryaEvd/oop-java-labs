@@ -17,7 +17,7 @@ public class Context {
         return myStack;
     }
 
-    public Map<String, Double>  getVariable() {
+    public Map<String, Double> getVariable() {
         return variables;
     }
 

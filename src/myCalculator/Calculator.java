@@ -6,8 +6,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import static java.lang.System.exit;
-
 public class Calculator {
     private final BufferedReader inputReader;
 
@@ -35,10 +33,9 @@ public class Calculator {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            if(readingStr.equals("EXITCALC")) {
+            if(readingStr.equals("STOP")) {
                 return;
             }
-
             interpret(readingStr);
         }
     }
@@ -46,21 +43,16 @@ public class Calculator {
     public void interpret(String args) {
         String [] line = args.split(" ");
 
-//        AbstractCommand cmd = null;
         try {
             AbstractCommand cmd = factory.registerCommand(line);
             assert cmd != null;
             cmd.apply();
         } catch (ClassNotFoundException e) {
-            System.out.println("Class '" + args + "' not found in this calc");
-        } catch (NoSuchMethodException | InvocationTargetException | InstantiationException e) {
-            System.out.println(e.getMessage());
+            System.out.println("Class '" + args + "' not found in this calculator");
         } catch (NullPointerException e) {
-//            System.out.println(e.getMessage());
-            System.out.println("Cant find this cmd: " + args);
-
-        } catch (IllegalAccessException e) {
-//            throw new RuntimeException(e);
+            System.out.println("This cmd: '" + args + "' is not allowed");
+        } catch (NoSuchMethodException | InvocationTargetException | InstantiationException
+                 | IllegalAccessException e) {
             System.out.println(e.getMessage());
         }
     }

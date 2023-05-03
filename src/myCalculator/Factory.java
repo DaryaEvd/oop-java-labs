@@ -35,7 +35,8 @@ public class Factory {
             throw new RuntimeException(e);
         }
     }
-    public AbstractCommand registerCommand(String [] cmdName) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+    public AbstractCommand registerCommand(String [] cmdName) throws ClassNotFoundException, NoSuchMethodException,
+            InvocationTargetException, InstantiationException, IllegalAccessException {
         Class<?> currCmdClass = Class.forName(creatorsCmd.get(cmdName[0]));
 
         if(currCmdClass.getDeclaredConstructor(Context.class, cmdName.getClass()).
