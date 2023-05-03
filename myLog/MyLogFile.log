@@ -1,28 +1,16 @@
-May 03, 2023 9:18:46 PM myCalculator.Main main
+May 03, 2023 9:50:55 PM myCalculator.Main main
 INFO: Logger initialized
-May 03, 2023 9:18:46 PM myCalculator.Factory readCmdsFromFile
+May 03, 2023 9:50:55 PM myCalculator.Factory readCmdsFromFile
 INFO: Start reading commands from file, containing them
-May 03, 2023 9:18:46 PM myCalculator.Factory readCmdsFromFile
+May 03, 2023 9:50:55 PM myCalculator.Factory readCmdsFromFile
 INFO: Start creating commands
-May 03, 2023 9:18:46 PM myCalculator.Calculator calculate
+May 03, 2023 9:50:55 PM myCalculator.Calculator calculate
 INFO: Start reading input
-May 03, 2023 9:18:56 PM myCalculator.Calculator calculate
-INFO: Stop readinf input
-May 03, 2023 9:18:58 PM myCalculator.Calculator calculate
-INFO: Stop readinf input
-May 03, 2023 9:18:59 PM myCalculator.Calculator calculate
-INFO: Stop readinf input
-May 03, 2023 9:19:05 PM myCalculator.Calculator interpret
-WARNING: Exception in input line: Such command '##' doesn't exist
-May 03, 2023 9:19:05 PM myCalculator.Calculator calculate
-INFO: Stop readinf input
-May 03, 2023 9:19:07 PM myCalculator.Calculator calculate
-INFO: Stop readinf input
-May 03, 2023 9:19:50 PM myCalculator.Calculator interpret
+May 03, 2023 9:51:00 PM myCalculator.Calculator interpret
+WARNING: Exception in input line: Such command 'stop' doesn't exist
+May 03, 2023 9:51:00 PM myCalculator.Calculator calculate
+INFO: Stop reading input
+May 03, 2023 9:51:01 PM myCalculator.Calculator interpret
 WARNING: Exception in input line: Such command '' doesn't exist
-May 03, 2023 9:19:50 PM myCalculator.Calculator calculate
-INFO: Stop readinf input
-May 03, 2023 9:19:50 PM myCalculator.Calculator interpret
-WARNING: Exception in input line: Such command '' doesn't exist
-May 03, 2023 9:19:50 PM myCalculator.Calculator calculate
-INFO: Stop readinf input
+May 03, 2023 9:51:01 PM myCalculator.Calculator calculate
+INFO: Stop reading input
