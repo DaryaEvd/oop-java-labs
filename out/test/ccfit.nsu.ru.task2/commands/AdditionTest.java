@@ -24,7 +24,7 @@ class AdditionTest {
 
     @Test
     void checkAddition() {
-        Calculator calculator = new Calculator("./task2/src/tests/commands/filesForTests/testAddition.txt");
+        Calculator calculator = new Calculator("./src/tests/commands/filesForTests/testAddition.txt");
         calculator.calculate();
 
         assertEquals("250.0\n" +
