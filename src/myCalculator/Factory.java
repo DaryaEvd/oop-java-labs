@@ -48,7 +48,6 @@ public class Factory {
                         newInstance(context, cmdName);
             }
         } catch (ClassNotFoundException | NoSuchMethodException | NullPointerException e) {
-//            throw new RuntimeException(e);
             throw new NonExistingCommand(cmdName[0]);
         }
 
