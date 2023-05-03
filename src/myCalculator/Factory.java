@@ -6,6 +6,8 @@ import myCalculator.exceptions.NonExistingCommand;
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Factory {
     private final Context context = new Context();
@@ -13,11 +15,14 @@ public class Factory {
     private final Map<String, String> creatorsCmd;
     AbstractCommand cmd;
 
+    private static final Logger logger = Logger.getLogger(Calculator.class.getName());
     public Factory() {
         creatorsCmd = new HashMap<>();
         readCmdsFromFile();
     }
     private void readCmdsFromFile()  {
+        logger.log(Level.INFO, "Start reading commands from file, containing them");
+
         String pathToInputExprFile = "commandContainer.txt";
         InputStream test = Factory.class.getResourceAsStream(pathToInputExprFile);
         assert test != null;
@@ -30,9 +35,11 @@ public class Factory {
                    while((currLine = buffRead.readLine()) != null) {
                         String [] dataInCurrStr = currLine.split(" ");
                         creatorsCmd.put(dataInCurrStr[0], dataInCurrStr[1]);
+//                        logger.log(Level.INFO, "added cmd: " + dataInCurrStr[0]);
                    }
             }
         } catch (IOException e) {
+            logger.log(Level.SEVERE, "Can't find file with cmds");
             throw new RuntimeException(e);
         }
     }
@@ -46,6 +53,8 @@ public class Factory {
 
                 cmd = (AbstractCommand) currCmdClass.getDeclaredConstructor(Context.class, cmdName.getClass()).
                         newInstance(context, cmdName);
+
+                logger.log(Level.FINE, "Created cmd '" + cmd + "'");
             }
         } catch (ClassNotFoundException | NoSuchMethodException | NullPointerException e) {
             throw new NonExistingCommand(cmdName[0]);

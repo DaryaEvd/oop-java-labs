@@ -1,27 +1,24 @@
 package myCalculator;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.logging.*;
 
 public class Main {
 
-    private static final Logger logger = Logger.getLogger("MyLog");
+    private static final Logger logger = Logger.getLogger(Main.class.getName());
 
     public static void main(String[] args) {
-        logger.setUseParentHandlers(false);
-
-        Calculator calculator;
-
-        FileHandler fh;
+        LogManager logManager = LogManager.getLogManager();
         try {
-            fh = new FileHandler("/home/dasha/IdeaProjects/task2/myLog/MyLogFile.log");
-            logger.addHandler(fh);
-            SimpleFormatter formatter = new SimpleFormatter();
-            fh.setFormatter(formatter);
-            logger.info("Logger initialized");
-        } catch (Exception e) {
-            logger.log(Level.WARNING, "Exception :: ", e);
+            logManager.readConfiguration(new FileInputStream("myLog/logging.properties"));
+            logger.log(Level.INFO, "Logger initialized");
+        } catch (IOException e) {
+//            throw new RuntimeException(e);
+            logger.log(Level.SEVERE, "Can't load logging file :( ");
         }
 
+        Calculator calculator;
         if(args.length > 1) {
             logger.log(Level.WARNING, "Too many args");
         }
@@ -33,6 +30,7 @@ public class Main {
                 calculator = new Calculator();
             }
 
+            //use 'STOP' to stop computations
             calculator.calculate();
         }
 
