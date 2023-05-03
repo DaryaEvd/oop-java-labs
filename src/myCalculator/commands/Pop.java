@@ -3,7 +3,6 @@ package myCalculator.commands;
 import myCalculator.Context;
 import myCalculator.commands.exceptions.EmptyStack;
 import myCalculator.commands.exceptions.ExceptionCommands;
-import myCalculator.commands.exceptions.InsufficientArgsAmountOnStack;
 
 public class Pop extends AbstractCommand {
     public Pop(Context context, String[] arguments) {

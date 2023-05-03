@@ -1,16 +1,16 @@
-May 04, 2023 12:27:12 AM myCalculator.Main main
+May 04, 2023 1:11:54 AM myCalculator.Main main
 INFO: Logger initialized
-May 04, 2023 12:27:12 AM myCalculator.Factory readCmdsFromFile
+May 04, 2023 1:11:54 AM myCalculator.Factory readCmdsFromFile
 INFO: Start reading commands from file, containing them
-May 04, 2023 12:27:12 AM myCalculator.Factory readCmdsFromFile
+May 04, 2023 1:11:54 AM myCalculator.Factory readCmdsFromFile
 INFO: Start creating commands
-May 04, 2023 12:27:12 AM myCalculator.Calculator calculate
+May 04, 2023 1:11:54 AM myCalculator.Calculator calculate
 INFO: Start reading input
-May 04, 2023 12:27:13 AM myCalculator.Calculator interpret
-WARNING: Exception in input line: Such command 'asdfasdf' doesn't exist
-May 04, 2023 12:27:13 AM myCalculator.Calculator calculate
+May 04, 2023 1:12:00 AM myCalculator.Calculator interpret
+WARNING: Command error: Not enough arguments on stack
+May 04, 2023 1:12:00 AM myCalculator.Calculator calculate
 INFO: Stop reading input
-May 04, 2023 12:27:23 AM myCalculator.Calculator interpret
-WARNING: Command error: You are not define a variable to number
-May 04, 2023 12:27:24 AM myCalculator.Calculator calculate
+May 04, 2023 1:12:06 AM myCalculator.Calculator interpret
+WARNING: Exception in input line: Such command 'stop' doesn't exist
+May 04, 2023 1:12:06 AM myCalculator.Calculator calculate
 INFO: Stop reading input

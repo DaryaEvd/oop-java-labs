@@ -1,6 +1,7 @@
 package myCalculator.commands;
 
 import myCalculator.Context;
+import myCalculator.commands.exceptions.EmptyStack;
 import myCalculator.commands.exceptions.ExceptionCommands;
 import myCalculator.commands.exceptions.InsufficientArgsAmountOnStack;
 
@@ -15,12 +16,16 @@ public abstract class AbstractBinOperation extends AbstractCommand{
 
     @Override
     public void apply() throws ExceptionCommands {
-        if(context.getMyStack().size() < 2) {
+        if(context.getMyStack().size() == 1) {
             throw new InsufficientArgsAmountOnStack();
         }
-       Double num1 = context.getMyStack().pop();
-       Double num2 = context.getMyStack().pop();
+        else if(context.getMyStack().size() == 0) {
+            throw new EmptyStack();
+        }
 
-       makeBinOperation(num1, num2);
+        Double num1 = context.getMyStack().pop();
+        Double num2 = context.getMyStack().pop();
+
+        makeBinOperation(num1, num2);
     }
 }
