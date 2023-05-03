@@ -14,4 +14,8 @@ public abstract class AbstractCommand {
 
     public abstract void apply() throws ExceptionCommands;
 
+     boolean isAlphabetical(String str) {
+        return str.matches("[a-zA-Z]+");
+     }
+
 }

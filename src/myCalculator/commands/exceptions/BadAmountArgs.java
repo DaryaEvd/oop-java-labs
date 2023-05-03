@@ -1,7 +1,7 @@
 package myCalculator.commands.exceptions;
 
 public class BadAmountArgs extends ExceptionCommands{
-    public BadAmountArgs(String message) {
-        super("Incorrect amount of arguments in '" + message + "' cmd");
+    public BadAmountArgs(String command) {
+        super("Incorrect amount of arguments in '" + command + "' cmd");
     }
 }

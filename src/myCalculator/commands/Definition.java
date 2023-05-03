@@ -17,7 +17,7 @@ public class Definition extends AbstractCommand {
             throw new BadAmountArgs(arguments[0]);
         }
 
-        if(!(arguments[1].matches("[a-zA-Z]+"))) {
+        if(!isAlphabetical(arguments[1])) {
             throw new BadDefinition();
         }
 
