@@ -1,6 +1,8 @@
 package myCalculator;
 import myCalculator.commands.AbstractCommand;
 import myCalculator.commands.exceptions.ExceptionCommands;
+import myCalculator.exceptions.ExceptionsInputLine;
+import myCalculator.exceptions.NonExistingCommand;
 
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
@@ -48,15 +50,25 @@ public class Calculator {
             AbstractCommand cmd = factory.registerCommand(line);
             assert cmd != null;
             cmd.apply();
-        } catch (ExceptionCommands e) {
-            System.out.println(e.getMessage());
-        } catch (ClassNotFoundException e) {
-            System.out.println("Class '" + args + "' not found in this calculator");
-        } catch (NullPointerException e) {
-            System.out.println("This cmd: '" + args + "' is not allowed");
-        } catch (NoSuchMethodException | InvocationTargetException | InstantiationException
-                 | IllegalAccessException e) {
+        } catch (ExceptionCommands | ExceptionsInputLine e) {
             System.out.println(e.getMessage());
         }
+//        catch (ClassNotFoundException e) {
+////            throw new RuntimeException(e);
+//            System.out.println(e.getMessage());
+//        }
+        catch (InvocationTargetException | InstantiationException | IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+
+
+//        catch (ExceptionCommands | NoSuchMethodException | InvocationTargetException
+//                 | InstantiationException | IllegalAccessException e) {
+//            System.out.println(e.getMessage());
+//        } catch (NullPointerException e) {
+//            System.out.println("This cmd: '" + args + "' is not allowed");
+//        } catch (ClassNotFoundException e) {
+//            throw new NonExistingCommand(e);
+//        }
     }
 }

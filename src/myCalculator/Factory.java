@@ -1,6 +1,7 @@
 package myCalculator;
 
 import myCalculator.commands.AbstractCommand;
+import myCalculator.exceptions.NonExistingCommand;
 
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
@@ -35,15 +36,20 @@ public class Factory {
             throw new RuntimeException(e);
         }
     }
-    public AbstractCommand registerCommand(String [] cmdName) throws ClassNotFoundException, NoSuchMethodException,
+    public AbstractCommand registerCommand(String [] cmdName) throws
             InvocationTargetException, InstantiationException, IllegalAccessException {
-        Class<?> currCmdClass = Class.forName(creatorsCmd.get(cmdName[0]));
 
-        if(currCmdClass.getDeclaredConstructor(Context.class, cmdName.getClass()).
-                newInstance(context, cmdName) instanceof AbstractCommand) {
+        try {
+            Class <?> currCmdClass = Class.forName(creatorsCmd.get(cmdName[0]));
+            if(currCmdClass.getDeclaredConstructor(Context.class, cmdName.getClass()).
+                    newInstance(context, cmdName) instanceof AbstractCommand) {
 
-           cmd = (AbstractCommand) currCmdClass.getDeclaredConstructor(Context.class, cmdName.getClass()).
-                   newInstance(context, cmdName);
+                cmd = (AbstractCommand) currCmdClass.getDeclaredConstructor(Context.class, cmdName.getClass()).
+                        newInstance(context, cmdName);
+            }
+        } catch (ClassNotFoundException | NoSuchMethodException | NullPointerException e) {
+//            throw new RuntimeException(e);
+            throw new NonExistingCommand(cmdName[0]);
         }
 
         return cmd;
