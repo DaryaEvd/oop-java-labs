@@ -63,6 +63,7 @@ public class Calculator {
             assert cmd != null;
             cmd.apply();
         } catch (ExceptionCommands | ExceptionsInputLine e) {
+            System.out.println(e.getMessage());
             logger.log(Level.WARNING, e.getMessage());
         }
         catch (InvocationTargetException | InstantiationException | IllegalAccessException e) {
