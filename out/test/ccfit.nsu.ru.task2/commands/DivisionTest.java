@@ -30,6 +30,10 @@ class DivisionTest {
     void checkDivision() {
         Calculator calculator = new Calculator("/home/dasha/IdeaProjects/task2/src/tests/commands/filesForTests/testDivision.txt");
         calculator.calculate();
-        assertEquals("105.0\n", outContent.toString());
+
+        assertEquals("1.5\n" +
+                "Command error: Stack is empty\n" +
+                "Command error: Not enough arguments on stack\n", outContent.toString());
+
     }
 }

@@ -28,7 +28,11 @@ class MultiplicationTest {
     void checkDivision() {
         Calculator calculator = new Calculator("/home/dasha/IdeaProjects/task2/src/tests/commands/filesForTests/testMultiplication.txt");
         calculator.calculate();
-        assertEquals("899.9\n", outContent.toString());
+
+        assertEquals("15000.0\n" +
+                "Command error: Stack is empty\n" +
+                "Command error: Not enough arguments on stack\n", outContent.toString());
+
     }
 
 }

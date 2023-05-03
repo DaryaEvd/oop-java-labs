@@ -26,7 +26,11 @@ class AdditionTest {
     void checkAddition() {
         Calculator calculator = new Calculator("/home/dasha/IdeaProjects/task2/src/tests/commands/filesForTests/testAddition.txt");
         calculator.calculate();
-        assertEquals("107.1\n", outContent.toString());
+
+        assertEquals("250.0\n" +
+                "Command error: Stack is empty\n" +
+                "Command error: Not enough arguments on stack\n", outContent.toString());
+
     }
 
 }
