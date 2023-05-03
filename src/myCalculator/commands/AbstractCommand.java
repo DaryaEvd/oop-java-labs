@@ -1,6 +1,7 @@
 package myCalculator.commands;
 
 import myCalculator.Context;
+import myCalculator.commands.exceptions.ExceptionCommands;
 
 public abstract class AbstractCommand {
     protected Context context;

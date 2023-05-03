@@ -1,6 +1,6 @@
 package myCalculator;
 import myCalculator.commands.AbstractCommand;
-import myCalculator.commands.ExceptionCommands;
+import myCalculator.commands.exceptions.ExceptionCommands;
 
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;

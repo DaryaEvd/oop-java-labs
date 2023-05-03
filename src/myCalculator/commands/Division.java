@@ -1,6 +1,8 @@
 package myCalculator.commands;
 
 import myCalculator.Context;
+import myCalculator.commands.exceptions.DivByZero;
+import myCalculator.commands.exceptions.ExceptionCommands;
 
 public class Division extends AbstractBinOperation {
     public Division(Context context, String[] arguments) {
@@ -9,11 +11,8 @@ public class Division extends AbstractBinOperation {
 
     @Override
     public void makeBinOperation(Double num1, Double num2) throws ExceptionCommands {
-
         if(num2 == 0) {
-//            System.out.println("Division by zero :(");
-
-            throw new ExceptionCommands("Division by zero ...");
+            throw new DivByZero();
         }
         context.getMyStack().push(num1 / num2);
     }

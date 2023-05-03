@@ -1,4 +1,4 @@
-package myCalculator.commands;
+package myCalculator.commands.exceptions;
 
 public class ExceptionCommands extends Exception{
     public ExceptionCommands (String message) {

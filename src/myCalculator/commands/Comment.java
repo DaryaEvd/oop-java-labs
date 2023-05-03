@@ -11,7 +11,7 @@ public class Comment extends AbstractCommand {
 
     @Override
     public void apply() {
-        System.out.print("it's my stack: ");
+        System.out.print("It's my stack: ");
 
         System.out.println(Arrays.toString(context.getMyStack().toArray()));
 
