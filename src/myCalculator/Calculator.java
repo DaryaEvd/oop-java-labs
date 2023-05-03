@@ -23,7 +23,6 @@ public class Calculator {
     }
 
     public Calculator(String pathToFile) {
-        logger.log(Level.INFO, "Start reading input from file");
         factory = new Factory();
         try {
             inputReader = new BufferedReader(new InputStreamReader(Files.newInputStream(Path.of(pathToFile))));
@@ -34,7 +33,7 @@ public class Calculator {
     }
 
     public void calculate() {
-        logger.log(Level.INFO, "Start reading input from console");
+        logger.log(Level.INFO, "Start reading input");
 
         String readingStr;
         while (true) {
@@ -47,9 +46,12 @@ public class Calculator {
                 throw new RuntimeException(e);
             }
             if(readingStr.equals("STOP")) {
+                logger.log(Level.FINE, "End of successful work!");
                 return;
             }
             interpret(readingStr);
+
+            logger.log(Level.INFO, "Stop readinf input");
         }
     }
 
@@ -61,7 +63,6 @@ public class Calculator {
             assert cmd != null;
             cmd.apply();
         } catch (ExceptionCommands | ExceptionsInputLine e) {
-//            System.out.println(e.getMessage());
             logger.log(Level.WARNING, e.getMessage());
         }
         catch (InvocationTargetException | InstantiationException | IllegalAccessException e) {

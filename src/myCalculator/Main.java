@@ -34,7 +34,7 @@ public class Main {
             calculator.calculate();
         }
 
-        logger.info("End of successful work");
+        logger.log(Level.FINE, "End of successful work!");
 
     }
 }

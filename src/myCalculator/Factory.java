@@ -27,6 +27,7 @@ public class Factory {
         InputStream test = Factory.class.getResourceAsStream(pathToInputExprFile);
         assert test != null;
 
+        logger.log(Level.INFO, "Start creating commands");
         try (InputStream configFile = Factory.class.getResourceAsStream(pathToInputExprFile)) {
             assert configFile != null;
             try (InputStreamReader reader = new InputStreamReader(configFile);
@@ -35,14 +36,16 @@ public class Factory {
                    while((currLine = buffRead.readLine()) != null) {
                         String [] dataInCurrStr = currLine.split(" ");
                         creatorsCmd.put(dataInCurrStr[0], dataInCurrStr[1]);
-//                        logger.log(Level.INFO, "added cmd: " + dataInCurrStr[0]);
                    }
             }
         } catch (IOException e) {
             logger.log(Level.SEVERE, "Can't find file with cmds");
             throw new RuntimeException(e);
         }
+
+        logger.log(Level.FINE, "Commands from file were registered");
     }
+
     public AbstractCommand registerCommand(String [] cmdName) throws
             InvocationTargetException, InstantiationException, IllegalAccessException {
 
@@ -54,7 +57,7 @@ public class Factory {
                 cmd = (AbstractCommand) currCmdClass.getDeclaredConstructor(Context.class, cmdName.getClass()).
                         newInstance(context, cmdName);
 
-                logger.log(Level.FINE, "Created cmd '" + cmd + "'");
+                logger.log(Level.FINE, "Registered cmd '" + cmd + "'");
             }
         } catch (ClassNotFoundException | NoSuchMethodException | NullPointerException e) {
             throw new NonExistingCommand(cmdName[0]);
