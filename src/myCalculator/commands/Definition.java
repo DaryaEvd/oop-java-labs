@@ -16,18 +16,22 @@ public class Definition extends AbstractCommand {
         if(arguments.length != 3) {
             throw new BadAmountArgs(arguments[0]);
         }
-        Double numberToDefine = 0.0;
-        try {
-            numberToDefine = Double.parseDouble(arguments[2]);
-        } catch (NumberFormatException e) {
+
+        if(!(arguments[1].matches("[a-zA-Z]+"))) {
             throw new BadDefinition();
         }
 
         if(context.containsVar(arguments[1])) {
           throw new Redefinition(arguments[1]);
         }
-        context.getVariable().put(arguments[1], numberToDefine);
 
+        try {
+            Double numberToDefine = Double.parseDouble(arguments[2]);
+            context.getVariable().put(arguments[1], numberToDefine);
+
+        } catch (NumberFormatException e) {
+            throw new BadDefinition();
+        }
     }
 
 }
