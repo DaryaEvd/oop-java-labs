@@ -1,6 +1,7 @@
 package myCalculator.commands;
 
 import myCalculator.Context;
+import myCalculator.commands.exceptions.BadAmountArgs;
 import myCalculator.commands.exceptions.ExceptionCommands;
 import myCalculator.commands.exceptions.UndefinedVariable;
 
@@ -11,6 +12,9 @@ public class Push extends AbstractCommand {
 
     @Override
     public void apply() throws ExceptionCommands {
+        if(arguments.length != 2) {
+            throw new BadAmountArgs(arguments[0]);
+        }
         if(context.containsVar(arguments[1])) {
             Double number = context.getVariable().get(arguments[1]);
 
