@@ -20,7 +20,6 @@ public class Factory {
         String pathToInputExprFile = "commandContainer.txt";
         InputStream test = Factory.class.getResourceAsStream(pathToInputExprFile);
         assert test != null;
-//        System.out.println("path:" + test);
 
         try (InputStream configFile = Factory.class.getResourceAsStream(pathToInputExprFile)) {
             assert configFile != null;
@@ -29,30 +28,21 @@ public class Factory {
                    String currLine;
                    while((currLine = buffRead.readLine()) != null) {
                         String [] dataInCurrStr = currLine.split(" ");
-//                       System.out.println(dataInCurrStr[0]);
-//                       System.out.println(dataInCurrStr[1]);
                         creatorsCmd.put(dataInCurrStr[0], dataInCurrStr[1]);
                    }
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-//        System.out.println("я фабрика");
     }
-    public AbstractCommand registerCommand(String [] cmdName) throws ClassNotFoundException, NoSuchMethodException,
-            InvocationTargetException, InstantiationException, IllegalAccessException {
-//        System.out.println("cmdName: " + cmdName[0]);
-
+    public AbstractCommand registerCommand(String [] cmdName) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         Class<?> currCmdClass = Class.forName(creatorsCmd.get(cmdName[0]));
-
-//        System.out.println("curr cmd to register is: " +  currCmdClass);
 
         if(currCmdClass.getDeclaredConstructor(Context.class, cmdName.getClass()).
                 newInstance(context, cmdName) instanceof AbstractCommand) {
 
            cmd = (AbstractCommand) currCmdClass.getDeclaredConstructor(Context.class, cmdName.getClass()).
                    newInstance(context, cmdName);
-//            System.out.println("declared cmd: " + cmd);
         }
 
         return cmd;

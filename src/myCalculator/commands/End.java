@@ -9,7 +9,7 @@ public class End extends AbstractCommand {
 
     @Override
     public void apply() {
-        System.out.println("It's the end of cimputing");
+        System.out.println("It's the end of computing");
     }
 
 }
