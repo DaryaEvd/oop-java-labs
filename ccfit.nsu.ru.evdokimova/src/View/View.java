@@ -52,11 +52,11 @@ public class View {
         aboutButton.addActionListener(controller);
         containerWithButtons.add(aboutButton);
 
-        JButton newGameButton = new JButton("New Game");
+        JButton newGameButton = new JButton("NewGame");
         newGameButton.addActionListener(controller);
         containerWithButtons.add(newGameButton);
 
-        JButton hightScoresButton = new JButton("Hight Scores");
+        JButton hightScoresButton = new JButton("Scores");
         newGameButton.addActionListener(controller);
         containerWithButtons.add(hightScoresButton);
 
@@ -64,10 +64,10 @@ public class View {
         pauseButton.addActionListener(controller);
         containerWithButtons.add(pauseButton);
 
-        exitButton.setPreferredSize(hightScoresButton.getPreferredSize());
-        aboutButton.setPreferredSize(hightScoresButton.getPreferredSize());
-        newGameButton.setPreferredSize(hightScoresButton.getPreferredSize());
-        pauseButton.setPreferredSize(hightScoresButton.getPreferredSize());
+//        exitButton.setPreferredSize(newGameButton.getPreferredSize());
+//        aboutButton.setPreferredSize(newGameButton.getPreferredSize());
+//        hightScoresButton.setPreferredSize(newGameButton.getPreferredSize());
+//        pauseButton.setPreferredSize(newGameButton.getPreferredSize());
     }
 
 }

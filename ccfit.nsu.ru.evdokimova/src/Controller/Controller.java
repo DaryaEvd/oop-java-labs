@@ -10,8 +10,12 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Controller implements ActionListener {
+    private static final Logger logger = Logger.getLogger((Controller.class.getName()));
+
     Model model;
     public Controller(Model model) {
         this.model = model;
@@ -21,13 +25,15 @@ public class Controller implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals("Exit")) {
+            logger.log(Level.INFO, "Clicked on 'Exit'");
             System.exit(0);
         }
         else if(e.getActionCommand().equals("About")) {
-            System.out.println("about");
+            logger.log(Level.INFO, "Clicked on 'About'");
+
             UIManager.put("OptionPane.minimumSize", new Dimension(300, 300));
 
-            ArrayList<String> allText = new ArrayList<String>();
+            ArrayList<String> allText = new ArrayList<>();
             try (BufferedReader bufferedReader = new BufferedReader(
                     new FileReader("./ccfit.nsu.ru.evdokimova/src/Files/about.txt"))) {
                 String line;
@@ -43,14 +49,16 @@ public class Controller implements ActionListener {
             }
 
         }
-        else if(e.getActionCommand().equals("New Game")) {
-            System.out.println("new gamee");
+        else if(e.getActionCommand().equals("NewGame")) {
+            logger.log(Level.INFO, "Clicked on 'NewGame'");
+
         }
-        else if(e.getActionCommand().equals("Hight Scores")) {
-            System.out.println("scores");
+        else if(e.getActionCommand().equals("Scores")) {
+            logger.log(Level.INFO, "Clicked on 'Scores'");
+            JOptionPane.showMessageDialog(null, "aka47");
         }
         else if(e.getActionCommand().equals("Pause")) {
-            System.out.println("Pause");
+            logger.log(Level.INFO, "Clicked on 'Pause'");
         }
     }
 }
