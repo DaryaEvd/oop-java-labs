@@ -1,8 +1,12 @@
-May 06, 2023 11:45:48 PM Main main
+May 06, 2023 11:46:21 PM Main main
 INFO: Logger initialized
-May 06, 2023 11:45:55 PM Controller.Controller actionPerformed
+May 06, 2023 11:46:26 PM Controller.Controller actionPerformed
 INFO: Clicked on 'Pause'
-May 06, 2023 11:45:59 PM Controller.Controller actionPerformed
+May 06, 2023 11:46:28 PM Controller.Controller actionPerformed
 INFO: Clicked on 'NewGame'
-May 06, 2023 11:45:59 PM Controller.Controller actionPerformed
+May 06, 2023 11:46:28 PM Controller.Controller actionPerformed
 INFO: Clicked on 'NewGame'
+May 06, 2023 11:46:30 PM Controller.Controller actionPerformed
+INFO: Clicked on 'About'
+May 06, 2023 11:46:33 PM Controller.Controller actionPerformed
+INFO: Clicked on 'Exit'

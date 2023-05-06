@@ -57,7 +57,7 @@ public class View {
         containerWithButtons.add(newGameButton);
 
         JButton hightScoresButton = new JButton("Scores");
-        newGameButton.addActionListener(controller);
+        hightScoresButton.addActionListener(controller);
         containerWithButtons.add(hightScoresButton);
 
         JButton pauseButton = new JButton("Pause");
