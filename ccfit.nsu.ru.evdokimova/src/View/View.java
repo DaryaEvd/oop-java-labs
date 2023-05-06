@@ -1,13 +1,29 @@
 package View;
 
+import Controller.Controller;
+import Model.Model;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.EventListener;
 
 public class View {
-    public View() {
-       createGUI();
+    private Model model;
 
+    private Controller controller;
+    public View(Model model, Controller controller) {
+        this.model = model;
+//        this.controller = controller;
+//        this.eventListener = eventListener;
+        this.controller = controller;
+        createGUI();
     }
+//    public View() {
+//       createGUI();
+//
+//    }
 
     private void createGUI() {
         JFrame frame = new JFrame();
@@ -23,16 +39,17 @@ public class View {
         containerWithButtons.setLayout(new FlowLayout());
         addButtonsToContainer(containerWithButtons);
 
-
         frame.setVisible(true);
 
     }
 
     private void addButtonsToContainer(Container containerWithButtons) {
         JButton exitButton = new JButton("Exit");
+        exitButton.addActionListener(controller);
         containerWithButtons.add(exitButton);
 
         JButton aboutButton = new JButton("About");
+        aboutButton.addActionListener(controller);
         containerWithButtons.add(aboutButton);
 
         JButton newGameButton = new JButton("New Game");
