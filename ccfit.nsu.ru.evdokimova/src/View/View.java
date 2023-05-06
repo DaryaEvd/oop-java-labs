@@ -9,8 +9,8 @@ import java.awt.*;
 
 public class View {
     private Model model;
-
     private Controller controller;
+
     public View(Model model, Controller controller) {
         this.model = model;
         this.controller = controller;
