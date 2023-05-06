@@ -19,23 +19,35 @@ public class View {
 
         frame.setLocationRelativeTo(null);
 
-        JPanel panel = new JPanel();
-        panel.setLayout(new BorderLayout());
+        Container containerWithButtons = frame.getContentPane();
+        containerWithButtons.setLayout(new FlowLayout());
+        addButtonsToContainer(containerWithButtons);
 
-        addButtons(panel);
-
-        frame.getContentPane().add(panel);
 
         frame.setVisible(true);
 
     }
 
-    private void addButtons(JPanel panel) {
-        JButton northButton = new JButton("North");
-        panel.add(northButton, BorderLayout.NORTH);
+    private void addButtonsToContainer(Container containerWithButtons) {
+        JButton exitButton = new JButton("Exit");
+        containerWithButtons.add(exitButton);
 
-        JButton button = new JButton("HAHAHA");
-        panel.add(button, BorderLayout.SOUTH);
+        JButton aboutButton = new JButton("About");
+        containerWithButtons.add(aboutButton);
+
+        JButton newGameButton = new JButton("New Game");
+        containerWithButtons.add(newGameButton);
+
+        JButton hightScoresButton = new JButton("Hight Scores");
+        containerWithButtons.add(hightScoresButton);
+
+        JButton pauseButton = new JButton("Pause");
+        containerWithButtons.add(pauseButton);
+
+        exitButton.setPreferredSize(hightScoresButton.getPreferredSize());
+        aboutButton.setPreferredSize(hightScoresButton.getPreferredSize());
+        newGameButton.setPreferredSize(hightScoresButton.getPreferredSize());
+        pauseButton.setPreferredSize(hightScoresButton.getPreferredSize());
     }
 
 }
