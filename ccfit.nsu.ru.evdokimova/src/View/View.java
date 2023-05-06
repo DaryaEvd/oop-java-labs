@@ -5,9 +5,7 @@ import Model.Model;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.EventListener;
+
 
 public class View {
     private Model model;
@@ -15,8 +13,6 @@ public class View {
     private Controller controller;
     public View(Model model, Controller controller) {
         this.model = model;
-//        this.controller = controller;
-//        this.eventListener = eventListener;
         this.controller = controller;
         createGUI();
     }
@@ -25,8 +21,19 @@ public class View {
 //
 //    }
 
+    private final JFrame frame = new JFrame();
+
     private void createGUI() {
-        JFrame frame = new JFrame();
+        initFrame(frame);
+
+        Container containerWithButtons = frame.getContentPane();
+        containerWithButtons.setLayout(new FlowLayout());
+        addButtonsToContainer(containerWithButtons);
+
+        frame.setVisible(true);
+    }
+
+    private void initFrame(JFrame frame) {
         frame.setTitle("Tetris game");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -34,13 +41,6 @@ public class View {
         frame.setResizable(false);
 
         frame.setLocationRelativeTo(null);
-
-        Container containerWithButtons = frame.getContentPane();
-        containerWithButtons.setLayout(new FlowLayout());
-        addButtonsToContainer(containerWithButtons);
-
-        frame.setVisible(true);
-
     }
 
     private void addButtonsToContainer(Container containerWithButtons) {
@@ -53,12 +53,15 @@ public class View {
         containerWithButtons.add(aboutButton);
 
         JButton newGameButton = new JButton("New Game");
+        newGameButton.addActionListener(controller);
         containerWithButtons.add(newGameButton);
 
         JButton hightScoresButton = new JButton("Hight Scores");
+        newGameButton.addActionListener(controller);
         containerWithButtons.add(hightScoresButton);
 
         JButton pauseButton = new JButton("Pause");
+        pauseButton.addActionListener(controller);
         containerWithButtons.add(pauseButton);
 
         exitButton.setPreferredSize(hightScoresButton.getPreferredSize());
