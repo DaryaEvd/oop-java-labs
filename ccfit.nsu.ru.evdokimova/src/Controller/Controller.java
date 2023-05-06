@@ -29,14 +29,10 @@ public class Controller implements ActionListener {
 
             ArrayList<String> allText = new ArrayList<String>();
             try (BufferedReader bufferedReader = new BufferedReader(
-                    new FileReader("/home/dasha/IdeaProjects/task3/ccfit.nsu.ru.evdokimova/src/Files/about.txt"))) {
+                    new FileReader("./ccfit.nsu.ru.evdokimova/src/Files/about.txt"))) {
                 String line;
-                int countLines = 0;
                 while((line = bufferedReader.readLine()) != null) {
-//                    allText[countLines] = line;
                     allText.add(line);
-                    countLines++;
-//                    JOptionPane.showMessageDialog(null, line);
                 }
                 JOptionPane.showMessageDialog(null, allText.toString()
                         .replace("[", "").replace("]", "")
@@ -46,8 +42,6 @@ public class Controller implements ActionListener {
                 throw new RuntimeException(ex);
             }
 
-//            JOptionPane.showMessageDialog(null,
-//                    "Kot Kot Kot Kot Kot" );
         }
         else if(e.getActionCommand().equals("New Game")) {
             System.out.println("new gamee");
