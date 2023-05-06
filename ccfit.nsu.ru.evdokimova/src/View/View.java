@@ -1,10 +1,12 @@
 package View;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class View {
     public View() {
        createGUI();
+
     }
 
     private void createGUI() {
@@ -17,8 +19,23 @@ public class View {
 
         frame.setLocationRelativeTo(null);
 
+        JPanel panel = new JPanel();
+        panel.setLayout(new BorderLayout());
+
+        addButtons(panel);
+
+        frame.getContentPane().add(panel);
+
         frame.setVisible(true);
 
+    }
+
+    private void addButtons(JPanel panel) {
+        JButton northButton = new JButton("North");
+        panel.add(northButton, BorderLayout.NORTH);
+
+        JButton button = new JButton("HAHAHA");
+        panel.add(button, BorderLayout.SOUTH);
     }
 
 }
