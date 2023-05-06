@@ -64,10 +64,6 @@ public class View {
         pauseButton.addActionListener(controller);
         containerWithButtons.add(pauseButton);
 
-//        exitButton.setPreferredSize(newGameButton.getPreferredSize());
-//        aboutButton.setPreferredSize(newGameButton.getPreferredSize());
-//        hightScoresButton.setPreferredSize(newGameButton.getPreferredSize());
-//        pauseButton.setPreferredSize(newGameButton.getPreferredSize());
     }
 
 }
