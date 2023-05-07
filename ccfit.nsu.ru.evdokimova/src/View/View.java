@@ -26,16 +26,15 @@ public class View {
     private final JMenuBar menuBar = new JMenuBar();
     private final JPanel fieldOfGame = new JPanel(new GridBagLayout());
 
-    GameBoard gameBoard;
+    Field field;
     private void createGUI() {
         initFrame(frame);
         initMenuBar(menuBar);
         frame.setJMenuBar(menuBar);
 
-        Container container = frame.getContentPane();
-        gameBoard = new GameBoard();
-        container.add(gameBoard);
+        field = new Field(24, 10);
 
+        frame.add(field);
 //        initFieldsGame(fieldOfGame);
 //        frame.add(fieldOfGame);
 
