@@ -6,7 +6,6 @@ import Model.Model;
 import javax.swing.*;
 import java.awt.*;
 
-
 public class View {
     private Model model;
     private final Controller controller;
@@ -24,35 +23,25 @@ public class View {
 
     private final JFrame frame = new JFrame();
     private final JMenuBar menuBar = new JMenuBar();
-//    private final JPanel fieldOfGame = new JPanel(new GridBagLayout());
 
-    JPanel panelGame  = new JPanel();
-    Field field;
-
+    private DrawGame drawGame;
     private void createGUI() {
         initFrame(frame);
+
         initMenuBar(menuBar);
         frame.setJMenuBar(menuBar);
 
-//        field = new Field(24, 10);
-//        frame.add(field);
-       launchPanelGame();
-        frame.add(panelGame);
+        drawGame = new DrawGame();
+        frame.add(drawGame);
 
         frame.setVisible(true);
-    }
-
-    private void launchPanelGame() {
-       field = new Field(24, 10);
-       field.setPreferredSize(new Dimension(10 * 4 , 10 * 5));
-       panelGame.add(field);
     }
 
     private void initFrame(JFrame frame) {
         frame.setTitle("Tetris game");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        frame.setSize(600, 700);
+        frame.setSize(Constants.FRAME_WIDTH, Constants.FRAME_HEIHT);
         frame.setResizable(false);
 
         frame.setLocationRelativeTo(null);

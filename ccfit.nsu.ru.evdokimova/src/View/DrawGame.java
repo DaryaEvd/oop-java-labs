@@ -8,11 +8,13 @@ public class DrawGame extends JLabel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        g.setColor(Color.ORANGE);
+        g.setColor(Color.BLACK);
 
-        for(int i = 0; i < 10; i++) {
-            for (int j = 0; j < 20; j++) {
-              g.drawRect(i * 32, j * 32, 32, 32);
+        for(int i = 0; i < Constants.GRID_COLUMNS; i++) {
+            for (int j = 0; j < Constants.GRID_ROWS; j++) {
+              g.drawRect(i * Constants.CELL_SIZE + Constants.OFFSET_X_AXIS,
+                      j * Constants.CELL_SIZE + Constants.OFFSET_Y_AXIS,
+                      Constants.CELL_SIZE, Constants.CELL_SIZE);
             }
         }
 
