@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class DrawGame extends JLabel {
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
