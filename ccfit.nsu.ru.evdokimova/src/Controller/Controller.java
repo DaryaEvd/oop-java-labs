@@ -55,7 +55,6 @@ public class Controller implements ActionListener {
         }
         else if(e.getActionCommand().equals("Scores")) {
             logger.log(Level.INFO, "Clicked on 'Scores'");
-            JOptionPane.showMessageDialog(null, "aka47");
         }
         else if(e.getActionCommand().equals("Pause")) {
             logger.log(Level.INFO, "Clicked on 'Pause'");

@@ -26,11 +26,28 @@ public class View {
     private void createGUI() {
         initFrame(frame);
 
-        Container containerWithButtons = frame.getContentPane();
-        containerWithButtons.setLayout(new FlowLayout());
-        addButtonsToContainer(containerWithButtons);
+        JMenuBar menuBar = new JMenuBar();
+        JMenu hehe = new JMenu("hehehe");
+
+        menuBar.add(hehe);
+        frame.setJMenuBar(menuBar);
+
+//        Container containerWithButtons = frame.getContentPane();
+//        containerWithButtons.setLayout(new FlowLayout());
+//        addButtonsToContainer(containerWithButtons);
+//
+//        JPanel fieldOfGame = new JPanel();
+//        initFieldsGame(fieldOfGame);
+//
+//        frame.add(fieldOfGame);
 
         frame.setVisible(true);
+    }
+
+    private void initFieldsGame(JPanel fieldOfGame) {
+        fieldOfGame.setSize(300, 300);
+//        fieldOfGame.setLocale(null);
+        fieldOfGame.setBorder(BorderFactory.createLineBorder(Color.RED));
     }
 
     private void initFrame(JFrame frame) {
