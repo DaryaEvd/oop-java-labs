@@ -28,7 +28,7 @@ public class View {
 
         JMenuBar menuBar = new JMenuBar();
         initMenuBar(menuBar);
-//        JMenu hehe = new JMenu("hehehe");
+//        JMenuItem hehe = new JMenuItem("hehehe");
 //
 //        menuBar.add(hehe);
         frame.setJMenuBar(menuBar);
@@ -46,23 +46,23 @@ public class View {
     }
 
     private void initMenuBar(JMenuBar menuBar) {
-        JMenu exitButton = new JMenu("Exit");
+        JMenuItem exitButton = new JMenuItem("Exit");
         exitButton.addActionListener(controller);
         menuBar.add(exitButton);
 
-        JMenu aboutButton = new JMenu("About");
+        JMenuItem aboutButton = new JMenuItem("About");
         aboutButton.addActionListener(controller);
         menuBar.add(aboutButton);
 
-        JMenu newGameButton = new JMenu("NewGame");
+        JMenuItem newGameButton = new JMenuItem("NewGame");
         newGameButton.addActionListener(controller);
         menuBar.add(newGameButton);
 
-        JMenu hightScoresButton = new JMenu("Scores");
+        JMenuItem hightScoresButton = new JMenuItem("Scores");
         hightScoresButton.addActionListener(controller);
         menuBar.add(hightScoresButton);
 
-        JMenu pauseButton = new JMenu("Pause");
+        JMenuItem pauseButton = new JMenuItem("Pause");
         pauseButton.addActionListener(controller);
         menuBar.add(pauseButton);
     }
