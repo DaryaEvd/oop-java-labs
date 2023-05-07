@@ -24,6 +24,8 @@ public class Controller implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
+
         if(e.getActionCommand().equals("Exit")) {
             logger.log(Level.INFO, "Clicked on 'Exit'");
             System.exit(0);

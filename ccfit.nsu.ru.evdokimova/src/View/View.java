@@ -27,9 +27,10 @@ public class View {
         initFrame(frame);
 
         JMenuBar menuBar = new JMenuBar();
-        JMenu hehe = new JMenu("hehehe");
-
-        menuBar.add(hehe);
+        initMenuBar(menuBar);
+//        JMenu hehe = new JMenu("hehehe");
+//
+//        menuBar.add(hehe);
         frame.setJMenuBar(menuBar);
 
 //        Container containerWithButtons = frame.getContentPane();
@@ -42,6 +43,28 @@ public class View {
 //        frame.add(fieldOfGame);
 
         frame.setVisible(true);
+    }
+
+    private void initMenuBar(JMenuBar menuBar) {
+        JMenu exitButton = new JMenu("Exit");
+        exitButton.addActionListener(controller);
+        menuBar.add(exitButton);
+
+        JMenu aboutButton = new JMenu("About");
+        aboutButton.addActionListener(controller);
+        menuBar.add(aboutButton);
+
+        JMenu newGameButton = new JMenu("NewGame");
+        newGameButton.addActionListener(controller);
+        menuBar.add(newGameButton);
+
+        JMenu hightScoresButton = new JMenu("Scores");
+        hightScoresButton.addActionListener(controller);
+        menuBar.add(hightScoresButton);
+
+        JMenu pauseButton = new JMenu("Pause");
+        pauseButton.addActionListener(controller);
+        menuBar.add(pauseButton);
     }
 
     private void initFieldsGame(JPanel fieldOfGame) {
@@ -60,27 +83,5 @@ public class View {
         frame.setLocationRelativeTo(null);
     }
 
-    private void addButtonsToContainer(Container containerWithButtons) {
-        JButton exitButton = new JButton("Exit");
-        exitButton.addActionListener(controller);
-        containerWithButtons.add(exitButton);
-
-        JButton aboutButton = new JButton("About");
-        aboutButton.addActionListener(controller);
-        containerWithButtons.add(aboutButton);
-
-        JButton newGameButton = new JButton("NewGame");
-        newGameButton.addActionListener(controller);
-        containerWithButtons.add(newGameButton);
-
-        JButton hightScoresButton = new JButton("Scores");
-        hightScoresButton.addActionListener(controller);
-        containerWithButtons.add(hightScoresButton);
-
-        JButton pauseButton = new JButton("Pause");
-        pauseButton.addActionListener(controller);
-        containerWithButtons.add(pauseButton);
-
-    }
 
 }
