@@ -9,40 +9,50 @@ import java.awt.*;
 
 public class View {
     private Model model;
-    private Controller controller;
+    private final Controller controller;
 
     public View(Model model, Controller controller) {
         this.model = model;
         this.controller = controller;
         createGUI();
     }
+
 //    public View() {
 //       createGUI();
 //
 //    }
 
     private final JFrame frame = new JFrame();
+    private final JMenuBar menuBar = new JMenuBar();
+    private final JPanel fieldOfGame = new JPanel(new GridBagLayout());
 
+    GameBoard gameBoard;
     private void createGUI() {
         initFrame(frame);
-
-        JMenuBar menuBar = new JMenuBar();
         initMenuBar(menuBar);
-//        JMenuItem hehe = new JMenuItem("hehehe");
-//
-//        menuBar.add(hehe);
         frame.setJMenuBar(menuBar);
 
-//        Container containerWithButtons = frame.getContentPane();
-//        containerWithButtons.setLayout(new FlowLayout());
-//        addButtonsToContainer(containerWithButtons);
-//
-//        JPanel fieldOfGame = new JPanel();
+        Container container = frame.getContentPane();
+        gameBoard = new GameBoard();
+        container.add(gameBoard);
+
 //        initFieldsGame(fieldOfGame);
-//
 //        frame.add(fieldOfGame);
 
+//        gameBoard = new GameBoard();
+
+
         frame.setVisible(true);
+    }
+
+    private void initFrame(JFrame frame) {
+        frame.setTitle("Tetris game");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        frame.setSize(600, 700);
+        frame.setResizable(false);
+
+        frame.setLocationRelativeTo(null);
     }
 
     private void initMenuBar(JMenuBar menuBar) {
@@ -68,20 +78,14 @@ public class View {
     }
 
     private void initFieldsGame(JPanel fieldOfGame) {
-        fieldOfGame.setSize(300, 300);
-//        fieldOfGame.setLocale(null);
-        fieldOfGame.setBorder(BorderFactory.createLineBorder(Color.RED));
+        Dimension expectedDimenstion = new Dimension(50, 50);
+
+        fieldOfGame.setPreferredSize(expectedDimenstion);
+        fieldOfGame.setMaximumSize(expectedDimenstion);
+        fieldOfGame.setMaximumSize(expectedDimenstion);
+
+        fieldOfGame.setBackground(Color.RED);
+
     }
-
-    private void initFrame(JFrame frame) {
-        frame.setTitle("Tetris game");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        frame.setSize(600, 700);
-        frame.setResizable(false);
-
-        frame.setLocationRelativeTo(null);
-    }
-
 
 }
