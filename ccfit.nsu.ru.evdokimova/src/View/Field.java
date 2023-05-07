@@ -12,7 +12,7 @@ public class Field extends JPanel {
     private Cell[][] boardGrid;
 
     public Field(int columns, int rows) {
-       super(new GridLayout(columns, rows, 2, 2));
+       super(new GridLayout(columns, rows, 0, 0));
 
        this.gridColumns = columns;
        this.girdRows = rows;

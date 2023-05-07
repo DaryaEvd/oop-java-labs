@@ -24,24 +24,28 @@ public class View {
 
     private final JFrame frame = new JFrame();
     private final JMenuBar menuBar = new JMenuBar();
-    private final JPanel fieldOfGame = new JPanel(new GridBagLayout());
+//    private final JPanel fieldOfGame = new JPanel(new GridBagLayout());
 
+    JPanel panelGame  = new JPanel();
     Field field;
+
     private void createGUI() {
         initFrame(frame);
         initMenuBar(menuBar);
         frame.setJMenuBar(menuBar);
 
-        field = new Field(24, 10);
-
-        frame.add(field);
-//        initFieldsGame(fieldOfGame);
-//        frame.add(fieldOfGame);
-
-//        gameBoard = new GameBoard();
-
+//        field = new Field(24, 10);
+//        frame.add(field);
+       launchPanelGame();
+        frame.add(panelGame);
 
         frame.setVisible(true);
+    }
+
+    private void launchPanelGame() {
+       field = new Field(24, 10);
+       field.setPreferredSize(new Dimension(10 * 4 , 10 * 5));
+       panelGame.add(field);
     }
 
     private void initFrame(JFrame frame) {
@@ -74,17 +78,6 @@ public class View {
         JMenuItem pauseButton = new JMenuItem("Pause");
         pauseButton.addActionListener(controller);
         menuBar.add(pauseButton);
-    }
-
-    private void initFieldsGame(JPanel fieldOfGame) {
-        Dimension expectedDimenstion = new Dimension(50, 50);
-
-        fieldOfGame.setPreferredSize(expectedDimenstion);
-        fieldOfGame.setMaximumSize(expectedDimenstion);
-        fieldOfGame.setMaximumSize(expectedDimenstion);
-
-        fieldOfGame.setBackground(Color.RED);
-
     }
 
 }
