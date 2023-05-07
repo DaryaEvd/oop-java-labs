@@ -1,17 +1,26 @@
 package Tetris;
 
-import Model.Model;
+import Model.Block;
+import Model.Game;
+import Model.Model.*;
 import View.View;
 import Controller.Controller;
 
 public class Tetris {
-    private final Model model = new Model();
+//    private final Model model = new Model();
     private final View view;
-    private final Controller controller = new Controller(model);
+    private final Controller controller = new Controller();
     public Tetris() {
-        this.view = new View(model, controller);
+        Game.currBlock = new Block();
+        Game.block.add(Game.currBlock);
+        Game.nextBlock= new Block();
+
+        this.view = new View( controller);
     }
 
     public void startGame() {
+
+        GameLoop loop = new GameLoop();
+        loop.start();
     }
 }

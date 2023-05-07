@@ -10,8 +10,8 @@ public class View {
     private Model model;
     private final Controller controller;
 
-    public View(Model model, Controller controller) {
-        this.model = model;
+    public View( Controller controller) {
+//        this.model = model;
         this.controller = controller;
         createGUI();
     }

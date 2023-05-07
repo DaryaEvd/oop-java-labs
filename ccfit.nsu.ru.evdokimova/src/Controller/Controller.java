@@ -17,8 +17,8 @@ public class Controller implements ActionListener {
     private static final Logger logger = Logger.getLogger((Controller.class.getName()));
 
     Model model;
-    public Controller(Model model) {
-        this.model = model;
+    public Controller() {
+
     }
 
 
