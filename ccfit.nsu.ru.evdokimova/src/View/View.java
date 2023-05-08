@@ -24,15 +24,21 @@ public class View {
     private final JFrame frame = new JFrame();
     private final JMenuBar menuBar = new JMenuBar();
 
-    private DrawGame drawGame;
+    private GridField gridField;
+    JPanel panel = new JPanel();
+
+//    private DrawGame drawGame;
     private void createGUI() {
         initFrame(frame);
 
         initMenuBar(menuBar);
         frame.setJMenuBar(menuBar);
 
-        drawGame = new DrawGame();
-        frame.add(drawGame);
+//        drawGame = new DrawGame();
+//        frame.add(drawGame);
+
+        gridField = new GridField();
+//        frame.add(gridField);
 
         frame.setVisible(true);
     }

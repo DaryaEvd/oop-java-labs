@@ -1,6 +1,6 @@
-May 07, 2023 8:32:51 PM Main main
+May 07, 2023 10:30:36 PM Main main
 INFO: Logger initialized
-May 07, 2023 8:32:51 PM Model.Block <init>
-SEVERE: File with figure
-May 07, 2023 8:32:51 PM Model.Block <init>
-SEVERE: File with figure
+May 07, 2023 10:30:37 PM View.GridField generateField
+INFO: Generating gield ...
+May 07, 2023 10:30:37 PM View.GridField <init>
+INFO: Finished genrating field
