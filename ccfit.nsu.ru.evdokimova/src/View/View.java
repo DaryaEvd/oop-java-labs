@@ -24,6 +24,7 @@ public class View {
 
 //        showFigure(Figure.I2, new Coord(5, 5));
 //        showFigure(Figure.T4, new Coord(3, 4));
+        addFigure();
 
     frame.addKeyListener(new KeyListener() {
         @Override
@@ -34,8 +35,28 @@ public class View {
         @Override
         public void keyPressed(KeyEvent e) {
             System.out.println("hahaha CLOOOOOOOOOOOOOOWN");
-            showFigure(Figure.I1, new Coord(5, 5), 0);
-            showFigure(Figure.I1, new Coord(5, 4), 1);
+//            showFigure(Figure.I1, new Coord(5, 5), 0);
+//            showFigure(Figure.I1, new Coord(5, 4), 1);
+            hideFihure();
+//            showFigure();
+            switch (e.getKeyCode()) {
+                case KeyEvent.VK_LEFT -> {
+                    coords = new Coord(coords.x, coords.y - 1);
+                }
+                case KeyEvent.VK_UP -> {
+                    coords = new Coord(coords.x - 1, coords.y);
+                }
+                case KeyEvent.VK_RIGHT -> {
+                    coords = new Coord(coords.x, coords.y + 1);
+                }
+                case KeyEvent.VK_DOWN -> {
+                    coords = new Coord(coords.x + 1, coords.y );
+                }
+
+                default -> throw new IllegalStateException("Unexpected value: " + e.getKeyCode());
+            }
+            showFigure();
+//            showFigure(figure, coords, 1);
         }
 
         @Override
@@ -52,14 +73,23 @@ public class View {
     }
 
 
+    private Cell [][] boxes;
+    private Figure figure;
+    private Coord coords;
+
+    public void addFigure() {
+        figure = Figure.getRandomFigure();
+        coords = new Coord(5, 5);
+        showFigure();
+//        showFigure(figure, coords, 1);
+    }
+
 //    public View() {
 //       createGUI(); //
 //    }
 
     private final JFrame frame = new JFrame();
     private final JMenuBar menuBar = new JMenuBar();
-
-    private Cell [][] boxes;
 
     JLabel center = new JLabel("center clown", CENTER);
 //    private DrawGame drawGame;
@@ -91,17 +121,16 @@ public class View {
                 center.add(boxes[x][y]);
             }
         }
-
-//        for(int x = 0; x < Constants.GRID_COLUMNS; x++) {
-//            for(int y = 0; y < Constants.GRID_ROWS; y++) {
-//                boxes[x][y] = new Cell(x, y);
-//                center.add(boxes[x][y]);
-//
-//            }
-//        }
     }
 
-    public void showFigure(Figure figure, Coord at, int color) {
+    public void showFigure() {
+        showFigure(figure, coords, 1);
+    }
+
+    public void hideFihure() {
+        showFigure(figure, coords, 0);
+    }
+    private void showFigure(Figure figure, Coord at, int color) {
         for(Coord coord : figure.dots){
             setBoxColor(at.x + coord.x , at.y + coord.y, color);
         }

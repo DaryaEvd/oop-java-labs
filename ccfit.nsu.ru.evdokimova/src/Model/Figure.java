@@ -53,12 +53,51 @@ public enum Figure {
                     1, 1,   2, 1,
                     1, 2);
     public  List<Coord> dots;
+    public final Coord leftTop;
+    public final Coord bottom;
+
     Figure (int ... coords) {
         dots = new ArrayList<Coord>();
         for(int j = 0; j < coords.length; j += 2) {
             dots.add(new Coord(coords[j + 1], coords[j]));
         }
+
+        leftTop = setLeftTop();
+        bottom = setBottom();
     }
+
+    private Coord setLeftTop () {
+        int x = dots.get(0).x;
+        int y = dots.get(0).y;
+
+        for(Coord coord : dots) {
+            if(x < coord.x) {
+                x = coord.x;
+            }
+            if(y < coord.y) {
+                y = coord.y;
+            }
+        }
+
+        return new Coord(x, y);
+    }
+
+    private Coord setBottom () {
+        int x = dots.get(0).x;
+        int y = dots.get(0).y;
+
+        for(Coord coord : dots) {
+            if(x > coord.x) {
+                x = coord.x;
+            }
+            if(y > coord.y) {
+                y = coord.y;
+            }
+        }
+
+        return new Coord(x, y);
+    }
+
 
     public Figure turnRight() {
         switch (this) {
@@ -126,5 +165,11 @@ public enum Figure {
     public Figure turnLeft() {
 //        System.out.println("right");
         return turnRight().turnLeft().turnRight();
+    }
+
+
+    public static Figure getRandomFigure() {
+        return Figure.values()[(int) (Math.random() * Figure.values().length)];
+
     }
 }
