@@ -25,7 +25,7 @@ public class View {
     private final JFrame frame = new JFrame();
     private final JMenuBar menuBar = new JMenuBar();
 
-//    private Cell [][] cells;
+    private Cell [][] boxes;
 
     JLabel center = new JLabel("center clown", CENTER);
 //    private DrawGame drawGame;
@@ -44,6 +44,7 @@ public class View {
 //        cells = new Cell[Constants.GRID_COLUMNS][Constants.GRID_ROWS];
 
 //        center.add(cells, BorderLayout.CENTER);
+        boxes = new Cell[Constants.GRID_COLUMNS][Constants.GRID_ROWS];
 
         initCells();
 
@@ -55,11 +56,17 @@ public class View {
     private void initCells() {
         for(int x = 0; x < Constants.GRID_COLUMNS; x++) {
             for(int y = 0; y < Constants.GRID_ROWS; y++) {
-                Cell cells = new Cell(x, y);
-                center.add(cells);
+//                Cell cells = new Cell(x, y);
+//                center.add(cells);
+
+                boxes[x][y] = new Cell(x, y);
+                center.add(boxes[x][y]);
+
             }
         }
     }
+
+
     private void initLevoPravo() {
         JLabel levo = new JLabel("leviy clown", CENTER);
         levo.setOpaque(true);
@@ -71,8 +78,6 @@ public class View {
         pravo.setBackground(Color.ORANGE);
         frame.add(pravo, BorderLayout.EAST);
     }
-
-
 
     private void initFrame(JFrame frame) {
         frame.setTitle("Tetris game");
