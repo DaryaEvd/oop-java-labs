@@ -136,7 +136,7 @@ public class View {
     }
 
     void setBoxColor(int x, int y, int color) {
-        if(x < 0 || x >= Constants.GRID_ROWS) {
+        if(x < 0 || x > Constants.GRID_ROWS) {
         }
         else if(y < 0 || y > Constants.GRID_COLUMNS) {
         }
