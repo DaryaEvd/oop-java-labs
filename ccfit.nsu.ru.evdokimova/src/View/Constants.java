@@ -1,8 +1,8 @@
 package View;
 
 public class Constants {
-    public final static int FRAME_WIDTH = 600;
-    public final static int FRAME_HEIHT = 700;
+    public final static int FRAME_WIDTH = 500;
+    public final static int FRAME_HEIGHT = 700;
 
     public final static int GRID_COLUMNS = 10;
     public final static int GRID_ROWS = 20;
