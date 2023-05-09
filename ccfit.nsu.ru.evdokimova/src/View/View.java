@@ -18,13 +18,13 @@ public class View {
         this.controller = controller;
         createGUI();
 
-//        showFigure(Figure.I1, new Coord(5, 5));
+        showFigure(Figure.I1, new Coord(5, 5));
+//        showFigure(Figure.I2, new Coord(5, 5));
     }
 
 
 //    public View() {
-//       createGUI();
-//
+//       createGUI(); //
 //    }
 
     private final JFrame frame = new JFrame();
@@ -46,7 +46,7 @@ public class View {
                 Constants.GRID_COLUMNS, 1, 1));
         initLevoPravo();
 
-        boxes = new Cell[Constants.GRID_COLUMNS][Constants.GRID_ROWS];
+        boxes = new Cell[Constants.GRID_COLUMNS][Constants.GRID_ROWS]; //TODO:
 
         initCells();
 
@@ -56,18 +56,25 @@ public class View {
         frame.setVisible(true);
     }
     private void initCells() {
-        for(int x = 0; x < Constants.GRID_COLUMNS; x++) {
-            for(int y = 0; y < Constants.GRID_ROWS; y++) {
-                boxes[x][y] = new Cell(x, y);
-                center.add(boxes[x][y]);
-
+        for(int x = 0; x < Constants.GRID_ROWS; x++) {
+            for(int y = 0; y < Constants.GRID_COLUMNS; y++) {
+                boxes[y][x] = new Cell(x, y);
+                center.add(boxes[y][x]);
             }
         }
+
+//        for(int x = 0; x < Constants.GRID_COLUMNS; x++) {
+//            for(int y = 0; y < Constants.GRID_ROWS; y++) {
+//                boxes[x][y] = new Cell(x, y);
+//                center.add(boxes[x][y]);
+//
+//            }
+//        }
     }
 
     public void showFigure(Figure figure, Coord at) {
         for(Coord coord : figure.dots){
-            setBoxColor(at.x + coord.x, at.y + coord.y, 1);
+            setBoxColor(at.x + coord.x , at.y + coord.y, 1);
         }
     }
 
@@ -77,7 +84,7 @@ public class View {
         else if(y < 0 || y > Constants.GRID_ROWS) {
         }
         else {
-            boxes[y][x].setColor(color);
+            boxes[x][y].setColor(color);
         }
     }
 
