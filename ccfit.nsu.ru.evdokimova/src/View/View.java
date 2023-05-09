@@ -6,7 +6,11 @@ import Model.Figure;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
+import static com.sun.java.accessibility.util.AWTEventMonitor.addKeyListener;
 import static javax.swing.SwingConstants.*;
 
 public class View {
@@ -18,9 +22,33 @@ public class View {
         this.controller = controller;
         createGUI();
 
-//        showFigure(Figure.I1, new Coord(5, 5));
 //        showFigure(Figure.I2, new Coord(5, 5));
-        showFigure(Figure.T4, new Coord(3, 4));
+//        showFigure(Figure.T4, new Coord(3, 4));
+
+    frame.addKeyListener(new KeyListener() {
+        @Override
+        public void keyTyped(KeyEvent e) {
+
+        }
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+            System.out.println("hahaha CLOOOOOOOOOOOOOOWN");
+            showFigure(Figure.I1, new Coord(5, 5), 0);
+            showFigure(Figure.I1, new Coord(5, 4), 1);
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+
+        }
+    });
+
+
+//        addKeyListener(new KeyAdapter());
+//        showFigure(Figure.I1, new Coord(5, 5), 1);
+
+
     }
 
 
@@ -73,9 +101,9 @@ public class View {
 //        }
     }
 
-    public void showFigure(Figure figure, Coord at) {
+    public void showFigure(Figure figure, Coord at, int color) {
         for(Coord coord : figure.dots){
-            setBoxColor(at.x + coord.x , at.y + coord.y, 1);
+            setBoxColor(at.x + coord.x , at.y + coord.y, color);
         }
     }
 
@@ -132,5 +160,24 @@ public class View {
         pauseButton.addActionListener(controller);
         menuBar.add(pauseButton);
     }
+    class KeyAdapter extends java.awt.event.KeyAdapter implements KeyListener {
+        @Override
+        public void keyTyped(KeyEvent e) {
 
+        }
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+            System.out.println("KOOOOOOOOOOT");
+//            showFigure(Figure.I1, new Coord(5, 5), 0);
+//            showFigure(Figure.I1, new Coord(4, 5), 1);
+//            showFigure(Figure.I2, new Coord(5, 5));
+//            showFigure(Figure.T4, new Coord(3, 4));
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+
+        }
+    }
 }

@@ -13,7 +13,8 @@ public class Cell extends JPanel {
 
     public void setColor(int number) {
         if(number == 0) {
-            setBackground(Color.YELLOW);
+//            setBackground(Color.YELLOW);
+            setBackground(Color.BLACK);
         }
         else {
             setBackground(Color.BLUE);

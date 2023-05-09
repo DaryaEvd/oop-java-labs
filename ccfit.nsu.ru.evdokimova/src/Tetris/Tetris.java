@@ -16,7 +16,7 @@ public class Tetris {
 //        this.model = new Model();
         this.view = new View(controller);
 
-//        view.showFigure(Figure.I1, new Coord(5, 5));
+        view.showFigure(Figure.I1, new Coord(5, 5), 1);
     }
 
     public void startGame() {
