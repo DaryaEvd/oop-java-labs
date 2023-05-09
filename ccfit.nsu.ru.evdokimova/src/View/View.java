@@ -25,6 +25,7 @@ public class View {
     private final JFrame frame = new JFrame();
     private final JMenuBar menuBar = new JMenuBar();
 
+    private Cell [][] cells;
     JPanel panel = new JPanel();
     JPanel panel2 = new JPanel();
 
@@ -35,24 +36,8 @@ public class View {
         initMenuBar(menuBar);
         frame.setJMenuBar(menuBar);
 
-//        drawGame = new DrawGame();
-//        frame.add(drawGame);
-
-//        panel.setSize(100, 400);
-//        panel.setBackground(Color.BLUE);
-//
-//        panel.setLayout(new FlowLayout(FlowLayout.CENTER));
-//        frame.add(panel, BorderLayout.EAST);
-//
-//        panel2.setSize(100, 500);
-//        panel2.setBackground(Color.YELLOW);
-//
-//        frame.add(panel2, BorderLayout.WEST);
-
         JLabel center = new JLabel("center clown", CENTER);
-//        center.setSize(150, 600);
-//        center.setPreferredSize(new Dimension(100, 400));
-//        center.setHorizontalAlignment(CENTER);
+
         center.setOpaque(true);
         center.setBackground(Color.BLACK);
         frame.add(center, BorderLayout.CENTER);
@@ -67,7 +52,20 @@ public class View {
         pravo.setBackground(Color.ORANGE);
         frame.add(pravo, BorderLayout.EAST);
 
+        cells = new Cell[Constants.GRID_COLUMNS][Constants.GRID_COLUMNS];
+
+        initCells();
+
         frame.setVisible(true);
+    }
+
+    private void initCells() {
+        for(int x = 0; x < Constants.GRID_COLUMNS; x++) {
+           for(int y = 0; y < Constants.GRID_ROWS; y++) {
+               cells[x][y] = new Cell(x, y);
+               frame.add(cells[x][y]);
+           }
+        }
     }
 
     private void initFrame(JFrame frame) {
@@ -75,7 +73,6 @@ public class View {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         frame.setSize(500, 700);
-//        frame.setSize(Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT);
         frame.setResizable(false);
 
         frame.setLocationRelativeTo(null);
