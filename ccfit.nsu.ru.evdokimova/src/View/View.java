@@ -10,7 +10,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import static com.sun.java.accessibility.util.AWTEventMonitor.addKeyListener;
 import static javax.swing.SwingConstants.*;
 
 public class View {
@@ -22,55 +21,9 @@ public class View {
         this.controller = controller;
         createGUI();
 
-//        showFigure(Figure.I2, new Coord(5, 5));
-//        showFigure(Figure.T4, new Coord(3, 4));
         addFigure();
 
-    frame.addKeyListener(new KeyListener() {
-        @Override
-        public void keyTyped(KeyEvent e) {
-
-        }
-
-        @Override
-        public void keyPressed(KeyEvent e) {
-            System.out.println("hahaha CLOOOOOOOOOOOOOOWN");
-//            showFigure(Figure.I1, new Coord(5, 5), 0);
-//            showFigure(Figure.I1, new Coord(5, 4), 1);
-            hideFihure();
-//            showFigure();
-            switch (e.getKeyCode()) {
-                case KeyEvent.VK_LEFT -> {
-                    moveFigure(0, -1);
-                }
-                case KeyEvent.VK_UP -> {
-                    moveFigure(-1, 0);
-                }
-                case KeyEvent.VK_RIGHT -> {
-                    moveFigure(0, 1);
-                }
-                case KeyEvent.VK_DOWN -> {
-                    moveFigure(1, 0);
-                }
-                case KeyEvent.VK_SPACE -> {
-                     turnFigure();
-                }
-                default -> {
-//                    throw new IllegalStateException("Unexpected value: " + e.getKeyCode());
-                }
-            }
-            showFigure();
-//            showFigure(figure, coords, 1);
-        }
-
-              @Override
-        public void keyReleased(KeyEvent e) {
-
-        }
-    });
-
-//        addKeyListener(new KeyAdapter());
-
+        frame.addKeyListener(new MyKeyListener());
     }
 
 
@@ -188,7 +141,7 @@ public class View {
 
     }
 
-    private void moveFigure(int dx, int dy) {
+    public void moveFigure(int dx, int dy) {
         if(canMoveFigure(figure, dx, dy)) {
             coords = coords.plus(dx, dy);
         }
@@ -237,7 +190,7 @@ public class View {
         pauseButton.addActionListener(controller);
         menuBar.add(pauseButton);
     }
-    class KeyAdapter extends java.awt.event.KeyAdapter implements KeyListener {
+    class MyKeyListener extends KeyAdapter implements KeyListener {
         @Override
         public void keyTyped(KeyEvent e) {
 
@@ -246,10 +199,30 @@ public class View {
         @Override
         public void keyPressed(KeyEvent e) {
             System.out.println("KOOOOOOOOOOT");
-//            showFigure(Figure.I1, new Coord(5, 5), 0);
-//            showFigure(Figure.I1, new Coord(4, 5), 1);
-//            showFigure(Figure.I2, new Coord(5, 5));
-//            showFigure(Figure.T4, new Coord(3, 4));
+
+            hideFihure();
+            switch (e.getKeyCode()) {
+                case KeyEvent.VK_LEFT -> {
+                    moveFigure(0, -1);
+                }
+                case KeyEvent.VK_UP -> {
+                    moveFigure(-1, 0);
+                }
+                case KeyEvent.VK_RIGHT -> {
+                    moveFigure(0, 1);
+                }
+                case KeyEvent.VK_DOWN -> {
+                    moveFigure(1, 0);
+                }
+                case KeyEvent.VK_SPACE -> {
+                    turnFigure();
+                }
+                default -> {
+//                    throw new IllegalStateException("Unexpected value: " + e.getKeyCode());
+                }
+            }
+            showFigure();
+//
         }
 
         @Override
