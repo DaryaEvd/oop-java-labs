@@ -25,10 +25,9 @@ public class View {
     private final JFrame frame = new JFrame();
     private final JMenuBar menuBar = new JMenuBar();
 
-    private Cell [][] cells;
-    JPanel panel = new JPanel();
-    JPanel panel2 = new JPanel();
+//    private Cell [][] cells;
 
+    JLabel center = new JLabel("center clown", CENTER);
 //    private DrawGame drawGame;
     private void createGUI() {
         initFrame(frame);
@@ -36,12 +35,30 @@ public class View {
         initMenuBar(menuBar);
         frame.setJMenuBar(menuBar);
 
-        JLabel center = new JLabel("center clown", CENTER);
-
         center.setOpaque(true);
         center.setBackground(Color.BLACK);
+        initLevoPravo();
+
+//        cells = new Cell[Constants.GRID_COLUMNS][Constants.GRID_ROWS];
+
+//        center.add(cells, BorderLayout.CENTER);
+
+        initCells();
+
         frame.add(center, BorderLayout.CENTER);
 
+        frame.setVisible(true);
+    //        frame.add(center, BorderLayout.CENTER);
+    }
+    private void initCells() {
+        for(int x = 0; x < Constants.GRID_COLUMNS; x++) {
+            for(int y = 0; y < Constants.GRID_ROWS; y++) {
+                Cell cells = new Cell(x, y);
+                center.add(cells);
+            }
+        }
+    }
+    private void initLevoPravo() {
         JLabel levo = new JLabel("leviy clown", CENTER);
         levo.setOpaque(true);
         levo.setBackground(Color.red);
@@ -51,22 +68,9 @@ public class View {
         pravo.setOpaque(true);
         pravo.setBackground(Color.ORANGE);
         frame.add(pravo, BorderLayout.EAST);
-
-        cells = new Cell[Constants.GRID_COLUMNS][Constants.GRID_COLUMNS];
-
-        initCells();
-
-        frame.setVisible(true);
     }
 
-    private void initCells() {
-        for(int x = 0; x < Constants.GRID_COLUMNS; x++) {
-           for(int y = 0; y < Constants.GRID_ROWS; y++) {
-               cells[x][y] = new Cell(x, y);
-               frame.add(cells[x][y]);
-           }
-        }
-    }
+
 
     private void initFrame(JFrame frame) {
         frame.setTitle("Tetris game");
@@ -74,6 +78,7 @@ public class View {
 
         frame.setSize(500, 700);
         frame.setResizable(false);
+
 
         frame.setLocationRelativeTo(null);
     }
