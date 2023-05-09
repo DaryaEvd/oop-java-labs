@@ -1,5 +1,7 @@
 package Tetris;
 
+import Model.Coord;
+import Model.Figure;
 import View.View;
 import Controller.Controller;
 
@@ -12,7 +14,9 @@ public class Tetris {
 //        Game.block.add(Game.currBlock);
 //        Game.nextBlock= new Block();
 //        this.model = new Model();
-        this.view = new View( controller);
+        this.view = new View(controller);
+
+        view.showFigure(Figure.I1, new Coord(5, 5));
     }
 
     public void startGame() {

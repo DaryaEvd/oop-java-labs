@@ -5,6 +5,7 @@ import java.util.List;
 
 public enum Figure {
     I1 (0, 1,    1, 1,   2, 1,   3, 1) // oooo
+
     , I2 (  1, 0,
                     1, 1,
                     1, 2,
@@ -51,12 +52,11 @@ public enum Figure {
     , Z2 (          2, 0,
                     1, 1,   2, 1,
                     1, 2);
-
+    public  List<Coord> dots;
     Figure (int ... coords) {
-        List<Coord> dot = new ArrayList<Coord>();
+        dots = new ArrayList<Coord>();
         for(int j = 0; j < coords.length; j += 2) {
-            dot.add(new Coord(coords[j], coords[j + 1]));
-
+            dots.add(new Coord(coords[j + 1], coords[j]));
         }
     }
 

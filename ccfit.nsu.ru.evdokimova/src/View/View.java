@@ -1,6 +1,8 @@
 package View;
 
 import Controller.Controller;
+import Model.Coord;
+import Model.Figure;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,7 +17,10 @@ public class View {
 //        this.model = model;
         this.controller = controller;
         createGUI();
+
+//        showFigure(Figure.I1, new Coord(5, 5));
     }
+
 
 //    public View() {
 //       createGUI();
@@ -36,29 +41,23 @@ public class View {
         frame.setJMenuBar(menuBar);
 
         center.setOpaque(true);
-        center.setBackground(Color.BLACK);
+        center.setBackground(Color.LIGHT_GRAY);
         center.setLayout(new GridLayout(Constants.GRID_ROWS,
                 Constants.GRID_COLUMNS, 1, 1));
         initLevoPravo();
 
-//        cells = new Cell[Constants.GRID_COLUMNS][Constants.GRID_ROWS];
-
-//        center.add(cells, BorderLayout.CENTER);
         boxes = new Cell[Constants.GRID_COLUMNS][Constants.GRID_ROWS];
 
         initCells();
 
         frame.add(center, BorderLayout.CENTER);
 
+
         frame.setVisible(true);
-    //        frame.add(center, BorderLayout.CENTER);
     }
     private void initCells() {
         for(int x = 0; x < Constants.GRID_COLUMNS; x++) {
             for(int y = 0; y < Constants.GRID_ROWS; y++) {
-//                Cell cells = new Cell(x, y);
-//                center.add(cells);
-
                 boxes[x][y] = new Cell(x, y);
                 center.add(boxes[x][y]);
 
@@ -66,6 +65,21 @@ public class View {
         }
     }
 
+    public void showFigure(Figure figure, Coord at) {
+        for(Coord coord : figure.dots){
+            setBoxColor(at.x + coord.x, at.y + coord.y, 1);
+        }
+    }
+
+    void setBoxColor(int x, int y, int color) {
+        if(x < 0 || x >= Constants.GRID_COLUMNS) {
+        }
+        else if(y < 0 || y > Constants.GRID_ROWS) {
+        }
+        else {
+            boxes[y][x].setColor(color);
+        }
+    }
 
     private void initLevoPravo() {
         JLabel levo = new JLabel("leviy clown", CENTER);
@@ -85,7 +99,6 @@ public class View {
 
         frame.setSize(500, 700);
         frame.setResizable(false);
-
 
         frame.setLocationRelativeTo(null);
     }

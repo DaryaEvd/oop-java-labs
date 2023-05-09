@@ -9,9 +9,5 @@ public class Constants {
 
     public final static int CELL_SIZE = 30;
 
-    public final static int OFFSET_X_AXIS = FRAME_WIDTH / 4;
-
-    public final static int OFFSET_Y_AXIS = 20;
-
 
 }
