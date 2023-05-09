@@ -13,24 +13,13 @@ public enum Figure {
     , J1 (   1, 0,
                     1, 1,
             0, 2,   1, 2)
-//    , J1 (0, 0,
-//                1, 0,   1, 1,   1, 2)
     , J2 (  0, 0,
                     0, 1,   1, 1,   2, 1)
-//    , J2 (0, 1,     0, 2,
-//                1, 1,
-//                2, 1)
     , J3 (  1, 0, 2, 0,
                     1, 1,
                     1, 2)
-//    , J3 (0, 1,     1, 1,   1, 2,
-//                                    2, 2)
     , J4 (0, 1,     1, 1,   2, 1,
                                     2, 2)
-//    , J4 (  0, 1,
-//                    1, 1,
-//           2, 0,    2, 1
-//                )
     , L1 (   1, 0,
                     1, 1,
                     1, 2,   2, 2)
@@ -119,35 +108,27 @@ public enum Figure {
                 return I1;
             }
             case J1 -> {
-                System.out.println("J1");
                 return J2;
             }
             case J2 -> {
-                System.out.println("J2");
                 return J3;
             }
             case J3 -> {
-                System.out.println("J3");
                 return J4;
             }
             case J4 -> {
-                System.out.println("J4");
                 return J1;
             }
             case L1 -> {
-                System.out.println("L1");
                 return L2;
             }
             case L2 -> {
-                System.out.println("L2");
                 return L3;
             }
             case L3 -> {
-                System.out.println("L3");
                 return L4;
             }
             case L4 -> {
-                System.out.println("L4");
                 return L1;
             }
             case O -> {
