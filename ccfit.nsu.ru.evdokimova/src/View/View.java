@@ -37,6 +37,8 @@ public class View {
 
         center.setOpaque(true);
         center.setBackground(Color.BLACK);
+        center.setLayout(new GridLayout(Constants.GRID_ROWS,
+                Constants.GRID_COLUMNS, 1, 1));
         initLevoPravo();
 
 //        cells = new Cell[Constants.GRID_COLUMNS][Constants.GRID_ROWS];
