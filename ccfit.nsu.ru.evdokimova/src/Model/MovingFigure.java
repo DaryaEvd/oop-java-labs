@@ -13,6 +13,7 @@ public class MovingFigure {
     public MovingFigure() {
         figure = Figure.getRandomFigure();
         coords = new Coord( -figure.leftTop.y, Constants.GRID_COLUMNS / 2 - 2);
+         //TODO: mozhet bit '-figure.leftTop.y - figure.bottom.y - 1 ' ?
     }
 
     public Figure getFigure() {

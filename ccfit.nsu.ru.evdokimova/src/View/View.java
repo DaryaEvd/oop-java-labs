@@ -7,9 +7,7 @@ import Model.MovingFigure;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
 
 import static javax.swing.SwingConstants.*;
 
@@ -26,8 +24,11 @@ public class View {
         addFigure();
 
         frame.addKeyListener(new MyKeyListener());
-    }
 
+        MyTime myTime = new MyTime();
+        Timer timer = new Timer(1000, myTime);
+        timer.start();
+    }
 
     private Cell [][] boxes;
 
@@ -209,7 +210,7 @@ public class View {
                      fly.moveFigure(0, -1);
                 }
                 case KeyEvent.VK_UP -> {
-                    fly.moveFigure(-1, 0);
+//                    fly.moveFigure(-1, 0);
                 }
                 case KeyEvent.VK_RIGHT -> {
                     fly.moveFigure(0, 1);
@@ -231,6 +232,14 @@ public class View {
         @Override
         public void keyReleased(KeyEvent e) {
 
+        }
+    }
+
+    class MyTime implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            fly.moveFigure(0, 1);
         }
     }
 }
