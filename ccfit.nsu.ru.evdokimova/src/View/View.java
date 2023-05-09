@@ -18,8 +18,9 @@ public class View {
         this.controller = controller;
         createGUI();
 
-        showFigure(Figure.I1, new Coord(5, 5));
+//        showFigure(Figure.I1, new Coord(5, 5));
 //        showFigure(Figure.I2, new Coord(5, 5));
+        showFigure(Figure.T4, new Coord(3, 4));
     }
 
 
@@ -46,7 +47,7 @@ public class View {
                 Constants.GRID_COLUMNS, 1, 1));
         initLevoPravo();
 
-        boxes = new Cell[Constants.GRID_COLUMNS][Constants.GRID_ROWS]; //TODO:
+        boxes = new Cell[Constants.GRID_ROWS][Constants.GRID_COLUMNS]; //TODO:
 
         initCells();
 
@@ -58,8 +59,8 @@ public class View {
     private void initCells() {
         for(int x = 0; x < Constants.GRID_ROWS; x++) {
             for(int y = 0; y < Constants.GRID_COLUMNS; y++) {
-                boxes[y][x] = new Cell(x, y);
-                center.add(boxes[y][x]);
+                boxes[x][y] = new Cell(x, y);
+                center.add(boxes[x][y]);
             }
         }
 
