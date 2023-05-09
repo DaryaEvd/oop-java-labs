@@ -169,7 +169,16 @@ public enum Figure {
 
 
     public static Figure getRandomFigure() {
-        return Figure.values()[(int) (Math.random() * Figure.values().length)];
+        return switch ((int) (Math.random() * 7)) {
+            case 0 -> I1;
+            case 1 -> J1;
+            case 2 -> L1;
+            case 3 -> O;
+            case 4 -> S1;
+            case 5 -> T1;
+            case 6 -> Z1;
+            default -> Figure.values()[(int) (Math.random() * Figure.values().length)];
+        };
 
     }
 }

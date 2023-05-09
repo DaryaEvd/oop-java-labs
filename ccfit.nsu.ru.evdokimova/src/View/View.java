@@ -149,10 +149,23 @@ public class View {
 
     private void turnFigure() {
         Figure rotated = figure.turnRight();
-        if(!canMoveFigure(rotated,0, 0)) {
+        if(canMoveFigure(rotated,0, 0)) { //TODO: what?
+            figure = rotated;
             return;
         }
-        figure = figure.turnRight();
+        else if(canMoveFigure(rotated, 1, 0)) {
+            figure = rotated;
+            moveFigure(1, 0);
+        }
+        else if(canMoveFigure(rotated, -1, 0)) {
+            figure = rotated;
+            moveFigure(-1, 0);
+        }
+        else if(canMoveFigure(rotated, 0, -1)) {
+           figure = rotated;
+           moveFigure(0, -1);
+        }
+//        figure = figure.turnRight();
     }
     private boolean canMoveFigure(Figure figure, int dx, int dy) {
         if(coords.x + dx + figure.leftTop.x < 0) {
