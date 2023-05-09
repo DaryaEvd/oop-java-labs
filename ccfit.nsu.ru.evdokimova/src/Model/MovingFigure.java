@@ -2,17 +2,13 @@ package Model;
 
 import View.Constants;
 
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
 public class MovingFigure {
     private Figure figure;
     private Coord coords;
 
     public MovingFigure() {
         figure = Figure.getRandomFigure();
-        coords = new Coord( -figure.leftTop.y, Constants.GRID_COLUMNS / 2 - 2);
+        coords = new Coord( -figure.leftTop.y, Constants.GRID_COLUMNS / 2 - 2  );
          //TODO: mozhet bit '-figure.leftTop.y - figure.bottom.y - 1 ' ?
     }
 
@@ -24,34 +20,9 @@ public class MovingFigure {
         return coords;
     }
 
+    public void turnFigure(int direction) {
+        Figure rotated = direction == 1 ? figure.turnRight() : figure.turnLeft();
 
-
-//
-//    public void showFigure() {
-//        showFigure(figure, coords, 1);
-//    }
-//
-//    public void hideFihure() {
-//        showFigure(figure, coords, 0);
-//    }
-//    private void showFigure(Figure figure, Coord at, int color) {
-//        for(Coord coord : figure.dots){
-//            setBoxColor(at.x + coord.x , at.y + coord.y, color);
-//        }
-//    }
-
-//    void setBoxColor(int x, int y, int color) {
-//        if(x < 0 || x >= Constants.GRID_ROWS) {
-//        }
-//        if(y < 0 || y >= Constants.GRID_COLUMNS) {
-//        }
-//        else {
-//            boxes[x][y].setColor(color);
-//        }
-//    }
-
-    public void turnFigure() {
-        Figure rotated = figure.turnRight();
         if(canMoveFigure(rotated,0, 0)) { //TODO: what?
             figure = rotated;
             return;
@@ -96,46 +67,4 @@ public class MovingFigure {
             coords = coords.plus(dx, dy);
         }
     }
-//
-//    class MyKeyListener extends KeyAdapter implements KeyListener {
-//        @Override
-//        public void keyTyped(KeyEvent e) {
-//
-//        }
-//
-//        @Override
-//        public void keyPressed(KeyEvent e) {
-//            System.out.println("KOOOOOOOOOOT");
-//
-//            hideFihure();
-//            switch (e.getKeyCode()) {
-//                case KeyEvent.VK_LEFT -> {
-//                    moveFigure(0, -1);
-//                }
-//                case KeyEvent.VK_UP -> {
-//                    moveFigure(-1, 0);
-//                }
-//                case KeyEvent.VK_RIGHT -> {
-//                    moveFigure(0, 1);
-//                }
-//                case KeyEvent.VK_DOWN -> {
-//                    moveFigure(1, 0);
-//                }
-//                case KeyEvent.VK_SPACE -> {
-//                    turnFigure();
-//                }
-//                default -> {
-////                    throw new IllegalStateException("Unexpected value: " + e.getKeyCode());
-//                }
-//            }
-//            showFigure();
-////
-//        }
-//
-//        @Override
-//        public void keyReleased(KeyEvent e) {
-//
-//        }
-//    }
-
 }

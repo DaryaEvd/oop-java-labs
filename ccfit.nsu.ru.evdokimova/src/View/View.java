@@ -101,53 +101,18 @@ public class View {
             boxes[x][y].setColor(color);
         }
     }
-//
-//    private void turnFigure() {
-//        Figure rotated = figure.turnRight();
-//        if(canMoveFigure(rotated,0, 0)) { //TODO: what?
-//            figure = rotated;
-//            return;
-//        }
-//        else if(canMoveFigure(rotated, 1, 0)) {
-//            figure = rotated;
-//            moveFigure(1, 0);
-//        }
-//        else if(canMoveFigure(rotated, -1, 0)) {
-//            figure = rotated;
-//            moveFigure(-1, 0);
-//        }
-//        else if(canMoveFigure(rotated, 0, -1)) {
-//           figure = rotated;
-//           moveFigure(0, -1);
-//        }
-////        figure = figure.turnRight();
-//    }
-//    private boolean canMoveFigure(Figure figure, int dx, int dy) {
-//        if(coords.x + dx + figure.leftTop.x < 0) {
-//            return false;
-//        }
-//
-//        if(coords.x + dx + figure.bottom.x  >= Constants.GRID_ROWS) {
-//            return false;
-//        }
-//
-//        if(coords.y + dy + figure.leftTop.y < 0) {
-//            return false;
-//        }
-//
-//        if(coords.y + dy + figure.bottom.y >= Constants.GRID_COLUMNS) {
-//            return false;
-//        }
-//
-//        return true;
-//
-//    }
-//
-//    public void moveFigure(int dx, int dy) {
-//        if(canMoveFigure(figure, dx, dy)) {
-//            coords = coords.plus(dx, dy);
-//        }
-//    }
+
+    private void moveFly(int dx, int dy) {
+       hideFihure();
+       fly.moveFigure(dx, dy);
+       showFigure();
+    }
+
+    private void turnFly(int direction) {
+        hideFihure();
+        fly.turnFigure(direction);
+        showFigure();
+    }
 
     private void initLevoPravo() {
         JLabel levo = new JLabel("leviy clown", CENTER);
@@ -207,20 +172,29 @@ public class View {
             hideFihure();
             switch (e.getKeyCode()) {
                 case KeyEvent.VK_LEFT -> {
-                     fly.moveFigure(0, -1);
-                }
-                case KeyEvent.VK_UP -> {
-//                    fly.moveFigure(-1, 0);
+//                     fly.moveFigure(0, -1);
+                    moveFly(0, -1);
                 }
                 case KeyEvent.VK_RIGHT -> {
-                    fly.moveFigure(0, 1);
+//                    fly.moveFigure(0, 1);
+                    moveFly(0, 1);
                 }
                 case KeyEvent.VK_DOWN -> {
-                    fly.moveFigure(1, 0);
+//                    fly.turnFigure(2);
+//                    turnFly(2);
+                    moveFly(1, 0);
                 }
-                case KeyEvent.VK_SPACE -> {
-                    fly.turnFigure();
+                case KeyEvent.VK_UP -> {
+//                    fly.turnFigure(1);
+                    turnFly(1);
                 }
+                case KeyEvent.VK_U -> {
+//                    fly.moveFigure(-1, 0);
+                    moveFly(-1, 0);
+                }
+//                case KeyEvent.VK_SPACE -> {
+//                    fly.turnFigure();
+//                }
                 default -> {
 //                    throw new IllegalStateException("Unexpected value: " + e.getKeyCode());
                 }
@@ -239,7 +213,8 @@ public class View {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            fly.moveFigure(0, 1);
+//            fly.moveFigure(0, 1);
+            moveFly(1, 0);
         }
     }
 }
