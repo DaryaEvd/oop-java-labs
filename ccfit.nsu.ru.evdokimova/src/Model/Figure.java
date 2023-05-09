@@ -71,10 +71,10 @@ public enum Figure {
         int y = dots.get(0).y;
 
         for(Coord coord : dots) {
-            if(x < coord.x) {
+            if(x > coord.x) {
                 x = coord.x;
             }
-            if(y < coord.y) {
+            if(y > coord.y) {
                 y = coord.y;
             }
         }
@@ -87,10 +87,10 @@ public enum Figure {
         int y = dots.get(0).y;
 
         for(Coord coord : dots) {
-            if(x > coord.x) {
+            if(x < coord.x) {
                 x = coord.x;
             }
-            if(y > coord.y) {
+            if(y < coord.y) {
                 y = coord.y;
             }
         }
