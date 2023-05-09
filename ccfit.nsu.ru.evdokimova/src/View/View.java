@@ -41,38 +41,35 @@ public class View {
 //            showFigure();
             switch (e.getKeyCode()) {
                 case KeyEvent.VK_LEFT -> {
-//                    coords = new Coord(coords.x, coords.y - 1);
-                    System.out.println("left");
                     moveFigure(0, -1);
                 }
                 case KeyEvent.VK_UP -> {
-//                    coords = new Coord(coords.x - 1, coords.y);
                     moveFigure(-1, 0);
                 }
                 case KeyEvent.VK_RIGHT -> {
-//                    coords = new Coord(coords.x, coords.y + 1);
                     moveFigure(0, 1);
                 }
                 case KeyEvent.VK_DOWN -> {
-//                    coords = new Coord(coords.x + 1, coords.y );
                     moveFigure(1, 0);
                 }
-
-                default -> throw new IllegalStateException("Unexpected value: " + e.getKeyCode());
+                case KeyEvent.VK_SPACE -> {
+                     turnFigure();
+                }
+                default -> {
+//                    throw new IllegalStateException("Unexpected value: " + e.getKeyCode());
+                }
             }
             showFigure();
 //            showFigure(figure, coords, 1);
         }
 
-        @Override
+              @Override
         public void keyReleased(KeyEvent e) {
 
         }
     });
 
-
 //        addKeyListener(new KeyAdapter());
-//        showFigure(Figure.I1, new Coord(5, 5), 1);
 
     }
 
@@ -150,7 +147,14 @@ public class View {
         }
     }
 
-    private boolean canMoveFigure(int dx, int dy) {
+    private void turnFigure() {
+        Figure rotated = figure.turnRight();
+        if(!canMoveFigure(rotated,0, 0)) {
+            return;
+        }
+        figure = figure.turnRight();
+    }
+    private boolean canMoveFigure(Figure figure, int dx, int dy) {
         if(coords.x + dx + figure.leftTop.x < 0) {
             return false;
         }
@@ -169,11 +173,10 @@ public class View {
 
         return true;
 
-        //TODO: think about signature
     }
 
     private void moveFigure(int dx, int dy) {
-        if(canMoveFigure(dx, dy)) {
+        if(canMoveFigure(figure, dx, dy)) {
             coords = coords.plus(dx, dy);
         }
     }
