@@ -69,7 +69,6 @@ public class View {
 //        addKeyListener(new KeyAdapter());
 //        showFigure(Figure.I1, new Coord(5, 5), 1);
 
-
     }
 
 
@@ -79,7 +78,7 @@ public class View {
 
     public void addFigure() {
         figure = Figure.getRandomFigure();
-        coords = new Coord(5, 5);
+        coords = new Coord(9, 5);
         showFigure();
 //        showFigure(figure, coords, 1);
     }
@@ -137,9 +136,9 @@ public class View {
     }
 
     void setBoxColor(int x, int y, int color) {
-        if(x < 0 || x >= Constants.GRID_COLUMNS) {
+        if(x < 0 || x >= Constants.GRID_ROWS) {
         }
-        else if(y < 0 || y > Constants.GRID_ROWS) {
+        else if(y < 0 || y > Constants.GRID_COLUMNS) {
         }
         else {
             boxes[x][y].setColor(color);
