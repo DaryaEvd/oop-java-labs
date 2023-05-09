@@ -6,10 +6,18 @@ public class MovingFigure {
     private Figure figure;
     private Coord coords;
 
+    private boolean landed = false;
+    private int tics = 2;
+
+    public boolean isLanded() {
+        return landed;
+    }
     public MovingFigure() {
         figure = Figure.getRandomFigure();
         coords = new Coord( -figure.leftTop.y, Constants.GRID_COLUMNS / 2 - 2  );
          //TODO: mozhet bit '-figure.leftTop.y - figure.bottom.y - 1 ' ?
+
+        landed = false;
     }
 
     public Figure getFigure() {
@@ -65,6 +73,15 @@ public class MovingFigure {
     public void moveFigure(int dx, int dy) {
         if(canMoveFigure(figure, dx, dy)) {
             coords = coords.plus(dx, dy);
+        }
+
+        else if (dx == 1) { // error was here dx = 0
+           if(tics > 0) {
+               tics--;
+           }
+           else{
+               landed = true;
+           }
         }
     }
 }

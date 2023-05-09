@@ -26,11 +26,12 @@ public class View {
         frame.addKeyListener(new MyKeyListener());
 
         MyTime myTime = new MyTime();
-        Timer timer = new Timer(1000, myTime);
+        Timer timer = new Timer(300, myTime);
         timer.start();
     }
 
     private Cell [][] boxes;
+
 
     public void addFigure() {
         fly = new MovingFigure();
@@ -113,6 +114,7 @@ public class View {
         fly.turnFigure(direction);
         showFigure();
     }
+
 
     private void initLevoPravo() {
         JLabel levo = new JLabel("leviy clown", CENTER);
@@ -209,12 +211,18 @@ public class View {
         }
     }
 
+
     class MyTime implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
 //            fly.moveFigure(0, 1);
             moveFly(1, 0);
+
+            if(fly.isLanded()){
+
+                fly = new MovingFigure();
+            }
         }
     }
 }
