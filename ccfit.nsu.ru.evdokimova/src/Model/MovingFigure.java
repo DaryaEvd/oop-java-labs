@@ -50,6 +50,7 @@ public class MovingFigure {
             figure = rotated;
             moveFigure(0, -1);
         }
+
 //        figure = figure.turnRight();
     }
     private boolean canMoveFigure(Figure figure, int dx, int dy) {

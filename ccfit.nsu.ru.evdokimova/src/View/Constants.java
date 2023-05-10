@@ -11,7 +11,7 @@ public class Constants {
 
     public final static int CELL_SIZE = 30;
 
-    public final static Color COLORS[] = {Color.BLACK, Color.ORANGE, Color.GREEN};
+    public final static Color[] COLORS = {Color.BLACK, Color.ORANGE, Color.GREEN};
 
 
 }

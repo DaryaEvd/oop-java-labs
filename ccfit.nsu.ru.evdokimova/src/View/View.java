@@ -237,8 +237,40 @@ public class View implements Mapa {
 
 //                fly = new MovingFigure();
                 showFigure(2);
+
+                stripLines();
+
                 addFigure();
             }
         }
+    }
+
+    public void stripLines() {
+        for(int y = Constants.GRID_ROWS - 1; y >= 0; y--) {
+            if(isFullLine(y)) {
+                dropLine(y);
+            }
+        }
+    }
+
+    private void dropLine(int y) {
+        for(int moveY = y - 1; moveY >= 0; moveY--) {
+            for(int x = 0; x < Constants.GRID_COLUMNS; x++) {
+                setBoxColor(x, moveY - 1, getBoxColor(x, moveY ));
+            }
+        }
+
+        for(int x = 0; x < Constants.GRID_COLUMNS; x++) {
+            setBoxColor(x, 0, 0);
+        }
+    }
+
+    private boolean isFullLine(int y) {
+        for(int x = 0; x < Constants.GRID_COLUMNS; x++) {
+            if(getBoxColor(x, y) != 2) {
+                return false;
+            }
+        }
+        return true;
     }
 }

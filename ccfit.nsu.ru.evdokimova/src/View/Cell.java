@@ -10,10 +10,10 @@ public class Cell extends JPanel {
         return color;
     }
     public Cell(int x, int y) {
-        color = 0;
+//        color = 0;
         setBounds(x * Constants.CELL_SIZE, y * Constants.CELL_SIZE,
                 Constants.CELL_SIZE, Constants.CELL_SIZE);
-        setBackground(Constants.COLORS[color]);
+        setBackground(Constants.COLORS[0]);
     }
 
     public void setColor(int numberColor) {
