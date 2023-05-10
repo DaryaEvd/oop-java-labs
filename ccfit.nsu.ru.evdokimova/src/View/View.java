@@ -38,7 +38,18 @@ public class View implements Mapa {
         fly = new MovingFigure(this);
 //        figure = Figure.getRandomFigure();
 //        coords = new Coord(9, 5);
-        showFigure();
+
+        if(!fly.canPlaceFigure()) {
+//           frame.setVisible(false);
+//           frame.dispose();
+//           System.exit(0);
+            frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+           return;
+        }
+        else {
+            showFigure();
+        }
+
 //        showFigure(figure, coords, 1);
 
 
@@ -92,7 +103,8 @@ public class View implements Mapa {
     private void showFigure(int color) {
         for(Coord coord : fly.getFigure().dots){
             setBoxColor(fly.getCoords().x + coord.x,
-                    fly.getCoords().y + coord.y, color);
+                    fly.getCoords().y+ coord.y,
+                    color);
         }
     }
 //
@@ -102,6 +114,7 @@ public class View implements Mapa {
          if(y < 0 || y >= Constants.GRID_COLUMNS) {
         }
         else {
+             System.out.println("color: " + color);
             boxes[x][y].setColor(color);
         }
     }
@@ -127,8 +140,6 @@ public class View implements Mapa {
         fly.turnFigure(direction);
         showFigure();
     }
-
-
 
     private void initLevoPravo() {
         JLabel levo = new JLabel("leviy clown", CENTER);
@@ -238,7 +249,7 @@ public class View implements Mapa {
 //                fly = new MovingFigure();
                 showFigure(2);
 
-                stripLines();
+//                stripLines();
 
                 addFigure();
             }
@@ -254,15 +265,15 @@ public class View implements Mapa {
     }
 
     private void dropLine(int y) {
-        for(int moveY = y - 1; moveY >= 0; moveY--) {
-            for(int x = 0; x < Constants.GRID_COLUMNS; x++) {
-                setBoxColor(x, moveY - 1, getBoxColor(x, moveY ));
-            }
-        }
+//        for(int moveY = y - 1; moveY >= 0; moveY--) {
+//            for(int x = 0; x < Constants.GRID_COLUMNS; x++) {
+//                setBoxColor(x, moveY - 1, getBoxColor(x, moveY ));
+//            }
+//        }
 
-        for(int x = 0; x < Constants.GRID_COLUMNS; x++) {
-            setBoxColor(x, 0, 0);
-        }
+//        for(int x = 0; x < Constants.GRID_COLUMNS; x++) {
+//            setBoxColor(x, 0, 0);
+//        }
     }
 
     private boolean isFullLine(int y) {
@@ -271,6 +282,7 @@ public class View implements Mapa {
                 return false;
             }
         }
+        System.out.println("Full line");
         return true;
     }
 }

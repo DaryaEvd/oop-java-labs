@@ -14,6 +14,10 @@ public class MovingFigure {
     public boolean isLanded() {
         return landed;
     }
+
+    public boolean canPlaceFigure() {
+       return canMoveFigure(figure, 0, 0);
+    }
     public MovingFigure(Mapa map) {
         this.mapa = map;
         figure = Figure.getRandomFigure();
@@ -55,24 +59,29 @@ public class MovingFigure {
     }
     private boolean canMoveFigure(Figure figure, int dx, int dy) {
         if(coords.x + dx + figure.leftTop.x < 0) {
+            System.out.println("1");
             return false;
         }
 
         if(coords.x + dx + figure.bottom.x  >= Constants.GRID_ROWS) {
+            System.out.println("2");
             return false;
         }
 
         if(coords.y + dy + figure.leftTop.y < 0) {
+            System.out.println("3");
             return false;
         }
 
         if(coords.y + dy + figure.bottom.y >= Constants.GRID_COLUMNS) {
+            System.out.println("4");
             return false;
         }
 
         for(Coord dot : figure.dots) {
             if(mapa.getBoxColor(coords.x + dot.x + dx,
                     coords.y + dot.y + dy) != 0) {
+                System.out.println("ZDEC!!!");
                return false;
             }
         }
