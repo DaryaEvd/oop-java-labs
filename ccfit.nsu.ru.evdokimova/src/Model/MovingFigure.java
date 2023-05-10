@@ -1,6 +1,7 @@
 package Model;
 
 import View.Constants;
+import View.View;
 
 public class MovingFigure {
     private Figure figure;
@@ -9,10 +10,12 @@ public class MovingFigure {
     private boolean landed = false;
     private int tics = 2;
 
+    Mapa mapa;
     public boolean isLanded() {
         return landed;
     }
-    public MovingFigure() {
+    public MovingFigure(Mapa map) {
+        this.mapa = map;
         figure = Figure.getRandomFigure();
         coords = new Coord( -figure.leftTop.y, Constants.GRID_COLUMNS / 2 - 2  );
          //TODO: mozhet bit '-figure.leftTop.y - figure.bottom.y - 1 ' ?
@@ -64,6 +67,13 @@ public class MovingFigure {
 
         if(coords.y + dy + figure.bottom.y >= Constants.GRID_COLUMNS) {
             return false;
+        }
+
+        for(Coord dot : figure.dots) {
+            if(mapa.getBoxColor(coords.x + dot.x + dx,
+                    coords.y + dot.y + dy) != 0) {
+               return false;
+            }
         }
 
         return true;

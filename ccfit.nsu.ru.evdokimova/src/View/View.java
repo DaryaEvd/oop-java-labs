@@ -3,6 +3,7 @@ package View;
 import Controller.Controller;
 import Model.Coord;
 import Model.Figure;
+import Model.Mapa;
 import Model.MovingFigure;
 
 import javax.swing.*;
@@ -11,7 +12,7 @@ import java.awt.event.*;
 
 import static javax.swing.SwingConstants.*;
 
-public class View {
+public class View implements Mapa {
 //    private Model model;
     private final Controller controller;
     MovingFigure fly;
@@ -34,11 +35,13 @@ public class View {
 
 
     public void addFigure() {
-        fly = new MovingFigure();
+        fly = new MovingFigure(this);
 //        figure = Figure.getRandomFigure();
 //        coords = new Coord(9, 5);
         showFigure();
 //        showFigure(figure, coords, 1);
+
+
     }
 
 //    public View() {
@@ -103,6 +106,16 @@ public class View {
         }
     }
 
+    public int getBoxColor(int x, int y) {
+        if(x < 0 || x >= Constants.GRID_ROWS) {
+            return -1;
+        }
+        if(y < 0 || y >= Constants.GRID_COLUMNS) {
+            return -1;
+        }
+        return boxes[x][y].getColor();
+    }
+
     private void moveFly(int dx, int dy) {
        hideFihure();
        fly.moveFigure(dx, dy);
@@ -114,6 +127,7 @@ public class View {
         fly.turnFigure(direction);
         showFigure();
     }
+
 
 
     private void initLevoPravo() {
@@ -221,7 +235,9 @@ public class View {
 
             if(fly.isLanded()){
 
-                fly = new MovingFigure();
+//                fly = new MovingFigure();
+                showFigure(2);
+                addFigure();
             }
         }
     }
