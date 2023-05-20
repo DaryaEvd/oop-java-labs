@@ -22,16 +22,16 @@ public class Main {
         }
 
 
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            @Override
+//            public void run() {
                 System.out.println("Helloooooo");
                 Tetris tetrisGame = new Tetris();
 
                 tetrisGame.startGame();
-            }
-        });
-
+//            }
+//        });
+//
 
         logger.log(Level.FINE, "End of successful work!");
     }
