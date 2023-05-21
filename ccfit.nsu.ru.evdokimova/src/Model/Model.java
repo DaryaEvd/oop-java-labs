@@ -1,6 +1,7 @@
 package Model;
 
 
+import Model.Figures.Tetromino;
 import Tetris.Observer;
 import Tetris.Subject;
 import View.Constants;
@@ -13,6 +14,8 @@ public class Model implements Subject {
     private List<Observer> observers;
     private int [][] gameField;
     private int[] addedCellsInLine;
+
+    private Tetromino tetromino;
 
     public Model() {
         observers = new ArrayList<>();
@@ -39,6 +42,15 @@ public class Model implements Subject {
         }
     }
 
+
+    public void createNewGame() {
+         generateField();
+         tetromino = Tetromino.generateRandomFigure();
+         for(int i = 0; i < Constants.GRID_COLUMNS; i++) {
+             addedCellsInLine[i] = 0;
+         }
+         notifyObservers();
+    }
     @Override
     public void unregister(Observer obj) {
         observers.remove(obj);
@@ -55,4 +67,6 @@ public class Model implements Subject {
     public Object getUpdate(Observer obj) {
         return null;
     }
+
+
 }

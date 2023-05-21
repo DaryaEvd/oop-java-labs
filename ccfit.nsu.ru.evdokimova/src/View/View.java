@@ -37,31 +37,6 @@ public class View implements Observer {
     private Cell [][] boxes;
 
 
-//    public void addFigure() {
-//        fly = new MovingFigure(this);
-////        figure = Figure.getRandomFigure();
-////        coords = new Coord(9, 5);
-//
-//        if(!fly.canPlaceFigure()) {
-////           frame.setVisible(false);
-////           frame.dispose();
-////           System.exit(0);
-//            frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
-//           return;
-//        }
-//        else {
-//            showFigure();
-//        }
-
-//        showFigure(figure, coords, 1);
-
-
-//    }
-
-//    public View() {
-//       createGUI(); //
-//    }
-
     private final JFrame frame = new JFrame();
     private final JMenuBar menuBar = new JMenuBar();
 

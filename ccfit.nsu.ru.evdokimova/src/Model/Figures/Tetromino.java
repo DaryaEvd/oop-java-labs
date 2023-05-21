@@ -24,13 +24,22 @@ public abstract class Tetromino {
             case J -> {
                 return new J();
             }
-//            case 1 -> J;
-//            case 2 -> L;
-//            case 3 -> O;
-//            case 4 -> S;
-//            case 5 -> T;
-//            case 6 -> Z;
-            default -> {return null;} //or mb null idk
+            case L -> {
+                return new L();
+            }
+            case O -> {
+                return new O();
+            }
+            case S -> {
+                return new S();
+            }
+            case T -> {
+                return new T();
+            }
+            case Z -> {
+                return new Z();
+            }
+            default -> {return new I();} //or mb null idk
         }
 
     }
