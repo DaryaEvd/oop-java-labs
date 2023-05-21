@@ -3,6 +3,7 @@ package Model;
 
 import Tetris.Observer;
 import Tetris.Subject;
+import View.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,8 +11,21 @@ import java.util.List;
 public class Model implements Subject {
 
     private List<Observer> observers;
+    private int [][] gameField;
+    private int[] addedCellsInLine;
+
     public Model() {
-        this.observers = new ArrayList<>();
+        observers = new ArrayList<>();
+        gameField = new int[Constants.GRID_ROWS][Constants.GRID_COLUMNS];
+        addedCellsInLine = new int[Constants.GRID_COLUMNS];
+    }
+
+    private void generateField() {
+        for(int i = 0; i < Constants.GRID_ROWS; i++) {
+           for(int j = 0; j < Constants.GRID_COLUMNS; j++) {
+               gameField[i][j] = -1;
+           }
+        }
 
     }
 

@@ -1,15 +1,14 @@
 package Tetris;
 
 import Model.Coord;
-import Model.Figure;
 import Model.Model;
 import View.View;
 import Controller.Controller;
 
 public class Tetris {
-    private final Model model;
-    private final View view;
-    private final Controller controller = new Controller();
+    private  Model model;
+    private  View view;
+   private  Controller controller;
     public Tetris() {
         /*
          model is subject
@@ -22,9 +21,12 @@ public class Tetris {
 //        Game.block.add(Game.currBlock);
 //        Game.nextBlock= new Block();
 //        this.model = new Model();
-        this.view = new View(controller);
-        this.model = new Model();
 
+        model = new Model(); //независимая часть, которая ничего не знает ни о контроллере, ни о представлпени
+        controller = new Controller(model); // точкой входа в программу является контроллер
+        view = new View(controller, model);
+
+        model.register(view);
 
 //        view.showFigure(Figure.I1, new Coord(5, 5), 1);
     }

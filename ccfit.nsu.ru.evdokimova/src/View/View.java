@@ -1,8 +1,10 @@
 package View;
 
 import Controller.Controller;
+import Model.Model;
 import Model.Coord;
-import Model.Figure;
+import Tetris.Observer;
+import Tetris.Subject;
 //import Model.Mapa;
 //import Model.MovingFigure;
 
@@ -12,12 +14,12 @@ import java.awt.event.*;
 
 import static javax.swing.SwingConstants.*;
 
-public class View {
+public class View implements Observer {
 //    private Model model;
     private final Controller controller;
 //    MovingFigure fly;
 
-    public View(Controller controller) {
+    public View(Controller controller, Model model) {
 //        this.model = model;
         this.controller = controller;
 
@@ -136,6 +138,16 @@ public class View {
         JMenuItem pauseButton = new JMenuItem("Pause");
         pauseButton.addActionListener(controller);
         menuBar.add(pauseButton);
+    }
+
+    @Override
+    public void update() {
+
+    }
+
+    @Override
+    public void setSubject(Subject sub) {
+
     }
 
 
