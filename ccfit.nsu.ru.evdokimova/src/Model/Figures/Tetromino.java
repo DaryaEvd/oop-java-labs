@@ -1,6 +1,7 @@
 package Model.Figures;
 
 import Model.Coord;
+import View.Constants;
 
 import java.awt.*;
 import java.util.List;
@@ -62,7 +63,7 @@ public abstract class Tetromino {
         }
     }
 
-    public boolean MoveLeft(int[][] currField) {
+    public boolean moveLeft(int[][] currField) {
         clearFigure(currField);
 
         boolean canMoveLeft = true;
@@ -77,8 +78,61 @@ public abstract class Tetromino {
            }
         }
 
+        if(canMoveLeft) {
+            blockCoord.setX(blockCoord.getX());
+            blockCoord.setY(blockCoord.getY() - 1);
+        }
+
+        drawNewFigurePlacement(currField);
+
         return canMoveLeft;
     }
 
+    public boolean moveRight(int[][] currField) {
+        clearFigure(currField);
+
+        boolean canMoveRight = true;
+
+        for(Coord squqre : coordList) {
+           if(blockCoord.getY() + squqre.getY() + 1 >= Constants.GRID_COLUMNS ||
+                currField[blockCoord.getX() + squqre.getX()]
+                    [blockCoord.getY() + squqre.getX() + 1] != -1) {
+               canMoveRight = false;
+               break;
+           }
+        }
+
+        if(canMoveRight) {
+            blockCoord.setX(blockCoord.getX());
+            blockCoord.setY(blockCoord.getY() + 1);
+        }
+
+        drawNewFigurePlacement(currField);
+
+        return canMoveRight;
+    }
+
+    public boolean moveDown(int [][] currField) {
+        clearFigure(currField);
+
+        boolean canMoveDown = true;
+
+        for(Coord square : coordList) {
+            if(blockCoord.getX() + square.getX() + 1 >= Constants.GRID_ROWS ||
+                currField[blockCoord.getX() + square.getX() + 1]
+                        [blockCoord.getY() + square.getY()] != -1) {
+                    canMoveDown = false;
+                    break;
+                }
+        }
+       if(canMoveDown) {
+           blockCoord.setX(blockCoord.getX() + 1);
+           blockCoord.setY(blockCoord.getY());
+       }
+
+       drawNewFigurePlacement(currField);
+
+       return canMoveDown;
+    }
 
 }
