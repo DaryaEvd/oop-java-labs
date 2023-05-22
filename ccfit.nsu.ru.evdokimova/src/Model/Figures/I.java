@@ -1,13 +1,14 @@
 package Model.Figures;
 
 import Model.Coord;
+import View.ColorsConstants;
 
 import java.awt.*;
 import java.util.ArrayList;
 
 public class I extends Tetromino {
     public I() {
-        colorOfFigure = Color.CYAN;
+        colorOfFigure = ColorsConstants.I_COLOR;
 
         coordList = new ArrayList<>(4);
         coordList.add(new Coord(2, 0));

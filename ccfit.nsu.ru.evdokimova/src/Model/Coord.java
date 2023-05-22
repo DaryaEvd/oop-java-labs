@@ -1,6 +1,8 @@
 package Model;
 
 public class Coord {
+
+
     public final int x;
     public final int y;
 
@@ -8,8 +10,15 @@ public class Coord {
         this.x = x;
         this.y = y;
     }
+    public int getX() {
+        return x;
+    }
 
-    public Coord plus(int dx, int dy) {
+    public int getY() {
+        return y;
+    }
+
+     public Coord plus(int dx, int dy) {
         return new Coord(x + dx, y + dy);
     }
 }

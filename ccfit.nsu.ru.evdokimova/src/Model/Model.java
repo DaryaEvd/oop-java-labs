@@ -7,9 +7,12 @@ import Tetris.Subject;
 import View.Constants;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import static Model.Figures.Tetromino.generateRandomFigure;
 
 public class Model implements Subject {
     private static final Logger logger = Logger.getLogger(Model.class.getName());
@@ -28,9 +31,7 @@ public class Model implements Subject {
 
     private void generateField() {
         for(int i = 0; i < Constants.GRID_ROWS; i++) {
-           for(int j = 0; j < Constants.GRID_COLUMNS; j++) {
-               gameField[i][j] = -1;
-           }
+            Arrays.fill(gameField[i], -1);
         }
 
     }
@@ -48,7 +49,7 @@ public class Model implements Subject {
 
     public void createNewGame() {
          generateField();
-         tetromino = Tetromino.generateRandomFigure();
+         tetromino = generateRandomFigure();
          for(int i = 0; i < Constants.GRID_COLUMNS; i++) {
              addedCellsInLine[i] = 0;
          }
