@@ -8,13 +8,16 @@ import View.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Model implements Subject {
-
+    private static final Logger logger = Logger.getLogger(Model.class.getName());
     private List<Observer> observers;
     private int [][] gameField;
     private int[] addedCellsInLine;
 
+    private GameState curGameState;
     private Tetromino tetromino;
 
     public Model() {
@@ -68,5 +71,30 @@ public class Model implements Subject {
         return null;
     }
 
+    public void handleRequest(CommandState command) {
+       if(curGameState.equals(GameState.GAME_OVER) || curGameState.equals((GameState.PAUSE))) {
+            return;
+       }
+
+       boolean modelHasChanged = false;
+
+       switch (command) {
+           case DOWN -> {
+               logger.log(Level.INFO, "model goes down");
+           }
+
+           case LEFT -> {
+                logger.log(Level.INFO, "model goes left");
+           }
+
+           case RIGHT -> {
+                logger.log(Level.INFO, "model goes right");
+           }
+
+           case ROTATE -> {
+                logger.log(Level.INFO, "model rotates");
+           }
+       }
+    }
 
 }

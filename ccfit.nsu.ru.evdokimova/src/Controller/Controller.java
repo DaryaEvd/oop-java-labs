@@ -18,7 +18,7 @@ public class Controller implements ActionListener {
 
     Model model;
     public Controller(Model model) {
-
+        this.model = model;
     }
 
     @Override
@@ -61,4 +61,6 @@ public class Controller implements ActionListener {
             logger.log(Level.INFO, "Clicked on 'Pause'");
         }
     }
+
+
 }

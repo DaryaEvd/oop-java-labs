@@ -19,17 +19,8 @@ public class Cell extends JPanel {
     public void setColor(int numberColor) {
         this.color = numberColor;
 
-//        if(numberColor >= 0 && numberColor < Constants.COLORS.length) {
             setBackground(Constants.COLORS[this.color]);
-//        }
 
-//        if(numberColor == 0) {
-////            setBackground(Color.YELLOW);
-//            setBackground(Color.BLACK);
-//        }
-//        else {
-//            setBackground(Color.BLUE);
-//        }
 
     }
 }

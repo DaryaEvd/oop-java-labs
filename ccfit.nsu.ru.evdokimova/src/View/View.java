@@ -15,18 +15,15 @@ import java.awt.event.*;
 import static javax.swing.SwingConstants.*;
 
 public class View implements Observer {
-//    private Model model;
+    private Model model;
     private final Controller controller;
 //    MovingFigure fly;
 
     public View(Controller controller, Model model) {
-//        this.model = model;
+        this.model = model;
         this.controller = controller;
 
         createGUI();
-
-//        addFigure();
-
         frame.addKeyListener(new MyKeyListener());
 
 //        MyTime myTime = new MyTime();
@@ -35,7 +32,6 @@ public class View implements Observer {
     }
 
     private Cell [][] boxes;
-
 
     private final JFrame frame = new JFrame();
     private final JMenuBar menuBar = new JMenuBar();
@@ -62,6 +58,7 @@ public class View implements Observer {
 
         frame.setVisible(true);
     }
+
     private void initCells() {
         for(int x = 0; x < Constants.GRID_ROWS; x++) {
             for(int y = 0; y < Constants.GRID_COLUMNS; y++) {
