@@ -1,0 +1,4 @@
+clown 1100
+circ 0
+uehal 1000
+tigryinok vasya 400

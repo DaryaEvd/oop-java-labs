@@ -41,7 +41,6 @@ public class FrameScores extends JFrame {
         this.setVisible(true);
     }
 
-
     private void writeToPanel(File filename) {
         try(Reader input = new FileReader(filename);
             BufferedReader bufferedReader = new BufferedReader(input)) {
