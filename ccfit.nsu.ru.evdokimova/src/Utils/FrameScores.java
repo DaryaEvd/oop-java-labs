@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class FrameScores extends JFrame {
+
     private static final Logger logger = Logger.getLogger((FrameScores.class.getName()));
 
     JPanel scoresPanel;
@@ -48,10 +49,8 @@ public class FrameScores extends JFrame {
             String[] arrayOfAllStrings;
 
             while ((currString = bufferedReader.readLine()) != null) {
-
                 arrayOfAllStrings = currString.split("\n");
                 for (String currLine : arrayOfAllStrings) {
-                     System.out.println(currLine);
                     JLabel line = new JLabel();
                     line.setFont(new Font("Serif", Font.BOLD, 20));
                     line.setText(currLine);
@@ -59,7 +58,7 @@ public class FrameScores extends JFrame {
                     scoresPanel.add(line);
                     scoresPanel.setVisible(true);
                 }
-                 }
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

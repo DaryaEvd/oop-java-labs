@@ -113,7 +113,7 @@ public class View implements Runnable, Observer {
             case IN_GAME -> {
                 gameField.updateCellsField(model.getGameField());
                 scores.setText("Scores: " + model.getScores());
-
+                logger.log(Level.INFO, "Continue game");
             }
             case IN_THE_END -> {
                 JOptionPane.showMessageDialog(null, "That's end");
@@ -122,7 +122,9 @@ public class View implements Runnable, Observer {
                 model.initNewModel();
                 logger.log(Level.INFO, "Finished game and started new");
             }
-            case IN_PAUSE -> {}
+            case IN_PAUSE -> {
+                logger.log(Level.INFO, "Game in pause");
+            }
         }
     }
 
