@@ -1,138 +1,148 @@
 package Model.Figures;
 
-import Model.Coord;
-import View.Constants;
+import Utils.ColorsConstants;
+import Utils.Constants;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Tetromino {
-
-    public int colorOfFigure;
-    public List<Coord> coordList;
-
-    public Coord blockCoord;
-
-    private enum Figure {
+    protected List<Coordinates> coordsList;
+    protected Coordinates blockCoord;
+    protected Color colorTetromino;
+    private enum TetrominoType {
         I, J, L, O, S, T, Z
     }
 
-    public static Tetromino generateRandomFigure() {
-        Figure figure = Figure.values()[(int) (Math.random() * 7)];
-        switch (figure) {
-            case I -> {
-                return new I();
-            }
-            case J -> {
-                return new J();
-            }
-            case L -> {
-                return new L();
-            }
-            case O -> {
-                return new O();
-            }
-            case S -> {
-                return new S();
-            }
-            case T -> {
-                return new T();
-            }
-            case Z -> {
-                return new Z();
-            }
-            default -> {
-                return null;
-            } //or mb null idk
+    public static Tetromino generateNewFigure() {
+        TetrominoType newFigureType = TetrominoType.values()
+                                    [(int) (Math.random() * 7)];
+        switch (newFigureType) {
+            case J -> { return new J(); }
+            case L -> { return new L(); }
+            case O -> { return new O(); }
+            case S -> { return new S(); }
+            case T -> { return new T(); }
+            case Z -> { return new Z(); }
+            default -> { return new I(); }
         }
     }
 
-    public void clearFigure(int[][] currField) {
-         for(Coord square : coordList ) {
-            currField[blockCoord.getX() + square.getX()]
+    protected void clearFigure(Color[][] curGameField) {
+        for (Coordinates square : coordsList) {
+            curGameField[blockCoord.getX() + square.getX()][blockCoord.getY() + square.getY()]
+                    = ColorsConstants.EMPTY_CELL;
+        }
+    }
+
+    protected void drawNewFigurePlacement(Color[][] curGameField) {
+        for (Coordinates square : coordsList) {
+            curGameField[blockCoord.getX() + square.getX()]
                     [blockCoord.getY() + square.getY()] =
-                                colorOfFigure;
-         }
-    }
-
-    public void drawNewFigurePlacement(int[][] currField) {
-        for(Coord square : coordList) {
-            currField[blockCoord.getX() + square.getX()]
-                    [blockCoord.y + square.getY()] =
-                        colorOfFigure;
+                        colorTetromino;
         }
     }
 
-    public boolean moveLeft(int[][] currField) {
-        clearFigure(currField);
+    protected abstract Coordinates mapCoords(Coordinates curCoords);
 
+    public boolean rotateRight(Color[][] curGameField) {
+        clearFigure(curGameField);
+        boolean canRotateRight = true;
+
+        List<Coordinates> newInBoxCoords = new ArrayList<>(4);
+        for (Coordinates square : coordsList) {
+            Coordinates mapped = mapCoords(square);
+            if (blockCoord.getX() + mapped.getX() >= Constants.ADDITIONAL_HEIGHT ||
+                    blockCoord.getY() + mapped.getY() >= Constants.WIDTH ||
+                    blockCoord.getY() + mapped.getY() < 0 ||
+                    !curGameField[blockCoord.getX() + mapped.getX()][blockCoord.getY() + mapped.getY()]
+                            .equals(ColorsConstants.EMPTY_CELL)) {
+                canRotateRight = false;
+                break;
+            } else {
+                newInBoxCoords.add(mapped);
+            }
+        }
+
+        if (canRotateRight) {
+            coordsList = newInBoxCoords;
+        }
+        drawNewFigurePlacement(curGameField);
+
+        return canRotateRight;
+    }
+    public boolean goDown(Color[][] curGameField) {
+        clearFigure(curGameField);
+        boolean canSlideDown = true;
+
+        for (Coordinates square : coordsList) {
+            if (blockCoord.getX() + square.getX() + 1 >= Constants.ADDITIONAL_HEIGHT ||
+                    !curGameField[blockCoord.getX() + square.getX() + 1][blockCoord.getY() + square.getY()]
+                            .equals(ColorsConstants.EMPTY_CELL)) {
+                canSlideDown = false;
+                break;
+            }
+        }
+
+        if (canSlideDown) {
+            blockCoord.setX(blockCoord.getX() + 1);
+            blockCoord.setY(blockCoord.getY());
+        }
+        drawNewFigurePlacement(curGameField);
+        return canSlideDown;
+    }
+
+    public boolean goLeft(Color[][] currField) {
+        clearFigure(currField);
         boolean canMoveLeft = true;
 
-        for(Coord square : coordList) {
-           if((((blockCoord.getY() + square.getY()) - 1) < 0) ||
-                   (currField[blockCoord.getX() + square.getX()]
-                           [blockCoord.getY() + square.getY() - 1] )
-            != -1)     {
-               canMoveLeft = false;
-               break;
-           }
+        for (Coordinates square : coordsList) {
+            if (blockCoord.getY() + square.getY() - 1 < 0 ||
+                    !currField[blockCoord.getX() + square.getX()][blockCoord.getY() + square.getY() - 1]
+                            .equals(ColorsConstants.EMPTY_CELL)) {
+                canMoveLeft = false;
+                break;
+            }
         }
 
-        if(canMoveLeft) {
+        if (canMoveLeft) {
             blockCoord.setX(blockCoord.getX());
             blockCoord.setY(blockCoord.getY() - 1);
         }
-
         drawNewFigurePlacement(currField);
 
         return canMoveLeft;
     }
-
-    public boolean moveRight(int[][] currField) {
+    public boolean goRight(Color[][] currField) {
         clearFigure(currField);
-
         boolean canMoveRight = true;
 
-        for(Coord squqre : coordList) {
-           if(blockCoord.getY() + squqre.getY() + 1 >= Constants.GRID_COLUMNS ||
-                currField[blockCoord.getX() + squqre.getX()]
-                    [blockCoord.getY() + squqre.getX() + 1] != -1) {
-               canMoveRight = false;
-               break;
-           }
+        for (Coordinates square : coordsList) {
+            if (blockCoord.getY() + square.getY() + 1 >= Constants.WIDTH ||
+                    !currField[blockCoord.getX() + square.getX()]
+                            [blockCoord.getY() + square.getY() + 1]
+                            .equals(ColorsConstants.EMPTY_CELL)) {
+                canMoveRight = false;
+                break;
+            }
         }
 
-        if(canMoveRight) {
+        if (canMoveRight) {
             blockCoord.setX(blockCoord.getX());
             blockCoord.setY(blockCoord.getY() + 1);
         }
-
         drawNewFigurePlacement(currField);
 
         return canMoveRight;
     }
 
-    public boolean moveDown(int [][] currField) {
-        clearFigure(currField);
-
-        boolean canMoveDown = true;
-
-        for(Coord square : coordList) {
-            if(blockCoord.getX() + square.getX() + 1 >= Constants.GRID_ROWS ||
-                currField[blockCoord.getX() + square.getX() + 1]
-                        [blockCoord.getY() + square.getY()] != -1) {
-                    canMoveDown = false;
-                    break;
-                }
+    public List<Coordinates> getTetrominoCoordsFromField() {
+        List<Coordinates> onFieldCoords = new ArrayList<>(4);
+        for (Coordinates square : coordsList) {
+            onFieldCoords.add(new Coordinates(blockCoord.getX() + square.getX(),
+                    blockCoord.getY() + square.getY()));
         }
-       if(canMoveDown) {
-           blockCoord.setX(blockCoord.getX() + 1);
-           blockCoord.setY(blockCoord.getY());
-       }
-
-       drawNewFigurePlacement(currField);
-
-       return canMoveDown;
+        return onFieldCoords;
     }
-
 }

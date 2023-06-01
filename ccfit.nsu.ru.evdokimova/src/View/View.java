@@ -2,142 +2,138 @@ package View;
 
 import Controller.Controller;
 import Model.Model;
-import Model.Coord;
-import Tetris.Observer;
-import Tetris.Subject;
-//import Model.Mapa;
-//import Model.MovingFigure;
+import Utils.ColorsConstants;
+import Utils.Observer;
+import Utils.RecordTableAdder;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import static javax.swing.SwingConstants.*;
-
-public class View implements Observer {
-    private Model model;
+public class View implements Runnable, Observer {
+    private static final Logger logger = Logger.getLogger(View.class.getName());
+    private final Model model;
     private final Controller controller;
-//    MovingFigure fly;
 
-    public View(Controller controller, Model model) {
+    private final JFrame frame;
+
+    private final GameField gameField;
+
+    private final JMenuBar menuBar = new JMenuBar();
+
+    private final JPanel scorePanel = new JPanel();
+
+    private final JLabel scores = new JLabel();
+    private final JPanel leftSide = new JPanel();
+
+    public View(Model model, Controller controller) {
         this.model = model;
         this.controller = controller;
 
-        createGUI();
-        frame.addKeyListener(new MyKeyListener());
-
-//        MyTime myTime = new MyTime();
-//        Timer timer = new Timer(300, myTime);
-//        timer.start();
-    }
-
-    private Cell [][] boxes;
-
-    private final JFrame frame = new JFrame();
-    private final JMenuBar menuBar = new JMenuBar();
-
-    JLabel center = new JLabel("center clown", CENTER);
-//    private DrawGame drawGame;
-    private void createGUI() {
+        frame = new JFrame();
         initFrame(frame);
 
-        initMenuBar(menuBar);
-        frame.setJMenuBar(menuBar);
+        frame.addKeyListener(controller);
+        gameField = new GameField();
 
-        center.setOpaque(true);
-        center.setBackground(Color.LIGHT_GRAY);
-        center.setLayout(new GridLayout(Constants.GRID_ROWS,
-                Constants.GRID_COLUMNS, 1, 1));
-        initLevoPravo();
-
-        boxes = new Cell[Constants.GRID_ROWS][Constants.GRID_COLUMNS]; //TODO:
-
-        initCells();
-
-        frame.add(center, BorderLayout.CENTER);
-
-        frame.setVisible(true);
-    }
-
-    private void initCells() {
-        for(int x = 0; x < Constants.GRID_ROWS; x++) {
-            for(int y = 0; y < Constants.GRID_COLUMNS; y++) {
-                boxes[x][y] = new Cell(x, y);
-                center.add(boxes[x][y]);
-            }
-        }
-    }
-
-    private void initLevoPravo() {
-        JLabel levo = new JLabel("leviy clown", CENTER);
-        levo.setOpaque(true);
-        levo.setBackground(Color.red);
-        frame.add(levo, BorderLayout.WEST);
-
-        JLabel pravo = new JLabel("praviy clown", CENTER);
-        pravo.setOpaque(true);
-        pravo.setBackground(Color.ORANGE);
-        frame.add(pravo, BorderLayout.EAST);
+        initMenuBar();
+        initStatisticPanel();
+        initLeftSide();
     }
 
     private void initFrame(JFrame frame) {
         frame.setTitle("Tetris game");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        frame.setSize(500, 700);
+        frame.setSize(500, 692);
         frame.setResizable(false);
 
         frame.setLocationRelativeTo(null);
     }
 
-    private void initMenuBar(JMenuBar menuBar) {
-        JMenuItem exitButton = new JMenuItem("Exit");
+    private void initMenuBar() {
+        menuBar.add(Box.createHorizontalGlue());
+
+        JMenuItem exitButton = new JMenuItem();
+        exitButton.setText("Exit");
+        exitButton.setForeground(ColorsConstants.TEXT_COLOR_MENU);
         exitButton.addActionListener(controller);
         menuBar.add(exitButton);
 
-        JMenuItem aboutButton = new JMenuItem("About");
+        JMenuItem aboutButton = new JMenuItem();
+        aboutButton.setText("About");
+        aboutButton.setForeground(ColorsConstants.TEXT_COLOR_MENU);
         aboutButton.addActionListener(controller);
         menuBar.add(aboutButton);
 
-        JMenuItem newGameButton = new JMenuItem("NewGame");
+        JMenuItem newGameButton = new JMenuItem();
+        newGameButton.setText("New Game");
+        newGameButton.setForeground(ColorsConstants.TEXT_COLOR_MENU);
         newGameButton.addActionListener(controller);
         menuBar.add(newGameButton);
 
-        JMenuItem hightScoresButton = new JMenuItem("Scores");
-        hightScoresButton.addActionListener(controller);
-        menuBar.add(hightScoresButton);
+        JMenuItem highScoresButton = new JMenuItem();
+        highScoresButton.setText("Scores");
+        highScoresButton.setForeground(ColorsConstants.TEXT_COLOR_MENU);
+        highScoresButton.addActionListener(controller);
+        menuBar.add(highScoresButton);
 
-        JMenuItem pauseButton = new JMenuItem("Pause");
+        JMenuItem pauseButton = new JMenuItem();
+        pauseButton.setText("Pause");
+        pauseButton.setForeground(ColorsConstants.TEXT_COLOR_MENU);
         pauseButton.addActionListener(controller);
         menuBar.add(pauseButton);
+
+        JMenuItem continueButton = new JMenuItem( );
+        continueButton.setText("Continue");
+        continueButton.setForeground(ColorsConstants.TEXT_COLOR_MENU);
+        continueButton.addActionListener(controller);
+        menuBar.add(continueButton);
+    }
+
+    private void initStatisticPanel() {
+        scorePanel.setPreferredSize(
+                new Dimension(100, 692));
+        scorePanel.setBackground(Color.LIGHT_GRAY);
+
+        scores.setText("Score: " + model.getScores());
+        scores.setForeground(Color.BLACK);
+        scorePanel.add(scores);
+    }
+
+    private void initLeftSide() {
+        leftSide.setPreferredSize(scorePanel.getPreferredSize());
+        leftSide.setBackground(Color.LIGHT_GRAY);
     }
 
     @Override
-    public void update() {
+    public void updateEvent() {
+        switch (model.getCurrState()) {
+            case IN_GAME -> {
+                gameField.updateCellsField(model.getGameField());
+                scores.setText("Scores: " + model.getScores());
 
+            }
+            case IN_THE_END -> {
+                JOptionPane.showMessageDialog(null, "That's end");
+                RecordTableAdder table = new RecordTableAdder();
+                table.addRecordToTable(table, model.getScores());
+                model.initNewModel();
+                logger.log(Level.INFO, "Finished game and started new");
+            }
+            case IN_PAUSE -> {}
+        }
     }
 
     @Override
-    public void setSubject(Subject sub) {
+    public void run() {
+        frame.setJMenuBar(menuBar);
 
+        frame.add(scorePanel, BorderLayout.EAST);
+        frame.add(leftSide, BorderLayout.WEST);
+        frame.add(gameField, BorderLayout.CENTER);
+
+        frame.setVisible(true);
     }
-
-
-    class MyKeyListener extends KeyAdapter implements KeyListener {
-        @Override
-        public void keyTyped(KeyEvent e) {
-
-        }
-
-        @Override
-        public void keyPressed(KeyEvent e) {
-            System.out.println("KOOOOOOOOOOT");
-        }
-
-        @Override
-        public void keyReleased(KeyEvent e) {
-
-        }
-    }
-
 }

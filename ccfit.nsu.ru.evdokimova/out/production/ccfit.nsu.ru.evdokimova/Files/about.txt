@@ -10,5 +10,5 @@ The game has levels of difficulties which rises as the game is being played.
 Tetris has appeared on many video game systems.
 It has become very common from back when Alexey Pajitnov first made it in 1984.
 With over 500 million copies sold across all of its different versions, it is the
-best-selling video game of all time.
+best-selling video game of all time. Do you like this game?
 

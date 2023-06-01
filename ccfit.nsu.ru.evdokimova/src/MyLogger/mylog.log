@@ -1,4 +1,22 @@
-May 23, 2023 12:46:19 AM Main main
+Jun 01, 2023 5:06:02 PM Main main
 INFO: Logger initialized
-May 23, 2023 12:46:24 AM Controller.Controller actionPerformed
-INFO: Clicked on 'Exit'
+Jun 01, 2023 5:06:03 PM Model.Model handleRequest
+INFO: Model go down
+Jun 01, 2023 5:06:03 PM Model.Model handleRequest
+INFO: Model changed
+Jun 01, 2023 5:06:04 PM Model.Model handleRequest
+INFO: Model go down
+Jun 01, 2023 5:06:04 PM Model.Model handleRequest
+INFO: Model changed
+Jun 01, 2023 5:06:04 PM Model.Model handleRequest
+INFO: Model go down
+Jun 01, 2023 5:06:04 PM Model.Model handleRequest
+INFO: Model changed
+Jun 01, 2023 5:06:05 PM Model.Model handleRequest
+INFO: Model go down
+Jun 01, 2023 5:06:05 PM Model.Model handleRequest
+INFO: Model changed
+Jun 01, 2023 5:06:05 PM Controller.Controller actionPerformed
+INFO: Clicked on 'Scores'
+Jun 01, 2023 5:06:05 PM Utils.FrameScores <init>
+INFO: Writed to panel

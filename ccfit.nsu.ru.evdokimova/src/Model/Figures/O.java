@@ -1,19 +1,30 @@
 package Model.Figures;
 
-import Model.Coord;
-import View.ColorsConstants;
 
-import java.awt.*;
+import Utils.ColorsConstants;
+
 import java.util.ArrayList;
 
-public class O extends Tetromino {
-    public O() {
-       colorOfFigure = ColorsConstants.O_COLOR;
+import static Utils.Constants.CAPACITY_ARRAY;
 
-       coordList = new ArrayList<>(4);
-       coordList.add(new Coord(0, 0));
-       coordList.add(new Coord(0, 1));
-       coordList.add(new Coord(1, 0));
-       coordList.add(new Coord(1, 1));
+public class O extends Tetromino {
+
+    public O() {
+        colorTetromino = ColorsConstants.O_COLOR;
+        blockCoord = new Coordinates(1, 4);
+
+        coordsList = new ArrayList<>(CAPACITY_ARRAY);
+        coordsList.add(new Coordinates(1, 1));
+        coordsList.add(new Coordinates(1, 2));
+        coordsList.add(new Coordinates(2, 1));
+        coordsList.add(new Coordinates(2, 2));
+    }
+
+    // аналогично I
+    // в принципе пока её вообще можно и не поворачивать
+    @Override
+    protected Coordinates mapCoords(Coordinates curCoords) {
+//        return new Coords(curCoords.getY(), -curCoords.getX() + 3);
+        return curCoords;
     }
 }

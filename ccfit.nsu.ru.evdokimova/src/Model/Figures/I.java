@@ -1,19 +1,27 @@
 package Model.Figures;
 
-import Model.Coord;
-import View.ColorsConstants;
+import Utils.ColorsConstants;
 
-import java.awt.*;
 import java.util.ArrayList;
 
-public class I extends Tetromino {
-    public I() {
-        colorOfFigure = ColorsConstants.I_COLOR;
+import static Utils.Constants.CAPACITY_ARRAY;
 
-        coordList = new ArrayList<>(4);
-        coordList.add(new Coord(2, 0));
-        coordList.add(new Coord(2, 1));
-        coordList.add(new Coord(2, 2));
-        coordList.add(new Coord(2, 3));
+public class I extends Tetromino {
+
+    public I() {
+        colorTetromino = ColorsConstants.I_COLOR;
+        blockCoord = new Coordinates(1, 4);
+
+        coordsList = new ArrayList<>(CAPACITY_ARRAY);
+        coordsList.add(new Coordinates(2, 0));
+        coordsList.add(new Coordinates(2, 1));
+        coordsList.add(new Coordinates(2, 2));
+        coordsList.add(new Coordinates(2, 3));
     }
+
+    @Override
+    protected Coordinates mapCoords(Coordinates curCoords) {
+        return new Coordinates(curCoords.getY(), -curCoords.getX() + 3);
+    }
+
 }
