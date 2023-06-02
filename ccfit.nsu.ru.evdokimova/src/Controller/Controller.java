@@ -2,21 +2,22 @@ package Controller;
 
 import Model.Model;
 import Model.State;
-import Utils.LeaderFrame;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.Comparator;
 
 public class Controller implements ActionListener, KeyListener {
     private static final Logger logger = Logger.getLogger((Controller.class.getName()));
@@ -70,10 +71,37 @@ public class Controller implements ActionListener, KeyListener {
 
             model.setModelState(State.IN_PAUSE);
 
-            LeaderFrame leaderFrame = new LeaderFrame(new File("./ccfit.nsu.ru.evdokimova/src/Files/leaders.txt"));
+            String[] columnNames = {"Name", "Score"};
+            DefaultTableModel tableModel;
+            tableModel = new DefaultTableModel(columnNames, 0);
+
+            try {
+                BufferedReader reader = new BufferedReader(new FileReader("./ccfit.nsu.ru.evdokimova/src/Files/leaders.txt"));
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    String[] parts = line.split(" ");
+                    String name = parts[0];
+                    int score = Integer.parseInt(parts[1]);
+                    tableModel.addRow(new Object[]{name, score});
+                }
+                reader.close();
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
+            JTable table = new JTable(tableModel);
+
+            TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(tableModel);
+            sorter.setComparator(1,
+                    Comparator.naturalOrder());
+            table.setRowSorter(sorter);
+
+            UIManager.put("OptionPane.minimumSize", new Dimension(300, 300));
+            JOptionPane.showMessageDialog(null, new JScrollPane(table), "Scores", JOptionPane.PLAIN_MESSAGE);
 
             model.setModelState(State.IN_GAME);
         }
+
+
         else if(e.getActionCommand().equals("Pause")) {
             logger.log(Level.INFO, "Clicked on 'Pause'");
             model.setModelState(State.IN_PAUSE);

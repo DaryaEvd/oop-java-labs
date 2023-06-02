@@ -1,7 +1,3 @@
-clown 1100
-circ 0
-uehal 1000
-tigryinok 400
-vasya 544
-hehehe 544
-cola 2800
+clowm 100
+durak 500
+hehe 300
