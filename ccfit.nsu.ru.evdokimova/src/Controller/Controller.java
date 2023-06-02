@@ -1,7 +1,8 @@
 package Controller;
 
-import Model.*;
-import Utils.*;
+import Model.Model;
+import Model.State;
+import Utils.LeaderFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -68,12 +69,10 @@ public class Controller implements ActionListener, KeyListener {
             logger.log(Level.INFO, "Clicked on 'Scores'");
 
             model.setModelState(State.IN_PAUSE);
-//            FrameScores scoreFrame = new FrameScores(new File("./ccfit.nsu.ru.evdokimova/src/Files/leaders.txt"));
-//            scoreFrame.setVisible(true);
-//            scoreFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
             LeaderFrame leaderFrame = new LeaderFrame(new File("./ccfit.nsu.ru.evdokimova/src/Files/leaders.txt"));
-            leaderFrame.setVisible(true);
-            leaderFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+            model.setModelState(State.IN_GAME);
         }
         else if(e.getActionCommand().equals("Pause")) {
             logger.log(Level.INFO, "Clicked on 'Pause'");

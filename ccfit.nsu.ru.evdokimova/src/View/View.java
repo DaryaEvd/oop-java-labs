@@ -16,7 +16,7 @@ public class View implements Runnable, Observer {
     private final Model model;
     private final Controller controller;
 
-    private final JFrame frame;
+    public final JFrame frame;
 
     private final GameField gameField;
 

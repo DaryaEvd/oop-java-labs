@@ -2,29 +2,37 @@ package Utils;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Comparator;
 
 public class LeaderFrame extends JFrame {
 
     private DefaultTableModel tableModel;
 
     public LeaderFrame(File filename) {
-        setTitle("clown");
+        setTitle("Records Table");
 
         setSize(new Dimension(300, 600));
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         initModel(filename);
 
         JTable leaderTable = new JTable(tableModel);
-        add(leaderTable);
 
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(tableModel);
+        sorter.setComparator(1, Comparator.naturalOrder());
+        leaderTable.setRowSorter(sorter);
+
+        JScrollPane scrollPane = new JScrollPane(leaderTable);
+        getContentPane().add(scrollPane);
+        pack();
+
+        setLocationRelativeTo(null);
         setVisible(true);
     }
 
