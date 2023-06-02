@@ -1,50 +1,70 @@
-Jun 02, 2023 12:31:18 PM Main main
+Jun 02, 2023 1:00:45 PM Main main
 INFO: Logger initialized
-Jun 02, 2023 12:31:19 PM View.View updateEvent
+Jun 02, 2023 1:00:46 PM View.View updateEvent
 INFO: Continue game
-Jun 02, 2023 12:31:19 PM Model.Model handleRequest
+Jun 02, 2023 1:00:46 PM Model.Model handleRequest
 INFO: Model go down
-Jun 02, 2023 12:31:19 PM Model.Model handleRequest
+Jun 02, 2023 1:00:46 PM Model.Model handleRequest
 INFO: Model changed
-Jun 02, 2023 12:31:19 PM View.View updateEvent
+Jun 02, 2023 1:00:46 PM View.View updateEvent
 INFO: Continue game
-Jun 02, 2023 12:31:20 PM Model.Model handleRequest
+Jun 02, 2023 1:00:47 PM Model.Model handleRequest
 INFO: Model go down
-Jun 02, 2023 12:31:20 PM Model.Model handleRequest
+Jun 02, 2023 1:00:47 PM Model.Model handleRequest
 INFO: Model changed
-Jun 02, 2023 12:31:20 PM View.View updateEvent
+Jun 02, 2023 1:00:47 PM View.View updateEvent
 INFO: Continue game
-Jun 02, 2023 12:31:20 PM Model.Model handleRequest
+Jun 02, 2023 1:00:47 PM Model.Model handleRequest
 INFO: Model go down
-Jun 02, 2023 12:31:20 PM Model.Model handleRequest
+Jun 02, 2023 1:00:47 PM Model.Model handleRequest
 INFO: Model changed
-Jun 02, 2023 12:31:20 PM View.View updateEvent
+Jun 02, 2023 1:00:47 PM View.View updateEvent
 INFO: Continue game
-Jun 02, 2023 12:31:21 PM Controller.Controller actionPerformed
+Jun 02, 2023 1:00:48 PM Controller.Controller actionPerformed
+INFO: Clicked on 'About'
+Jun 02, 2023 1:00:49 PM Controller.Controller actionPerformed
+INFO: Read msg and chosed OK/NO/CLOSED option
+Jun 02, 2023 1:00:50 PM Model.Model handleRequest
+INFO: Model go down
+Jun 02, 2023 1:00:50 PM Model.Model handleRequest
+INFO: Model changed
+Jun 02, 2023 1:00:50 PM View.View updateEvent
+INFO: Continue game
+Jun 02, 2023 1:00:50 PM Model.Model handleRequest
+INFO: Model go down
+Jun 02, 2023 1:00:50 PM Model.Model handleRequest
+INFO: Model changed
+Jun 02, 2023 1:00:50 PM View.View updateEvent
+INFO: Continue game
+Jun 02, 2023 1:00:51 PM Controller.Controller actionPerformed
 INFO: Clicked on 'Scores'
-Jun 02, 2023 12:31:25 PM Model.Model handleRequest
+Jun 02, 2023 1:00:53 PM Model.Model handleRequest
 INFO: Model go down
-Jun 02, 2023 12:31:25 PM Model.Model handleRequest
+Jun 02, 2023 1:00:53 PM Model.Model handleRequest
 INFO: Model changed
-Jun 02, 2023 12:31:25 PM View.View updateEvent
+Jun 02, 2023 1:00:53 PM View.View updateEvent
 INFO: Continue game
-Jun 02, 2023 12:31:26 PM Model.Model handleRequest
+Jun 02, 2023 1:00:54 PM Model.Model handleRequest
 INFO: Model go down
-Jun 02, 2023 12:31:26 PM Model.Model handleRequest
+Jun 02, 2023 1:00:54 PM Model.Model handleRequest
 INFO: Model changed
-Jun 02, 2023 12:31:26 PM View.View updateEvent
+Jun 02, 2023 1:00:54 PM View.View updateEvent
 INFO: Continue game
-Jun 02, 2023 12:31:26 PM Model.Model handleRequest
+Jun 02, 2023 1:00:54 PM Model.Model handleRequest
 INFO: Model go down
-Jun 02, 2023 12:31:26 PM Model.Model handleRequest
+Jun 02, 2023 1:00:54 PM Model.Model handleRequest
 INFO: Model changed
-Jun 02, 2023 12:31:26 PM View.View updateEvent
+Jun 02, 2023 1:00:54 PM View.View updateEvent
 INFO: Continue game
-Jun 02, 2023 12:31:27 PM Model.Model handleRequest
+Jun 02, 2023 1:00:55 PM Model.Model handleRequest
 INFO: Model go down
-Jun 02, 2023 12:31:27 PM Model.Model handleRequest
+Jun 02, 2023 1:00:55 PM Model.Model handleRequest
 INFO: Model changed
-Jun 02, 2023 12:31:27 PM View.View updateEvent
+Jun 02, 2023 1:00:55 PM View.View updateEvent
 INFO: Continue game
-Jun 02, 2023 12:31:27 PM Controller.Controller actionPerformed
-INFO: Clicked on 'Exit'
+Jun 02, 2023 1:00:55 PM Model.Model handleRequest
+INFO: Model go down
+Jun 02, 2023 1:00:55 PM Model.Model handleRequest
+INFO: Model changed
+Jun 02, 2023 1:00:55 PM View.View updateEvent
+INFO: Continue game

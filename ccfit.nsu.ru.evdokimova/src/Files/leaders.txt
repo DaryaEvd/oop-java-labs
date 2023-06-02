@@ -1,3 +1,0 @@
-clowm 100
-durak 500
-hehe 300

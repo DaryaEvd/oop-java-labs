@@ -91,8 +91,7 @@ public class Controller implements ActionListener, KeyListener {
             JTable table = new JTable(tableModel);
 
             TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(tableModel);
-            sorter.setComparator(1,
-                    Comparator.naturalOrder());
+            sorter.setComparator(1, Comparator.naturalOrder());
             table.setRowSorter(sorter);
 
             UIManager.put("OptionPane.minimumSize", new Dimension(300, 300));
@@ -100,7 +99,6 @@ public class Controller implements ActionListener, KeyListener {
 
             model.setModelState(State.IN_GAME);
         }
-
 
         else if(e.getActionCommand().equals("Pause")) {
             logger.log(Level.INFO, "Clicked on 'Pause'");
