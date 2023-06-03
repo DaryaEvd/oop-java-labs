@@ -76,7 +76,9 @@ public class Controller implements ActionListener, KeyListener {
             tableModel = new DefaultTableModel(columnNames, 0);
 
             try {
-                BufferedReader reader = new BufferedReader(new FileReader("./ccfit.nsu.ru.evdokimova/src/Files/leaders.txt"));
+                BufferedReader reader = new BufferedReader(
+                        new FileReader("./ccfit.nsu.ru.evdokimova/src/Files/leaders.txt"));
+                 
                 String line;
                 while ((line = reader.readLine()) != null) {
                     String[] parts = line.split(" ");
@@ -86,7 +88,8 @@ public class Controller implements ActionListener, KeyListener {
                 }
                 reader.close();
             } catch (IOException exception) {
-                exception.printStackTrace();
+
+//                exception.printStackTrace();
             }
             JTable table = new JTable(tableModel);
 
@@ -109,7 +112,6 @@ public class Controller implements ActionListener, KeyListener {
             model.setModelState(State.IN_GAME);
         }
     }
-
 
     @Override
     public synchronized void keyTyped(KeyEvent e) { }
