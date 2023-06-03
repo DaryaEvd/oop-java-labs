@@ -118,7 +118,7 @@ public class View implements Runnable, Observer {
             case IN_THE_END -> {
                 JOptionPane.showMessageDialog(null, "That's end");
                 RecordTableAdder table = new RecordTableAdder();
-                table.addRecordToTable(table, model.getScores());
+                table.addRecordToTable(model.getScores());
                 model.initNewModel();
                 logger.log(Level.INFO, "Finished game and started new");
             }

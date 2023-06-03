@@ -21,7 +21,7 @@ public class MyWriter {
             writer.write(text);
             logger.log(Level.INFO, "Text wrote");
         } catch (IOException e) {
-            logger.log(Level.SEVERE, "Can't open file");
+            logger.log(Level.SEVERE, "Can't open a file");
             throw new RuntimeException(e);
         }
         try {

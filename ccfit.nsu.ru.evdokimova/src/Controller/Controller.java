@@ -55,7 +55,7 @@ public class Controller implements ActionListener, KeyListener {
                 );
                 if((resultOfClicking == JOptionPane.OK_OPTION) || (resultOfClicking == JOptionPane.NO_OPTION)
                     || (resultOfClicking == JOptionPane.CLOSED_OPTION)) {
-                    logger.log(Level.INFO, "Read msg and chosed OK/NO/CLOSED option");
+                    logger.log(Level.INFO, "Read msg and chosen OK/NO/CLOSED option");
                     model.setModelState(State.IN_GAME);
                 }
             } catch (IOException ex) {
@@ -88,8 +88,7 @@ public class Controller implements ActionListener, KeyListener {
                 }
                 reader.close();
             } catch (IOException exception) {
-
-//                exception.printStackTrace();
+               exception.printStackTrace();
             }
             JTable table = new JTable(tableModel);
 

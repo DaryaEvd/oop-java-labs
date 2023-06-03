@@ -17,7 +17,7 @@ public class Main {
             throw new RuntimeException(e);
         }
 
-        Tetris.getInstance().run();
+        Tetris tetris = new Tetris();
 
         logger.log(Level.FINE, "End of successful work!");
 

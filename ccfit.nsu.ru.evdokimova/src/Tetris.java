@@ -5,23 +5,11 @@ import View.View;
 
 import javax.swing.*;
 
-public class Tetris implements Runnable {
-    private static Tetris instance;
-    private static Controller controller;
+public class Tetris {
 
-    private Tetris() { }
-
-    public static Tetris getInstance() {
-        if (instance == null) {
-            instance = new Tetris();
-        }
-        return instance;
-    }
-
-    @Override
-    public void run() {
+    public Tetris() {
         Model model = new Model();
-        controller = new Controller(model);
+        Controller controller = new Controller(model);
         View view = new View(model, controller);
         model.register(view);
 
@@ -31,4 +19,5 @@ public class Tetris implements Runnable {
         Timer timer = new Timer(Constants.TIMER_DELAY, e -> controller.handleTimerRequest());
         timer.start();
     }
+
 }

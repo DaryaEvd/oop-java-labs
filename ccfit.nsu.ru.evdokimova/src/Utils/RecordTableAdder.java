@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 public class RecordTableAdder {
     private static final Logger logger = Logger.getLogger(RecordTableAdder.class.getName());
     String name;
-    public void addRecordToTable(RecordTableAdder table, int score) {
+    public void addRecordToTable(int score) {
         name = JOptionPane.showInputDialog(null, "Enter your name");
 
         do {
@@ -25,7 +25,7 @@ public class RecordTableAdder {
     }
 
     private boolean isValidInputFromUser(String input) {
-        return isValidAmountOfSpaces(input) && isValidAmountOfSymbols(input);
+        return isValidAmountOfSpaces(input) && isValidAmountOfSymbols(input) && !input.isBlank();
     }
 
     private boolean isValidAmountOfSymbols(String input) {
