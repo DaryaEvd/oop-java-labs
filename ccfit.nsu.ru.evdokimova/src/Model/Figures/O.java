@@ -20,11 +20,8 @@ public class O extends Tetromino {
         coordsList.add(new Coordinates(2, 2));
     }
 
-    // аналогично I
-    // в принципе пока её вообще можно и не поворачивать
     @Override
-    protected Coordinates mapCoords(Coordinates curCoords) {
-//        return new Coords(curCoords.getY(), -curCoords.getX() + 3);
+    protected Coordinates rotateCoords(Coordinates curCoords) {
         return curCoords;
     }
 }

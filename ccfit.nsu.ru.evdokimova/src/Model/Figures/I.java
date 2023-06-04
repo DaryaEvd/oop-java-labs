@@ -20,7 +20,7 @@ public class I extends Tetromino {
     }
 
     @Override
-    protected Coordinates mapCoords(Coordinates curCoords) {
+    protected Coordinates rotateCoords(Coordinates curCoords) {
         return new Coordinates(curCoords.getY(), -curCoords.getX() + 3);
     }
 

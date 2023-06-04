@@ -20,9 +20,8 @@ public class L extends Tetromino {
         coordsList.add(new Coordinates(0, 2));
     }
 
-    // аналогично J
     @Override
-    protected Coordinates mapCoords(Coordinates curCoords) {
+    protected Coordinates rotateCoords(Coordinates curCoords) {
         return new Coordinates(curCoords.getY(), -curCoords.getX() + 2);
     }
 }

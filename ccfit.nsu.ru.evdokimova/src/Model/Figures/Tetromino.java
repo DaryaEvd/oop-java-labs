@@ -44,7 +44,7 @@ public abstract class Tetromino {
         }
     }
 
-    protected abstract Coordinates mapCoords(Coordinates curCoords);
+    protected abstract Coordinates rotateCoords(Coordinates curCoords);
 
     public boolean rotateRight(Color[][] curGameField) {
         clearFigure(curGameField);
@@ -52,7 +52,7 @@ public abstract class Tetromino {
 
         List<Coordinates> newInBoxCoords = new ArrayList<>(4);
         for (Coordinates square : coordsList) {
-            Coordinates mapped = mapCoords(square);
+            Coordinates mapped = rotateCoords(square);
             if (blockCoord.getX() + mapped.getX() >= Constants.ADDITIONAL_HEIGHT ||
                     blockCoord.getY() + mapped.getY() >= Constants.WIDTH ||
                     blockCoord.getY() + mapped.getY() < 0 ||
