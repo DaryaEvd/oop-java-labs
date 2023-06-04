@@ -48,11 +48,11 @@ public class Model implements Subject {
         }
     }
 
-    public synchronized void setModelState(State newModelState) {
+    public void setModelState(State newModelState) {
         currState = newModelState;
     }
 
-    public synchronized void handleRequest(Command command) {
+    public void handleRequest(Command command) {
         if (currState.equals(State.IN_THE_END) || currState.equals(State.IN_PAUSE)) {
             return;
         }

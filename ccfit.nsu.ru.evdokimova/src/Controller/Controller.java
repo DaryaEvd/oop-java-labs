@@ -29,7 +29,7 @@ public class Controller implements ActionListener, KeyListener {
     }
 
     @Override
-    public synchronized void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e) {
 
         if(e.getActionCommand().equals("Exit")) {
             logger.log(Level.INFO, "Clicked on 'Exit'");
@@ -113,10 +113,10 @@ public class Controller implements ActionListener, KeyListener {
     }
 
     @Override
-    public synchronized void keyTyped(KeyEvent e) { }
+    public void keyTyped(KeyEvent e) { }
 
     @Override
-    public synchronized void keyPressed(KeyEvent e) {
+    public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_DOWN -> model.handleRequest(Command.GO_DOWN);
             case KeyEvent.VK_UP -> model.handleRequest(Command.DO_ROTATION);
@@ -126,9 +126,9 @@ public class Controller implements ActionListener, KeyListener {
     }
 
     @Override
-    public synchronized void keyReleased(KeyEvent e) { }
+    public void keyReleased(KeyEvent e) { }
 
-    public synchronized void handleTimerRequest() {
+    public void handleTimerRequest() {
         model.handleRequest(Command.GO_DOWN);
     }
 }
