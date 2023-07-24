@@ -1,8 +1,0 @@
-PUSH 100
-PUSH 150
-+
-PRINT
-POP
-+
-PUSH 90
-+
