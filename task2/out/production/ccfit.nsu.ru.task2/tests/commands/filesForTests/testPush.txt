@@ -1,3 +1,0 @@
-PUSH A B 100
-PUSH A
-PUSH 1
